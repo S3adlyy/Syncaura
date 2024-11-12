@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const mysql = require("mysql2"); 
+const mysql = require("mysql2");  // npm install mysql2
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
