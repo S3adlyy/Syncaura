@@ -15,10 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send"])) {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
-            // Verify the password against the hashed password in the database
             if (password_verify($password, $user['passwor'])) {
                 // Password is correct, proceed to the main page
-                header("Location: main.php"); // Replace with your main page
+                header("Location: main.php"); 
                 exit();
             } else {
                 echo 'Incorrect password';

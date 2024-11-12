@@ -39,6 +39,7 @@
     <button class="cool-button" onclick="window.location.href='../sign/signin.php'">Sign In</button>
 </div>
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
+    <!--function that remove the spline logo-->
     <script>
     window.onload = function() {
     const shadowRoot = document.querySelector('spline-viewer').shadowRoot;

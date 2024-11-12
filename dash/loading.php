@@ -42,20 +42,10 @@
     <div class="loader"></div> <!-- Loader added here -->
     
     <script>
+        // loading screen timer
         setTimeout(function() {
             window.location.href = "dash.php"; 
         }, 10000); 
-
-        const splineViewer = document.querySelector('spline-viewer');
-        document.addEventListener('mousemove', (event) => {
-            const { innerWidth, innerHeight } = window;
-            const x = (event.clientX / innerWidth) * 2 - 1;
-            const y = -(event.clientY / innerHeight) * 2 + 1;
-            const rotationSpeed = 1;
-            splineViewer.camera.rotation.x = y * rotationSpeed;
-            splineViewer.camera.rotation.y = x * rotationSpeed;
-        });
-
         window.onload = function() {
             const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
             if (shadowRoot) {
