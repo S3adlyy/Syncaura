@@ -1,0 +1,7 @@
+// Masquer l'alerte aprأ¨s 5 secondes
+        setTimeout(() => {
+            const alertBox = document.getElementById('alertBox');
+            if (alertBox) {
+                alertBox.classList.remove('show');
+            }
+        }, 2000);
