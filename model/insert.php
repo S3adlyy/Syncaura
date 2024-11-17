@@ -25,46 +25,53 @@ class Liste {
         }
     }
 
-public function getUsers() {
-    try {
-        $stmt = $this->db->prepare("SELECT * FROM plan");
-        $stmt->execute();
-        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Modified getPlans method to display the data in a table
+    public function getPlans() {
+        try {
+            // Prepare the SQL query to fetch all plans
+            $stmt = $this->db->prepare("SELECT * FROM plan");
+            $stmt->execute();
+            $plans = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if (!empty($users)) {
-            echo "<table border='1'>";
-            echo "<tr>";
-
-            // Display table headers
-            foreach (array_keys($users[0]) as $column) {
-                echo "<th>" . htmlspecialchars($column) . "</th>";
-            }
-            echo "<th>Action</th>";
-            echo "</tr>";
-
-            // Display table rows
-            foreach ($users as $user) {
+            if (!empty($plans)) {
+                // Display table with custom styles (adjusted to your needs)
+                echo "<table class='custom-table'>";
+                echo "<thead>";
                 echo "<tr>";
-                foreach ($user as $value) {
-                    echo "<td>" . htmlspecialchars($value) . "</td>";
-                }
-                // Add a delete link with the user's ID
-                echo "<td><a href='delete_plan.php?id=" . $user['id'] . "' onclick='return confirm(\"Are you sure you want to delete this plan?\")'>Delete</a></td>";
-
+                echo "<th>ID</th>";
+                echo "<th>Nom</th>";
+                echo "<th>Date Plan</th>";
+                echo "<th>Action</th>";
                 echo "</tr>";
+                echo "</thead>";
+                echo "<tbody>";
+
+                // Loop through each plan and display it in the table
+                foreach ($plans as $plan) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($plan['id']) . "</td>";
+                    echo "<td>" . htmlspecialchars($plan['nom']) . "</td>";
+                    echo "<td>" . htmlspecialchars($plan['date_plan']) . "</td>";
+                    // Delete button with confirmation
+                    echo "<td><a href='delete_plan.php?id=" . $plan['id'] . "' class='btn-delete' onclick='return confirm(\"Are you sure you want to delete this plan?\")'>Delete</a></td>";
+                    echo "</tr>";
+                }
+
+                echo "</tbody>";
+                echo "</table>";
+            } else {
+                echo "<p>No plans found.</p>";
             }
-            echo "</table>";
-        } else {
-            echo "<p>No users found.</p>";
+        } catch (PDOException $e) {
+            echo 'Problem: ' . $e->getMessage();
         }
-    } catch (PDOException $e) {
-        echo 'Problem: ' . $e->getMessage();
     }
 }
-}
+
 // Initialize the Liste class
 $add = new Liste($connect);
-// Check if the request method is POST
+
+// Handle form submission to insert new plan
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validate and sanitize input
     $name = htmlspecialchars($_POST["name"]);
@@ -73,5 +80,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Call the insert method
     $add->insert($name, $date);
 }
-
 ?>
+
+<!-- Form to insert new plan -->
+<form method="POST" action="">
+    <label for="name">Plan Name:</label>
+    <input type="text" name="name" id="name" required>
+    <input type="submit" value="Add Plan">
+</form>
+
+<!-- Display the plans table -->
+<?php
+// Fetch and display plans
+$add->getPlans();
+?>
+
+<!-- Add the custom table styles -->
+<style>
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .custom-table th, .custom-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    .custom-table th {
+        background-color: #355CCC;
+        color: white;
+        font-size: 16px; /* Adjusted header font size */
+        font-weight: bold;
+    }
+
+    .custom-table td {
+        font-size: 14px;
+    }
+
+    .btn-delete {
+        color: red;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .btn-delete:hover {
+        text-decoration: underline;
+    }
+
+    .custom-table td {
+        white-space: nowrap;
+    }
+</style>

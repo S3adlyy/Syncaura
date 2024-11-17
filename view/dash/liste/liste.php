@@ -13,7 +13,6 @@
 </head>
 <body id="page-top">
     <div id="wrapper">
-       
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
@@ -42,7 +41,7 @@
         
         <div class="container-fluid" style="margin-left: 200px; padding-top: 20px;">
             <h2 class="text-center">Gestion TODO</h2>
-            <!--table of users in the chatromm-->
+            <!-- Table of plans -->
             <?php
             include_once '../../../model/config.php';
             include_once '../../../model/insert.php';

@@ -12,7 +12,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f5;
+            background-color: #090E28;
         }
 
         .container {
@@ -29,6 +29,7 @@
         }
 
         input[type="text"] {
+            clor:#000733
             width: calc(100% - 22px);
             padding: 10px;
             margin: 10px 0;
@@ -41,14 +42,14 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
-            background-color: #007BFF;
+            background-color: #000733;
             color: white;
             font-size: 16px;
             cursor: pointer;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #5E6E9A;
         }
 
         .error-message {
