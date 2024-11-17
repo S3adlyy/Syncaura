@@ -76,6 +76,12 @@
             color: white; /* Change text color to white for contrast */
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Subtle text shadow */
         }
+
+        .error {
+            color: red;
+            margin-top: 5px;
+            font-size: 0.85rem; /* Smaller font size for error messages */
+        }
     </style>
 </head>
 
@@ -85,22 +91,28 @@
             <div class="text-center">
                 <h1 class="h4 mb-4">Create an Account!</h1>
             </div>
-            <form action="config.php" method="post">
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="text" name="name" id="name" class="form-control form-control-user" placeholder="First Name" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="email" name="email" id="email" class="form-control form-control-user" placeholder="Email Address" required>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="password" name="password" id="password" class="form-control form-control-user" placeholder="Password" required>
-                    </div>
-                </div>
-                <input type="submit" name="send" id="send" value="Create Account" class="btn btn-primary btn-user" href="login.php">
-                <hr>
+            <form id="registerForm" action="config.php" method="post">
+            <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <input type="text" id="name" name="name" class="form-control form-control-user" placeholder="First Name">
+            <span id="nameError" style="color: red;"></span> <!-- Error message for name -->
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="text" id="email" name="email" class="form-control form-control-user" placeholder="Email Address">
+        <span id="emailError" style="color: red;"></span> <!-- Error message for email -->
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <input type="password" id="password" name="password" class="form-control form-control-user" placeholder="Password">
+            <span id="passwordError" style="color: red;"></span> <!-- Error message for password -->
+        </div>
+    </div>
+    <input type="submit" id="submit" name="send" value="Create Account" class="btn btn-primary btn-user">
+    <hr>
+    <div class="text-center">
+        <a class="small" href="login.php">Already have an account? Login!</a>
+    </div>
 
                 <!-- Google Sign-In Button Integration -->
                 <div id="g_id_onload"
@@ -139,11 +151,58 @@
 
     <!-- Google Sign-In API -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
+
     <script>
+        // JavaScript validation
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            // Clear previous error messages
+            document.getElementById("nameError").textContent = "";
+            document.getElementById("emailError").textContent = "";
+            document.getElementById("passwordError").textContent = "";
+
+            // Get form values
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            let isValid = true;
+
+            // Validate Name
+            if (!name) {
+                document.getElementById("nameError").textContent = "First Name is required.";
+                isValid = false;
+            }
+
+            // Validate Email 
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!email) {
+                document.getElementById("emailError").textContent = "Email Address is required.";
+                isValid = false;
+            } else if (!emailPattern.test(email)) {
+                document.getElementById("emailError").textContent = "Please enter a valid email address.";
+                isValid = false;
+            }
+
+            // Validate Password 
+            if (!password) {
+                document.getElementById("passwordError").textContent = "Password is required.";
+                isValid = false;
+            } else if (password.length < 8) {
+                document.getElementById("passwordError").textContent = "Password must be at least 8 characters.";
+                isValid = false;
+            }
+
+            // If validation fails, prevent form submission
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+
+        // Google login callback function
         function login(response) {
             console.log(response);
             // Handle the Google sign-in response here
-            // e.g., send token to your server for verification
+
         }
     </script>
 </body>

@@ -1,37 +1,59 @@
 <?php
 // Database connection details
-$dsn = "mysql:host=localhost;dbname=users";
-$user = "root";
-$password = ""; // Use the correct password for your MySQL user
+$dsn = "mysql:host=localhost;dbname=users"; 
+$db_user = "root"; 
+$db_password = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send"])) {
-    $name = $_POST["name"];
-    $email = $_POST["email"];
-    $Password = password_hash($_POST["password"], PASSWORD_DEFAULT); // Hashing the password securely
+// Enable error reporting for debugging
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['send'])) {
+    // Retrieve form data
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']); 
 
     try {
-        // Create a new PDO instance
-        $connect = new PDO($dsn, $user, $password);
+        // Input validation 
+        if (empty($name) || empty($email) || empty($password)) {
+            header("Location: registre.php?error=" . urlencode("All fields are required."));
+            exit();
+        }
+
+        if (strlen($name) < 3) {
+            header("Location: registre.php?error=" . urlencode("Name must be at least 3 characters long."));
+            exit();
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            header("Location: registre.php?error=" . urlencode("Invalid email format."));
+            exit();
+        }
+
+        if (strlen($password) < 8) {
+            header("Location: registre.php?error=" . urlencode("Password must be at least 8 characters long."));
+            exit();
+        }
+
+        // Connect to the database
+        $connect = new PDO($dsn, $db_user, $db_password);
         $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Prepare the SQL statement to insert data
+        // Insert user into the database
         $stmt = $connect->prepare("INSERT INTO users (name, email, password) VALUES (:name, :email, :password)");
-
-        // Bind parameters to the statement
-        $stmt->bindParam(":name", $name);
-        $stmt->bindParam(":email", $email);
-        $stmt->bindParam(":password", $Password); // Store the hashed password
-
-        // Execute the prepared statement
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
         $stmt->execute();
 
-        // Redirect to login page
-        header("location:login.php");
+        // Redirect to the login page with a success message
+        header("Location: login.php?success=1");
         exit();
-
     } catch (PDOException $e) {
-        // Log the error or handle it accordingly
-        echo 'Problem: ' . $e->getMessage();
+        // Handle database errors
+        header("Location: registre.php?error=" . urlencode("Error: " . $e->getMessage()));
+        exit();
     }
 }
 ?>

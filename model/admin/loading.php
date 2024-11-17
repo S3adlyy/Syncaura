@@ -3,9 +3,9 @@
 session_start();
 
 // Database connection details
-$dsn = "mysql:host=localhost;dbname=users"; // Replace 'users' with your database name
-$user = "root"; // Default user for XAMPP
-$password = ""; // Default password for XAMPP (empty string)
+$dsn = "mysql:host=localhost;dbname=users"; 
+$user = "root"; 
+$password = ""; 
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -17,16 +17,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $connect = new PDO($dsn, $user, $password);
         $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Check if the user exists in the database
-        $stmt = $connect->prepare("SELECT id, name, password FROM users WHERE name = :name");
+        // Check if the user exists in the admins table
+        $stmt = $connect->prepare("SELECT name, password FROM admins WHERE name = :name");
         $stmt->bindParam(":name", $username);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Check if the user exists and if the password matches
-        if ($user && $password_input === $user["password"]) { // Direct comparison
-            // Password matches, set session variables
-            $_SESSION["user_id"] = $user["id"];
+        if ($user && $password_input === $user["password"]) { 
             $_SESSION["username"] = $user["name"];
             header("Location: dashboard.php"); // Redirect to the dashboard
             exit();

@@ -1,37 +1,42 @@
 <?php
 // Database connection details
 $dsn = "mysql:host=localhost;dbname=users";
-$user = "root";
-$password = ""; // Use the correct password for your MySQL user
+$db_user = "root"; 
+$db_password = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["send"])) {
-    $name = $_POST["name"];
-    $email = $_POST["email"];
-    $Password = password_hash($_POST["password"], PASSWORD_DEFAULT); // Hashing the password securely
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['send'])) {
+    // Retrieve form data
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
     try {
-        // Create a new PDO instance
-        $connect = new PDO($dsn, $user, $password);
+        // Validate inputs
+        if (empty($name) || empty($email) || empty($password)) {
+            throw new Exception('All fields are required.');
+        }
+
+        // Connect to the database
+        $connect = new PDO($dsn, $db_user, $db_password);
         $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Prepare the SQL statement to insert data
+        // Insert user into the database
         $stmt = $connect->prepare("INSERT INTO admins (name, email, password) VALUES (:name, :email, :password)");
-
-        // Bind parameters to the statement
-        $stmt->bindParam(":name", $name);
-        $stmt->bindParam(":email", $email);
-        $stmt->bindParam(":password", $Password); // Store the hashed password
-
-        // Execute the prepared statement
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password); 
         $stmt->execute();
 
-        // Redirect to login page
-        header("location:login.php");
+        // Redirect to login page 
+        header("Location: login.php?success=1");
         exit();
-
     } catch (PDOException $e) {
-        // Log the error or handle it accordingly
-        echo 'Problem: ' . $e->getMessage();
+     
+        header("Location: register.php?error=" . urlencode($e->getMessage()));
+        exit();
+    } catch (Exception $e) {
+        header("Location: register.php?error=" . urlencode($e->getMessage()));
+        exit();
     }
 }
 ?>
