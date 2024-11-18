@@ -4,10 +4,13 @@ Welcome to the Syncaura To-Do List Management component! This feature allows use
 
 🌟 Features:
 
-1/Create Plans: Users can easily create new plans, and the tasks are linked to these plans.
-2/Task Management: Manage tasks in the "Todo" interface where users can drag and drop tasks between "In Progress" and "Done" statuses.
-3/Task Deletion: Tasks can be deleted directly from the interface.
-4/Real-Time Updates: Task data is fetched from the database and displayed in the dashboard, keeping everything up-to-date.
+📍Create Plans: Users can easily create new plans, and the tasks are linked to these plans.
+
+📍Task Management: Manage tasks in the "Todo" interface where users can drag and drop tasks between "In Progress" and "Done" statuses.
+
+📍Task Deletion: Tasks can be deleted directly from the interface.
+
+📍Real-Time Updates: Task data is fetched from the database and displayed in the dashboard, keeping everything up-to-date.
 
 🛠️ Getting Started
 Follow these steps to set up and run the To-Do list feature:
