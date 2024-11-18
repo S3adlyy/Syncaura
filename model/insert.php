@@ -10,7 +10,14 @@ class Liste {
     }
 
     public function insert($name, $date) {
+        global $errorMessage; // Use a global variable for the error message
         try {
+            // Check if the name is empty
+            if (empty($name)) {
+                $errorMessage = "Le nom du plan ne peut pas être vide."; // French error message
+                return false;
+            }
+
             // Prepare the SQL statement
             $stmt = $this->db->prepare("INSERT INTO plan (nom, date_plan) VALUES (:nom, :date_plan)");
             $stmt->bindParam(':nom', $name);
@@ -18,14 +25,13 @@ class Liste {
             
             // Execute the statement
             $stmt->execute();
-            echo "Task added successfully!";
-        } catch (PDOException $e) {
-            // Handle errors gracefully
-            echo 'Error adding task: ' . $e->getMessage();
+            return true;
+        } catch (Exception $e) {
+            $errorMessage = 'Erreur: ' . $e->getMessage();
+            return false;
         }
     }
 
-    // Modified getPlans method to display the data in a table
     public function getPlans() {
         try {
             // Prepare the SQL query to fetch all plans
@@ -34,7 +40,6 @@ class Liste {
             $plans = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if (!empty($plans)) {
-                // Display table with custom styles (adjusted to your needs)
                 echo "<table class='custom-table'>";
                 echo "<thead>";
                 echo "<tr>";
@@ -46,24 +51,22 @@ class Liste {
                 echo "</thead>";
                 echo "<tbody>";
 
-                // Loop through each plan and display it in the table
                 foreach ($plans as $plan) {
                     echo "<tr>";
                     echo "<td>" . htmlspecialchars($plan['id']) . "</td>";
                     echo "<td>" . htmlspecialchars($plan['nom']) . "</td>";
                     echo "<td>" . htmlspecialchars($plan['date_plan']) . "</td>";
-                    // Delete button with confirmation
-                    echo "<td><a href='delete_plan.php?id=" . $plan['id'] . "' class='btn-delete' onclick='return confirm(\"Are you sure you want to delete this plan?\")'>Delete</a></td>";
+                    echo "<td><a href='delete_plan.php?id=" . $plan['id'] . "' class='btn-delete' onclick='return confirm(\"Êtes-vous sûr de vouloir supprimer ce plan ?\")'>Supprimer</a></td>";
                     echo "</tr>";
                 }
 
                 echo "</tbody>";
                 echo "</table>";
             } else {
-                echo "<p>No plans found.</p>";
+                echo "<p>Aucun plan trouvé.</p>";
             }
         } catch (PDOException $e) {
-            echo 'Problem: ' . $e->getMessage();
+            echo 'Problème: ' . $e->getMessage();
         }
     }
 }
@@ -71,31 +74,39 @@ class Liste {
 // Initialize the Liste class
 $add = new Liste($connect);
 
-// Handle form submission to insert new plan
+// Handle form submission to insert a new plan
+$errorMessage = ""; // Initialize error message
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validate and sanitize input
     $name = htmlspecialchars($_POST["name"]);
-    $date = date('Y-m-d H:i:s'); // Get the current date and time in a standard format
-    
+    $date = date('Y-m-d H:i:s');
+
     // Call the insert method
-    $add->insert($name, $date);
+    $isInserted = $add->insert($name, $date);
+    if ($isInserted) {
+        header("Location: " . $_SERVER['PHP_SELF']); // Refresh page to clear form
+        exit;
+    }
 }
 ?>
-
-<!-- Form to insert new plan -->
+<!-- Form to insert a new plan -->
 <form method="POST" action="">
-    <label for="name">Plan Name:</label>
-    <input type="text" name="name" id="name" required>
-    <input type="submit" value="Add Plan">
-</form>
+    <label for="name">Nom du plan:</label>
+    <input type="text" name="name" id="name">
+    <br>
+    <!-- Display error message -->
+    <?php if (!empty($errorMessage)): ?>
+        <p style="color: red;"><?php echo $errorMessage; ?></p>
+    <?php endif; ?>
+    <input type="submit" value="Ajouter un plan" style="background-color: #355CCC; color: white; padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer;">
+</form><br>
 
 <!-- Display the plans table -->
 <?php
-// Fetch and display plans
 $add->getPlans();
 ?>
+<br>
 
-<!-- Add the custom table styles -->
+<!-- Add custom table styles -->
 <style>
     .custom-table {
         width: 100%;
@@ -111,7 +122,7 @@ $add->getPlans();
     .custom-table th {
         background-color: #355CCC;
         color: white;
-        font-size: 16px; /* Adjusted header font size */
+        font-size: 16px;
         font-weight: bold;
     }
 

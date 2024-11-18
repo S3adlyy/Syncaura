@@ -40,14 +40,13 @@
         </ul>
         
         <div class="container-fluid" style="margin-left: 200px; padding-top: 20px;">
-            <h2 class="text-center">Gestion TODO</h2>
+            <h2 class="text-center" style="font-weight: bold; color:#355CCC; " > Gestion plans </h2>
             <!-- Table of plans -->
             <?php
             include_once '../../../model/config.php';
             include_once '../../../model/insert.php';
         
             $table = new Liste($connect);
-            $users = $table->getUsers();
             ?>
         </div>
     </div>
