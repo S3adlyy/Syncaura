@@ -8,21 +8,23 @@
     <!-- Custom fonts and styles for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="../styles/styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/min.css">
+    <link href="styles/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/min.css">
 </head>
 <body id="page-top">
     <div id="wrapper">
+        <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Syncora <sup>2</sup></div>
-            </a>
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dash.php">
+                        <div class="sidebar-brand-icon rotate-n-15">
+                            <i class="fas fa-laugh-wink"></i>
+                        </div>
+                        <div class="sidebar-brand-text mx-3">Syncaura</div>
+                    </a>
+
             <hr class="sidebar-divider my-0">
             <li class="nav-item active">
-                <a class="nav-link" href="../dash.php">
+                <a class="nav-link" href="dash.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span>
                 </a>
@@ -32,22 +34,24 @@
                 Tables
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="table_Chatuser.php">
+                <a class="nav-link" href="plandash.php"> 
                     <i class="fas fa-fw fa-cog"></i>
-                    <span></span>
+                    <span>Manage Plans</span>
+                </a>
+                <a class="nav-link" href="taskdash.php"> 
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Manage Tasks</span>
                 </a>
             </li>
         </ul>
         
+        <!-- Content Area -->
         <div class="container-fluid" style="margin-left: 200px; padding-top: 20px;">
-            <h2 class="text-center" style="font-weight: bold; color:#355CCC; " > Gestion plans </h2>
-            <!-- Table of plans -->
-            <?php
-            include_once '../../../model/config.php';
-            include_once '../../../model/insert.php';
-        
-            $table = new Liste($connect);
-            ?>
+            <h2 class="text-center" style="font-weight: bold; color:#355CCC;">Manage Plans</h2>
+            
+            <!-- Include the plans list from listeplan.php -->
+            <?php include_once 'listeplan.php'; ?> 
+
         </div>
     </div>
 

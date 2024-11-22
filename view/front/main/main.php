@@ -72,7 +72,7 @@ a:hover {
 }
   </style>
 
-  <title>Learner Free Bootstrap Template by Untree.co</title>
+  <title>SYNCAURA</title>
 </head>
 
 <body>
@@ -112,7 +112,7 @@ a:hover {
             <li><a href="./Ai/loding3.php" >Ai ChatBot</a></li>
             <li><a href="./promodor/index.php"  >pomodoro timer</a></li>
             <li><a href=""  >acheter un pack</a></li>
-            <li><a href="../plan/plan.php"  >To Do list</a></li>
+            <li><a href="../todolist.php"  >To Do list</a></li>
             <li><a href="contact.php"  >Support client</a></li>
             <li><a href="../loading_screen/loadng.php">Chat</a></li>
             <li><a href="./white/white.php">Whiteboard</a></li>
