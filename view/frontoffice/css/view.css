@@ -1,0 +1,283 @@
+html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ensure the spline viewer background is at the back */
+.spline-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* Lower z-index to be behind the chat and join screens */
+}
+:root {
+    --primary-blue: #007bff;
+    --light-blue: #f8f9fa;
+    --dark-gray: #343a40;
+    --gray: #6c757d;
+    --red: #ff5252;
+    --white: #ffffff;
+    --black: #212529;
+    --shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    --hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    --transition: 0.2s ease-in-out;
+    --font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--light-blue);
+    margin: 0;
+    padding: 0;
+}
+
+/* Post Section */
+.posts-container {
+    padding: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.posts-container .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 5px 0;
+}
+
+.posts-container .box {
+    background: var(--white);
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    padding: 10px;
+    transition: var(--transition);
+    text-align: left;
+    cursor: pointer;
+}
+
+.posts-container .box:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--hover-shadow);
+}
+
+.posts-container .post-admin {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    color: var(--gray);
+}
+
+.posts-container .post-admin i {
+    font-size: 1rem;
+    color: var(--primary-blue);
+}
+
+.posts-container .post-admin a {
+    font-weight: bold;
+    color: var(--dark-gray);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.posts-container .post-admin a:hover {
+    color: var(--primary-blue);
+}
+
+.posts-container .post-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.posts-container .post-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--dark-gray);
+    margin-bottom: 8px;
+    transition: var(--transition);
+}
+
+.posts-container .post-title:hover {
+    color: var(--primary-blue);
+}
+
+.posts-container .post-content {
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-bottom: 10px;
+}
+
+.posts-container .icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+    color: var(--gray);
+}
+
+.posts-container .icons i {
+    font-size: 0.9rem;
+    margin-right: 3px;
+}
+
+.posts-container .icons button {
+    background: none;
+    border: none;
+    color: var(--dark-gray);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.posts-container .icons button:hover {
+    color: var(--red);
+}
+
+/* Comment Section */
+.comments-container {
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 900px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.comments-container .comment-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--dark-gray);
+    text-align: center;
+}
+
+.comments-container .add-comment {
+    margin-bottom: 15px;
+}
+
+.comments-container .add-comment p {
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-bottom: 8px;
+}
+
+.comments-container .comment-box {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.8rem;
+    color: var(--dark-gray);
+    border: 1px solid var(--gray);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+.comments-container .inline-btn {
+    background: var(--primary-blue);
+    color: var(--white);
+    padding: 8px 12px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+}
+
+.comments-container .inline-btn:hover {
+    background: var(--dark-gray);
+    transform: scale(1.05);
+}
+
+.comments-container .user-comments-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comments-container .show-comments {
+    background: var(--light-blue);
+    padding: 8px;
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+.comments-container .comment-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 0.8rem;
+}
+
+.comments-container .comment-user i {
+    font-size: 1rem;
+    color: var(--primary-blue);
+}
+
+.comments-container .comment-user span {
+    font-weight: bold;
+    color: var(--dark-gray);
+}
+
+.comments-container .show-comments .comment-box {
+    background: var(--white);
+    padding: 8px;
+    font-size: 0.8rem;
+    color: var(--dark-gray);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+}
+
+.comments-container .show-comments .comment-box[style*="background:var(--black)"] {
+    color: var(--white);
+}
+
+.comments-container .inline-option-btn,
+.comments-container .inline-delete-btn {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.7rem;
+    padding: 5px 8px;
+    border-radius: 15px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.comments-container .inline-option-btn {
+    background: var(--primary-blue);
+    color: var(--white);
+}
+
+.comments-container .inline-option-btn:hover {
+    background: var(--dark-gray);
+}
+
+.comments-container .inline-delete-btn {
+    background: var(--red);
+    color: var(--white);
+}
+
+.comments-container .inline-delete-btn:hover {
+    opacity: 0.8;
+}
