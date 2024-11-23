@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #007BFF; /* Blue background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+}
+
+.login-container {
+    background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%); /* Gradient background */
+    padding: 30px;
+    border-radius: 15px; /* More pronounced rounded corners */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* More depth to the shadow */
+    width: 350px; /* Slightly wider container */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effect */
+}
+
+.login-container:hover {
+    transform: translateY(-8px); /* Slightly raise the container on hover */
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4); /* Increase shadow on hover */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white; /* Change text color to white for better contrast */
+    font-size: 24px; /* Slightly larger font size */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Subtle text shadow for depth */
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: white; /* Change label color to white */
+    font-weight: bold; /* Bold labels for better visibility */
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px; /* Slightly more rounded corners */
+    transition: border-color 0.3s ease, background-color 0.3s ease; /* Transition effects */
+}
+
+input:focus {
+    border-color: #FFD700; /* Gold border on focus */
+    outline: none; /* Remove default outline */
+    background-color: rgba(255, 255, 255, 0.9); /* Light background on focus */
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    position: relative; /* Position for pseudo-element */
+    overflow: hidden; /* Hide overflow for animation */
+    color: white;
+    transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2); /* White overlay */
+    border-radius: 50%;
+    transition: width 0.4s ease, height 0.4s ease, top 0.4s ease, left 0.4s ease; /* Animation for the overlay */
+    z-index: 0; /* Behind text */
+    transform: translate(-50%, -50%) scale(0); /* Start scaled down */
+}
+
+.btn:hover::after {
+    width: 400%;
+    height: 400%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1); /* Scale up on hover */
+}
+
+.btn:hover {
+    opacity: 0.9; /* Slightly dim the buttons on hover */
+}
+
+.blue {
+    background-color: #007BFF; /* Blue button */
+}
+
+.red {
+    background-color: #FF5733; /* Red button */
+    margin-top: 10px; /* Space between buttons */
+}
