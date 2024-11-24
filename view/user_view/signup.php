@@ -35,7 +35,7 @@
         }
 
         .error {
-            color: red;
+            color: black;
             font-size: 12px;
         }
 
@@ -111,25 +111,31 @@
 
             let isValid = true;
 
-            // Validate name
-            const namePattern = /^[A-Za-z]+$/;
-            if (!name) {
-                document.getElementById("nameError").textContent = "Name is required.";
-                isValid = false;
-            } else if (!namePattern.test(name)) {
-                document.getElementById("nameError").textContent = "Name must contain only letters.";
-                isValid = false;
-            }
+           // Validate name
+const namePattern = /^[A-Za-z]+$/;
+if (!name) {
+    document.getElementById("nameError").textContent = "Name is required.";
+    isValid = false;
+} else if (!namePattern.test(name)) {
+    document.getElementById("nameError").textContent = "Name must contain only letters.";
+    isValid = false;
+} else if (name.length < 2) {  // Minimum length for name is 2 characters
+    document.getElementById("nameError").textContent = "Name must be at least 2 characters long.";
+    isValid = false;
+}
 
-            // Validate surname
-            const surnamePattern = /^[A-Za-z]+$/;
-            if (!surname) {
-                document.getElementById("surnameError").textContent = "Surname is required.";
-                isValid = false;
-            } else if (!surnamePattern.test(surname)) {
-                document.getElementById("surnameError").textContent = "Surname must contain only letters.";
-                isValid = false;
-            }
+// Validate surname
+const surnamePattern = /^[A-Za-z]+$/;
+if (!surname) {
+    document.getElementById("surnameError").textContent = "Surname is required.";
+    isValid = false;
+} else if (!surnamePattern.test(surname)) {
+    document.getElementById("surnameError").textContent = "Surname must contain only letters.";
+    isValid = false;
+} else if (surname.length < 3) { 
+    document.getElementById("surnameError").textContent = "Surname must be at least 3 characters long.";
+    isValid = false;
+}
 
             // Validate username
             if (!username) {
@@ -155,7 +161,7 @@
                 document.getElementById("passwordError").textContent = "Password is required.";
                 isValid = false;
             } else if (password.length < 6) {
-                document.getElementById("passwordError").textContent = "Password must be at least 6 characters.";
+                document.getElementById("passwordError").textContent = "Password must be at least 8 characters.";
                 isValid = false;
             }
 
@@ -167,6 +173,15 @@
     </script>
 
     <script>
+        window.onload = function() {
+            const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
+            if (shadowRoot) {
+                const logo = shadowRoot.querySelector('#logo');
+                if (logo) logo.remove();
+            }
+        }
+    </script>
+        <script>
         window.onload = function() {
             const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
             if (shadowRoot) {

@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($user) {
         // Check if the user's status is active (status = 1)
         if ($user["status"] == 0) {
-            header("Location: ../view/signin.php?error=3"); // Account is inactive
+            header("Location: ../view/user_view/signin.php?error=3"); // Account is inactive
             exit();
         }
 

@@ -35,7 +35,7 @@
         }
 
         .error {
-            color: red;
+            color: black;
             font-size: 12px;
         }
 
@@ -114,22 +114,28 @@
             // Validate name
             const namePattern = /^[A-Za-z]+$/;
             if (!name) {
-                document.getElementById("nameError").textContent = "Name is required.";
-                isValid = false;
-            } else if (!namePattern.test(name)) {
-                document.getElementById("nameError").textContent = "Name must contain only letters.";
-                isValid = false;
-            }
+    document.getElementById("nameError").textContent = "Name is required.";
+    isValid = false;
+} else if (!namePattern.test(name)) {
+    document.getElementById("nameError").textContent = "Name must contain only letters.";
+    isValid = false;
+} else if (name.length < 3) {  // Check if name is at least 3 characters long
+    document.getElementById("nameError").textContent = "Name must be at least 3 characters long.";
+    isValid = false;
+}
 
-            // Validate surname
-            const surnamePattern = /^[A-Za-z]+$/;
-            if (!surname) {
-                document.getElementById("surnameError").textContent = "Surname is required.";
-                isValid = false;
-            } else if (!surnamePattern.test(surname)) {
-                document.getElementById("surnameError").textContent = "Surname must contain only letters.";
-                isValid = false;
-            }
+// Validate surname
+const surnamePattern = /^[A-Za-z]+$/;
+if (!surname) {
+    document.getElementById("surnameError").textContent = "Surname is required.";
+    isValid = false;
+} else if (!surnamePattern.test(surname)) {
+    document.getElementById("surnameError").textContent = "Surname must contain only letters.";
+    isValid = false;
+} else if (surname.length < 3) {  // Check if surname is at least 3 characters long
+    document.getElementById("surnameError").textContent = "Surname must be at least 3 characters long.";
+    isValid = false;
+}
 
             // Validate username
             if (!username) {
@@ -154,8 +160,8 @@
             if (!password) {
                 document.getElementById("passwordError").textContent = "Password is required.";
                 isValid = false;
-            } else if (password.length < 6) {
-                document.getElementById("passwordError").textContent = "Password must be at least 6 characters.";
+            } else if (password.length < 8) {
+                document.getElementById("passwordError").textContent = "Password must be at least 8 characters.";
                 isValid = false;
             }
 

@@ -16,8 +16,8 @@ try {
 function authenticateUser($username, $password_input) {
     global $db;  // Use the global database connection
 
-    $stmt = $db->prepare("SELECT id, name, password, status FROM client WHERE name = :name");
-    $stmt->bindParam(":name", $username);
+    $stmt = $db->prepare("SELECT id, username, password, status FROM client WHERE username = :username");
+    $stmt->bindParam(":username", $username);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 

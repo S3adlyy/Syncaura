@@ -17,7 +17,7 @@ body {
     padding: 40px; /* Padding around the form */
     border-radius: 15px; /* Rounded corners */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    width: 320px; /* Fixed width */
+    width: 400px; /* Fixed width */
     text-align: center; /* Centered text */
 }
 

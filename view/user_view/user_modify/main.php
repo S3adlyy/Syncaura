@@ -52,27 +52,76 @@
 
     <div class="form-container">
         <h3>Change Your Details</h3>
-        <form action="user_modify.php" method="POST">
-            <!-- Username -->
-            <div class="form-group">
-                <label for="username">New Username:</label>
-                <input type="text" id="username" name="username" class="form-control" placeholder="Enter new username" required>
-            </div>
-            <!-- Password -->
-            <div class="form-group">
-                <label for="current_password">Current Password:</label>
-                <input type="password" id="current_password" name="current_password" class="form-control" placeholder="Enter current password" required>
-            </div>
-            <div class="form-group">
-                <label for="new_password">New Password:</label>
-                <input type="password" id="new_password" name="new_password" class="form-control" placeholder="Enter new password" required>
-            </div>
-            <div class="form-group">
-                <label for="confirm_password">Confirm New Password:</label>
-                <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm new password" required>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Update Details</button>
-        </form>
+        <form action="user_modify.php" method="POST" id="updateForm">
+    <!-- Username -->
+    <div class="form-group">
+        <label for="username">New Username:</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="Enter new username" required>
+        <small id="usernameError" class="form-text text-danger"></small>
+    </div>
+    <!-- Password -->
+    <div class="form-group">
+        <label for="current_password">Current Password:</label>
+        <input type="password" id="current_password" name="current_password" class="form-control" placeholder="Enter current password" required>
+        <small id="currentPasswordError" class="form-text text-danger"></small>
+    </div>
+    <div class="form-group">
+        <label for="new_password">New Password:</label>
+        <input type="password" id="new_password" name="new_password" class="form-control" placeholder="Enter new password" required>
+        <small id="newPasswordError" class="form-text text-danger"></small>
+    </div>
+    <div class="form-group">
+        <label for="confirm_password">Confirm New Password:</label>
+        <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm new password" required>
+        <small id="confirmPasswordError" class="form-text text-danger"></small>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Update Details</button>
+</form>
+
+<script>
+document.getElementById("updateForm").addEventListener("submit", function(event) {
+    let isValid = true;
+
+    // Clear previous errors
+    document.getElementById("usernameError").textContent = "";
+    document.getElementById("currentPasswordError").textContent = "";
+    document.getElementById("newPasswordError").textContent = "";
+    document.getElementById("confirmPasswordError").textContent = "";
+
+    // Validate new username (at least 3 characters)
+    const username = document.getElementById("username").value;
+    if (username.length < 3) {
+        document.getElementById("usernameError").textContent = "Username must be at least 3 characters long.";
+        isValid = false;
+    }
+
+    // Validate current password (not empty)
+    const currentPassword = document.getElementById("current_password").value;
+    if (currentPassword.trim() === "") {
+        document.getElementById("currentPasswordError").textContent = "Current password is required.";
+        isValid = false;
+    }
+
+    // Validate new password (at least 6 characters)
+    const newPassword = document.getElementById("new_password").value;
+    if (newPassword.length < 6) {
+        document.getElementById("newPasswordError").textContent = "New password must be at least 6 characters long.";
+        isValid = false;
+    }
+
+    // Validate confirm password (should match new password)
+    const confirmPassword = document.getElementById("confirm_password").value;
+    if (confirmPassword !== newPassword) {
+        document.getElementById("confirmPasswordError").textContent = "Confirm password must match the new password.";
+        isValid = false;
+    }
+
+    // If any validation fails, prevent form submission
+    if (!isValid) {
+        event.preventDefault();
+    }
+});
+</script>
     </div>
 
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>

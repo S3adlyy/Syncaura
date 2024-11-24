@@ -31,7 +31,7 @@
 
         .error-messages {
             background-color: white;
-            color: red;
+            color: black;
             margin-top: 10px;
             padding: 5px;
             font-size: 0.9rem;
@@ -65,7 +65,7 @@
             <button type="submit">Login</button>
             <p>Not a member? <a href="signup.php">Sign Up</a></p>
             <!-- PHP error messages (if any) will be displayed here -->
-            <div id="error-messages" class="error-messages" style="display: none;">
+            <div id="error-messages" class="error-messages" style="display: block;">
                 <?php if (isset($_GET['error'])): ?>
                     <?php
                         $error_message = '';
@@ -135,6 +135,15 @@
             }
 
             return true;
+        }
+    </script>
+        <script>
+        window.onload = function() {
+            const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
+            if (shadowRoot) {
+                const logo = shadowRoot.querySelector('#logo');
+                if (logo) logo.remove();
+            }
         }
     </script>
 </body>

@@ -31,7 +31,7 @@
 
         .error-messages {
             background-color: white;
-            color: red;
+            color: black;
             margin-top: 10px;
             padding: 5px;
             font-size: 0.9rem;
@@ -52,20 +52,16 @@
             <h1>Login Form</h1>
             <!-- Username Input -->
             <input type="text" placeholder="Enter your username" name="name" id="name" autocomplete="username" required>
-            <div id="username-error" class="error-messages">
-                <!-- Error for username will be displayed here -->
-            </div>
+            <div id="username-error" class="error-messages"></div>
 
             <!-- Password Input -->
             <input type="password" placeholder="Enter your password" name="pass" id="pass" autocomplete="current-password" required>
-            <div id="password-error" class="error-messages">
-                <!-- Error for password will be displayed here -->
-            </div>
+            <div id="password-error" class="error-messages"></div>
 
             <button type="submit">Login</button>
             <p>Not a member? <a href="signup.php">Sign Up</a></p>
             <!-- PHP error messages (if any) will be displayed here -->
-            <div id="error-messages" class="error-messages" style="display: none;">
+            <div id="error-messages" class="error-messages" style="display: block;">
                 <?php if (isset($_GET['error'])): ?>
                     <?php
                         $error_message = '';
@@ -83,18 +79,10 @@
         </form>
     </div>
 
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
     <script>
-        window.onload = function() {
-            // Show error messages if they are already present after page load
-            const errorMessagesDiv = document.getElementById('error-messages');
-            if (errorMessagesDiv.innerHTML.trim() !== '') {
-                errorMessagesDiv.style.display = 'block';  // Show the error div if there is an error message
-            }
-        }
-
+        // Form validation function
         function validateForm(event) {
-            // Clear previous error messages (for client-side validation)
+            // Clear previous error messages
             const usernameErrorDiv = document.getElementById('username-error');
             const passwordErrorDiv = document.getElementById('password-error');
             usernameErrorDiv.innerHTML = '';
@@ -103,11 +91,13 @@
             passwordErrorDiv.style.display = 'none';
 
             let errors = false;
-            const username = document.getElementById('name').value;
-            const password = document.getElementById('pass').value;
 
-            // Simple validation checks
-            if (username.trim() === '') {
+            // Get values from form inputs
+            const username = document.getElementById('name').value.trim();
+            const password = document.getElementById('pass').value.trim();
+
+            // Validate username
+            if (username === '') {
                 errors = true;
                 usernameErrorDiv.innerHTML = 'Username is required.';
                 usernameErrorDiv.style.display = 'block';
@@ -117,7 +107,8 @@
                 usernameErrorDiv.style.display = 'block';
             }
 
-            if (password.trim() === '') {
+            // Validate password
+            if (password === '') {
                 errors = true;
                 passwordErrorDiv.innerHTML = 'Password is required.';
                 passwordErrorDiv.style.display = 'block';
@@ -127,14 +118,33 @@
                 passwordErrorDiv.style.display = 'block';
             }
 
-            // Check if there are any validation errors
+            // If there are validation errors, prevent form submission
             if (errors) {
-                // Prevent form submission if there are errors
-                event.preventDefault();
+                event.preventDefault(); // Prevent form submission
                 return false;
             }
 
+            // If no errors, allow form submission
             return true;
+        }
+
+        // Show PHP error messages on page load if any
+        window.onload = function() {
+            const errorMessagesDiv = document.getElementById('error-messages');
+            if (errorMessagesDiv.innerHTML.trim() !== '') {
+                errorMessagesDiv.style.display = 'block';  // Show the error div if there is an error message
+            }
+        }
+    </script>
+
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
+    <script>
+        window.onload = function() {
+            const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
+            if (shadowRoot) {
+                const logo = shadowRoot.querySelector('#logo');
+                if (logo) logo.remove();
+            }
         }
     </script>
 </body>
