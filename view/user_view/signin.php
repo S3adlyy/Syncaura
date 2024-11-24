@@ -70,7 +70,7 @@
                         } elseif ($_GET['error'] == 2) {
                             $error_message = "User not found.";
                         } elseif ($_GET['error'] == 3) {
-                            $error_message = "Your account is inactive. Please contact support.";
+                            $error_message = 'Your account is inactive. <a href="contact/loding2.php">Please contact support.</a>';
                         }
                         echo "<p>{$error_message}</p>";
                     ?>

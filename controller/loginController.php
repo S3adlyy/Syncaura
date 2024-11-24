@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     } else {
         // Invalid credentials or user not found
-        header("Location: ../view/signin.php?error=1"); // Invalid credentials
+        header("Location: ../view/user_view/signin.php?error=1"); // Invalid credentials
         exit();
     }
 }

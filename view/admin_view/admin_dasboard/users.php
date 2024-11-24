@@ -55,7 +55,7 @@ if (!isset($_SESSION["user_id"])) {
 }
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -74,51 +74,74 @@ if (!isset($_SESSION["user_id"])) {
 
     <!-- Custom styles for this template-->
     <link href="styles/styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles/min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="styles/table.css">
 </head>
 <body id="page-top">
-
-    <!-- Page Wrapper -->
     <div id="wrapper">
-
-        <!-- Sidebar -->
+       
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dash.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Syncora <sup>2</sup></div>
-            </a>
-
-            <!-- Divider -->
+            </a>²
             <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="dash.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
             </li>
-
-            <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Heading -->
             <div class="sidebar-heading">
                 Tables
             </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users.php" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+            <a class="nav-link" href="users.php">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Users</span>
+                    <span>Chat users</span>
                 </a>
-            <!-- Nav Item - Utilities Collapse Menu -->
+        </ul>
+        <table align="center">
+    <caption>Client Management</caption>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (!empty($clients)): ?>
+            <?php foreach ($clients as $client): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($client['id']); ?></td>
+                    <td><?php echo htmlspecialchars($client['name']); ?></td>
+                    <td><?php echo htmlspecialchars($client['email']); ?></td>
+                    <td><?php echo $client['status'] == 1 ? 'Unlocked' : 'Locked'; ?></td>
+                    <td>
+                        <a href="dash.php?action=delete&id=<?php echo $client['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">Delete</a>
+                        <?php if ($client['status'] == 1): ?>
+                            <a href="dash.php?action=lock&id=<?php echo $client['id']; ?>" class="btn btn-secondary btn-sm">Lock</a>
+                        <?php else: ?>
+                            <a href="dash.php?action=unlock&id=<?php echo $client['id']; ?>" class="btn btn-success btn-sm">Unlock</a>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="5" class="text-center">No clients found.</td>
+            </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
+</div>
+
+
 <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -133,6 +156,6 @@ if (!isset($_SESSION["user_id"])) {
 
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script> 
 </body>
 </html>
