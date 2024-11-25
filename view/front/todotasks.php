@@ -1,7 +1,7 @@
 <?php
 ob_start();
-include 'myplans.php';
-$myPlansContent = ob_get_clean();
+include 'todo.php';
+$todoContent = ob_get_clean();
 ?>
 
 <!doctype html>
@@ -71,7 +71,7 @@ html, body {
 
 <body>
   <nav class="site-nav mb-5 sticky-nav">
-    <div class="container position-relative">
+    
         <div class="site-navigation text-center">
             <a href="main/main.php" class="logo menu-absolute m-0" align="left">SyncAura<span class="text-primary"></span></a>
             <ul class="site-menu d-flex justify-content-center align-items-center">
@@ -85,7 +85,6 @@ html, body {
                 <li><a href="./white/white.php">Whiteboard</a></li>
             </ul>
         </div>
-    </div>
   </nav>
 
   <div class="untree_co-hero overlay" style="background-image: url('images/hero-img-1-min.jpg');">
@@ -99,11 +98,11 @@ html, body {
     </div>
   </div>
 
-  <br><br>
 
   <div class="content-container">
+    <br><br><br>
     <!-- Render the My Plans content here -->
-    <?php echo $myPlansContent; ?>
+    <?php echo $todoContent; ?>
   </div>
 
   

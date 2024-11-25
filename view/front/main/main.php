@@ -104,7 +104,7 @@ a:hover {
     <div class="sticky-nav js-sticky-header">
       <div class="container position-relative">
         <div class="site-navigation text-center">
-          <a href="index.html" class="logo menu-absolute m-0">SyncAura<span class="text-primary">.</span></a>
+          <a href="main.php" class="logo menu-absolute m-0">SyncAura<span class="text-primary"></span></a>
 
           <ul class="js-clone-nav d-none d-lg-inline-block site-menu">
             <li class="has-children">

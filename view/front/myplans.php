@@ -1,5 +1,5 @@
 <?php
-include('../../Controller/PlanController.php');
+include('../../controller/plancontroller.php');
 
 // Create an instance of the PlanController
 $planController = new PlanController();
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_plan'])) {
     if (empty($errors)) {
         $date_plan = date('Y-m-d'); 
         $planController->addPlan($nom, $date_plan);
-        header('Location: todo.php'); 
+        header('Location: todotasks.php?plan_id=$planId&planName=$nom'); 
         exit();
     }
 }
@@ -43,8 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_plan'])) {
 </head>
 <body>
     <div class="container">
-        <h1>My Plans</h1>
-
         <!-- Add Plan Form -->
         <div class="add-plan-container">
             <h2>Add your plan name</h2>

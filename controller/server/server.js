@@ -1,86 +1,87 @@
 const express = require("express");
 const { Server } = require("socket.io");
-const http = require("http"); // Import the HTTP module
-
+const http = require("http");
+const mysql = require("mysql2");
 const app = express();
-const httpServer = http.createServer(app); // Correctly create an HTTP server
+const httpServer = http.createServer(app);
 
-// Initialize Socket.IO with CORS settings
 const io = new Server(httpServer, {
     cors: {
-        origin: "http://localhost", // URL for the client
+        origin: "http://localhost", // The client URL
         methods: ["GET", "POST"],
     },
 });
 
-// Array to store tasks
-let tasks = [];
-const users = {};
+// Database connection
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "todo",
+});
+
+db.connect((err) => {
+    if (err) {
+        console.error("Database connection failed: " + err.stack);
+        return;
+    }
+    console.log("Connected to todo database");
+});
 
 // Listen for client connections
 io.on("connection", (socket) => {
     console.log("A user connected:", socket.id);
 
-    // Send the current list of tasks to the newly connected client
-    socket.emit("initialize", tasks);
+    // Send the current tasks to the newly connected client
+    socket.emit("initialize");
 
-    // Listen for new tasks
+    // Add new task to the database and broadcast it
     socket.on("add task", (task) => {
-        tasks.push(task);
-        console.log("Task added:", task);
-        io.emit("add task", task); // Send new task to all clients
-    });
+        
+        const sql = "INSERT INTO tachee (nom, date, etat, plan_id) VALUES (?, NOW(), ?, ?)";
+        const values = [task.text, "To Do", task.plan_id]; // Set etat to 'To Do' by default
+    
+        db.query(sql, values, (err, result) => {
+            if (err) {
+                console.error("Error inserting task:", err);
+                return;
+            }
+            console.log("Task inserted into DB:", result);
+            task.id = result.insertId; // Assign the ID from the database
+            io.emit("add task", task); // Broadcast task to all clients
+        });
+    });   
 
+    socket.on("update task", (updatedTask) => {
+        const sql = "UPDATE tachee SET etat = ?, nom = ? WHERE id = ?";
+        const values = [updatedTask.completed ? 'Done' : (updatedTask.inProgress ? 'In Progress' : 'To Do'), updatedTask.text, updatedTask.id];
+    
+        db.query(sql, values, (err, result) => {
+            if (err) {
+                console.error("Error updating task:", err);
+                return;
+            }
+            console.log("Task updated:", result);
+            io.emit("update task", updatedTask); // Broadcast the updated task
+        });
+    });    
+    
     // Listen for task deletions
     socket.on("delete task", (taskId) => {
-        const initialLength = tasks.length; // Store initial length
-        tasks = tasks.filter((task) => task.id !== taskId);
-        
-        if (tasks.length < initialLength) {
-            console.log("Task deleted:", taskId);
-            io.emit("delete task", taskId); // Update all clients
-        } else {
-            console.error("Task not found for deletion:", taskId);
-        }
-    });
-
-    // Listen for task updates (e.g., marking as done)
-    socket.on("update task", (updatedTask) => {
-        const index = tasks.findIndex((task) => task.id === updatedTask.id);
-        if (index !== -1) {
-            const originalText = tasks[index].text.split(" (")[0]; // Keep the base text only
-            tasks[index] = {
-                ...tasks[index], // Preserve other fields
-                text: originalText + (updatedTask.completed ? " (Done)" : " (In Progress)"), // Add latest status
-                completed: updatedTask.completed,
-            };
-
-            console.log("Task updated:", tasks[index]);
-            io.emit("update task", tasks[index]); // Broadcast the updated task
-        } else {
-            console.error("Task not found for update:", updatedTask.id);
-        }
-    });
-
-    // Handle user connection events
-    socket.on("new-user", (name) => {
-        users[socket.id] = name;
-        socket.broadcast.emit("user-connected", name);
-    });
-
-    // Handle incoming chat messages
-    socket.on("send-chat-message", (message) => {
-        socket.broadcast.emit("chat-message", {
-            message: message,
-            name: users[socket.id],
+        const sql = "DELETE FROM tachee WHERE id = ?";
+        db.query(sql, [taskId], (err, result) => {
+            if (err) {
+                console.error("Error deleting task:", err);
+                return;
+            }
+            console.log("Task deleted:", result);
+            io.emit("delete task", taskId); // Broadcast task deletion
         });
     });
 
-    // Handle user disconnections
+    // Handle user connection and disconnection
     socket.on("disconnect", () => {
         console.log("A user disconnected:", socket.id);
-        socket.broadcast.emit("user-disconnected", users[socket.id]);
-        delete users[socket.id];
     });
 });
 

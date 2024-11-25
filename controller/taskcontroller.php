@@ -1,4 +1,5 @@
 <?php
+/*
 include(__DIR__ . '/../config.php');
 
 class TaskController
@@ -6,7 +7,7 @@ class TaskController
     // Add Task
     public function addTask($nom, $etat, $plan_id) {
         $date = date('Y-m-d'); // Automatically set the current date
-        $sql = "INSERT INTO tache (nom, date, etat, plan_id) VALUES (:nom, :date, :etat, :plan_id)";
+        $sql = "INSERT INTO tachee (nom, date, etat, plan_id) VALUES (:nom, :date, :etat, :plan_id)";
         $db = config::getConnexion();
         try {
             $stmt = $db->prepare($sql);
@@ -18,7 +19,7 @@ class TaskController
 
     // List Tasks
     public function listTasks() {
-        $sql = "SELECT * FROM tache";
+        $sql = "SELECT * FROM tachee";
         $db = config::getConnexion();
         try {
             $result = $db->query($sql);
@@ -30,7 +31,7 @@ class TaskController
 
     // List Tasks by Plan ID
     public function listTasksByPlan($plan_id) {
-        $sql = "SELECT * FROM tache WHERE plan_id = :plan_id";
+        $sql = "SELECT * FROM tachee WHERE plan_id = :plan_id";
         $db = config::getConnexion();
         try {
             $stmt = $db->prepare($sql);
@@ -43,7 +44,7 @@ class TaskController
 
     // Modify Task (only the name and status can be changed)
     public function modifyTask($id, $nom, $etat) {
-        $sql = "UPDATE tache SET nom = :nom, etat = :etat WHERE id = :id";
+        $sql = "UPDATE tachee SET nom = :nom, etat = :etat WHERE id = :id";
         $db = config::getConnexion();
         try {
             $stmt = $db->prepare($sql);
@@ -55,7 +56,7 @@ class TaskController
 
     // Delete Task
     public function deleteTask($id) {
-        $sql = "DELETE FROM tache WHERE id = :id";
+        $sql = "DELETE FROM tachee WHERE id = :id";
         $db = config::getConnexion();
         try {
             $stmt = $db->prepare($sql);
@@ -66,3 +67,4 @@ class TaskController
     }
 }
 ?>
+*/

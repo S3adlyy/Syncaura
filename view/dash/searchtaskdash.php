@@ -52,13 +52,12 @@
         
         <!-- Content Area -->
         <div class="container-fluid" style="margin-left: 200px; padding-top: 20px;">
-            <h2 class="text-center" style="font-weight: bold; color:#355CCC;">Manage Plans</h2>
+            <h2 class="text-center" style="font-weight: bold; color:#355CCC;">Search tasks by plan</h2>
             
-            <!-- Include the plans list from listeplan.php -->
-            <?php include_once 'listeplan.php'; ?> 
+            <!-- Include the tasks list from listeplan.php -->
+            <?php include_once 'searchtask.php'; ?> 
 
         </div>
-       
     </div>
 
     <!-- Bootstrap and other scripts -->

@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errorMessage = 'Plan name should not contain special characters';
     } else {
         $planController->addPlan($nom);
-        header('Location: listeplan.php');
+        header('Location: plandash.php');
         exit();
     }
 }
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         .form-container h2 {
             font-size: 1.5rem;
             margin-bottom: 20px;
-            color: #000733;
+            color: #355CCC;
         }
 
         .form-container label {
@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         .form-container input[type="submit"] {
-            background-color: #000733;
+            background-color: #355CCC;
             color: #fff;
             border: none;
             padding: 10px 20px;
