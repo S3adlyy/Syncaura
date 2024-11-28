@@ -98,22 +98,26 @@ class Message {
     }
 
     public function getMessages() {
-        // SQL query to fetch only message, timestamp, and user_id from messages
-        $stmt = $this->db->prepare("SELECT id, message, timestamp, user_id FROM messages");
+        // SQL query to fetch message, timestamp, and chatroom by joining users and messages
+        $stmt = $this->db->prepare("
+            SELECT m.id, m.message, m.timestamp, u.chatroom 
+            FROM messages m
+            JOIN users u ON m.user_id = u.id
+        ");
         $stmt->execute();
         $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    
         if (!empty($messages)) {
             echo "<table class='cool-table'>";
-            echo "<tr><th>Message</th><th>Timestamp</th><th>User ID</th><th>Action</th></tr>"; // Added Action column
-
+            echo "<tr><th>Message</th><th>Timestamp</th><th>Chatroom</th><th>Action</th></tr>"; // Changed User ID to Chatroom
+    
             // Display each message's information in a table row
             foreach ($messages as $message) {
                 echo "<tr>";
                 echo "<td>" . htmlspecialchars($message['message']) . "</td>";
                 echo "<td>" . htmlspecialchars($message['timestamp']) . "</td>";
-                echo "<td>" . htmlspecialchars($message['user_id']) . "</td>";
-
+                echo "<td>" . htmlspecialchars($message['chatroom']) . "</td>"; // Display chatroom instead of user_id
+    
                 // Add a delete button
                 echo "<td>
                         <form method='POST' action=''>
@@ -123,7 +127,7 @@ class Message {
                       </td>";
                 echo "</tr>";
             }
-
+    
             echo "</table>";
         } else {
             echo "<p style='text-align: center; color: #333;'>No messages found.</p>";

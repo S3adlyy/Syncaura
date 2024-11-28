@@ -27,32 +27,45 @@ app.use(express.static(path.join(__dirname, "../views/front/chat/public")));
 
 app.use("/main", express.static(path.join(__dirname, "../views/front/main")));
 app.use("/loading_screen", express.static(path.join(__dirname, "../views/front/loading_screen")));
+app.use("/Ai", express.static(path.join(__dirname, "../views/front/Ai")));
 
 // Route for serving index.html
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../views/front/chat/public/index.html"));
 });
 
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../views/front/Ai/loding3.html"));
+});
+
 // WebSocket connection
 io.on("connection", (socket) => {
     // Handle new user joining
-    socket.on("newuser", (username) => {
-        socket.username = username;
+    socket.on("newuser", ({ username, chatroom }) => {
+        if (!username || !chatroom) {
+            console.error("Username or chatroom missing!");
+            return;
+        }
 
-        // Insert user into database
+        socket.username = username;
+        socket.chatroom = chatroom;
+
+        // Insert user into the database
         const joinDate = new Date().toISOString().slice(0, 19).replace("T", " ");
-        const query = "INSERT INTO users (username, join_date) VALUES (?, ?)";
-        db.query(query, [username, joinDate], (err, results) => {
+        const query = "INSERT INTO users (username, join_date, chatroom) VALUES (?, ?, ?)";
+        db.query(query, [username, joinDate, chatroom], (err, results) => {
             if (err) {
                 console.error("Error inserting user into database: ", err);
+                socket.emit("error", "Failed to join the chatroom. Please try again.");
                 return;
             }
             console.log("User inserted into database: ", results.insertId);
         });
 
         // Notify other users
-        socket.broadcast.emit("update", `${username} joined the conversation`);
+        socket.broadcast.emit("update", `${username} joined the ${chatroom} chatroom`);
     });
+
 
     // Handle user exit and delete from database
     socket.on("exituser", (username) => {

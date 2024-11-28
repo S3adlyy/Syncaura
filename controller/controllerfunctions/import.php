@@ -136,35 +136,39 @@ class Import {
         $stmt = $this->db->prepare("SELECT * FROM users");
         $stmt->execute();
         $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    
         if (!empty($users)) {
             echo "<table class='cool-table'>";
             echo "<tr>";
-
-            // Display table headers
+    
+            // Display table headers (excluding 'id')
             foreach (array_keys($users[0]) as $column) {
-                echo "<th>" . htmlspecialchars($column) . "</th>";
+                if ($column !== 'id') { // Exclude 'id' column
+                    echo "<th>" . htmlspecialchars($column) . "</th>";
+                }
             }
-            echo "<th>Action</th>";
+            echo "<th>Action</th>"; // Add 'Action' column
             echo "</tr>";
-
-            // Display each user's information in a table row
+    
+            // Display each user's information in a table row (excluding 'id')
             foreach ($users as $user) {
                 echo "<tr>";
-                foreach ($user as $value) {
-                    echo "<td>" . htmlspecialchars($value) . "</td>";
+                foreach ($user as $key => $value) {
+                    if ($key !== 'id') { // Exclude 'id' value
+                        echo "<td>" . htmlspecialchars($value) . "</td>";
+                    }
                 }
-                // Add Modify and Delete buttons
+                // Add Modify and Delete buttons with the 'id' in a hidden input
                 echo "<td>
                         <form method='POST' action=''>
-                            <input type='hidden' name='user_id' value='" . $user['id'] . "'>
+                            <input type='hidden' name='user_id' value='" . htmlspecialchars($user['id']) . "'>
                             <button type='submit' name='modify_user' class='modify-btn'>Modify</button>
                             <button type='submit' name='delete_user' class='delete-btn'>Delete</button>
                         </form>
                       </td>";
                 echo "</tr>";
             }
-
+    
             echo "</table>";
         } else {
             echo "<p style='text-align: center; color: #333;'>No users found.</p>";

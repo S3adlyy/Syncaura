@@ -41,15 +41,24 @@
     document.head.appendChild(style);
 
     // Handle user joining the chat
-    app.querySelector(".join-screen #join-user").addEventListener("click", function () {
-        let username = app.querySelector(".join-screen #username").value;
-        if (username.length === 0) {
+    document.querySelector(".join-screen #join-user").addEventListener("click", function () {
+        let username = document.querySelector(".join-screen #username").value;
+        let chatroom = document.querySelector(".join-screen #chatroom").value; // Add chatroom input
+    
+        if (username.length === 0 || chatroom.length === 0) {
+            alert("Username and chatroom are required!");
             return;
         }
-        socket.emit("newuser", username);
+    
+        // Emit username and chatroom to the server
+        socket.emit("newuser", { username, chatroom });
+    
+        // Save the username for later use
         uname = username;
-        app.querySelector(".join-screen").classList.remove("active");
-        app.querySelector(".chat-screen").classList.add("active");
+    
+        // Switch screens
+        document.querySelector(".join-screen").classList.remove("active");
+        document.querySelector(".chat-screen").classList.add("active");
     });
 
     // Handle sending a message

@@ -173,37 +173,3 @@ button {
 #message-input:focus::placeholder {
     color: #ccc; /* Fades placeholder text on focus */
 }
-
-.chat-icon {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #0056b3;
-    color: white;
-    font-size: 24px;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-decoration: none;
-    z-index: 1000; /* Ensure it appears above other elements */
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.chat-icon:hover {
-    background-color: #004494;
-    transform: scale(1.1); /* Slight zoom effect on hover */
-}
-
-.chat-icon i {
-    pointer-events: none; /* Prevent icon from being clickable separately */
-}
-
-.error-message {
-    color: red;
-    font-size: 12px;
-    margin: 5px 0;
-}

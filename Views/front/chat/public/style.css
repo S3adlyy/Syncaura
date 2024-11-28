@@ -23,8 +23,8 @@ body.dark-mode {
     position: fixed;
     width: 100%;
     height: 100%;
-    max-width: 500px; /* Reduced width */
-    max-height: 700px; /* Reduced height */
+    max-width: 510px; /* Reduced width */
+    max-height: 490px; /* Reduced height */
     background: transparent; /* Removed white background */
     border-left: 1px solid #eee;
     border-right: 1px solid #eee;

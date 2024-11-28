@@ -78,31 +78,33 @@ class Fetch {
 
     public function getAll() {
         // Prepare the SQL query with a JOIN between users and messages
-        $stmt = $this->db->prepare("SELECT u.username, m.message, m.timestamp, m.user_id
-                                    FROM users u
-                                    JOIN messages m ON u.id = m.user_id"); // Ensure 'user_id' is the correct column
-
+        $stmt = $this->db->prepare("
+            SELECT u.username, u.chatroom, m.message, m.timestamp
+            FROM users u
+            JOIN messages m ON u.id = m.user_id
+        "); // Added 'chatroom' to SELECT
+        
         // Execute the query
         $stmt->execute();
-
+        
         // Fetch all the results as an associative array
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        
         // Check if results exist
         if (!empty($result)) {
             echo "<table class='cool-table'>";
-            echo "<tr><th>Username</th><th>Message</th><th>Timestamp</th><th>User ID</th></tr>"; // Added User ID column
-
+            echo "<tr><th>Username</th><th>Chatroom</th><th>Message</th><th>Timestamp</th></tr>"; // Added Chatroom column header
+        
             // Loop through the results and display each row
             foreach ($result as $row) {
                 echo "<tr>";
                 echo "<td>" . htmlspecialchars($row['username']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['chatroom']) . "</td>"; // Displaying Chatroom
                 echo "<td>" . htmlspecialchars($row['message']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['timestamp']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['user_id']) . "</td>"; // Displaying user_id
                 echo "</tr>";
             }
-
+        
             echo "</table>";
         } else {
             echo "<p>No messages found.</p>";

@@ -9,15 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Untree.co">
     <link rel="shortcut icon" href="imggg.png">
-
     <meta name="description" content="" />
     <meta name="keywords" content="bootstrap, bootstrap4" />
-
     <link href="https://fonts.googleapis.com/css2?family=Display+Playfair:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-
-
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.min.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -36,7 +31,7 @@
                 <a href="../../main/main.html" class="logo menu-absolute m-0" align="left">SyncAura<span class="text-primary">.</span></a>
                 <ul class="site-menu d-flex justify-content-center align-items-center">
                     <li><a href="../front/createmeet/loadng2.php">Cree un meet</a></li>
-                    <li><a href="./Ai/loding3.php">Ai ChatBot</a></li>
+                    <li><a href="./Ai/loding3.html">Ai ChatBot</a></li>
                     <li><a href="./promodor/index.php">Pomodoro Timer</a></li>
                     <li><a href="">Acheter un Pack</a></li>
                     <li><a href="todo.php">To Do List</a></li>
@@ -54,9 +49,12 @@
             <div class="form">
                 <h2>Join Chatroom</h2>
                 <div class="form-input">
+                    <label for="chatroom">Chatroom name</label>
+                    <input type="text" id="chatroom" name="chatroom" placeholder="Insert chatroom name">
+                    <p id="chatroom-error" class="error-message"></p>
                     <label for="username">Nickname</label>
                     <input type="text" id="username" name="name" placeholder="Insert Cool Nickname">
-                    <p name="result"></p>
+                    <p id="username-error" class="error-message"></p>
                 </div>
                 <div class="form-input">
                     <button id="join-user">Join</button>
@@ -102,7 +100,11 @@
             </div>
         </div>
     </div>
-    <button id="toggle-dark-mode" class="toggle-dark-mode">🌙</button>
+    <div class="untree_co-hero overlay" style="background-image: url('images/hero-img-1-min.jpg');">
+    <a href="../Ai/loding3.html" class="chat-icon">
+        <i class="fas fa-robot"></i>
+    </a>
+    </div>
     <div class="spline-viewer">
         <spline-viewer url="https://prod.spline.design/O4wdVneKYyKKbJbX/scene.splinecode"></spline-viewer>
       </div>
@@ -124,5 +126,60 @@
     <script type="text/javascript" src="socket.io/socket.io.js"></script>
     <!-- Custom Chat Script -->
     <script type="text/javascript" src="code.js"></script>
+
+    
+    <!-- controle de saisr -->
+    <script>
+      document.querySelector("#join-user").addEventListener("click", function (e) {
+    e.preventDefault(); // Prevent form submission
+
+    // Get input values
+    const chatroomInput = document.querySelector("#chatroom");
+    const usernameInput = document.querySelector("#username");
+    const chatroomError = document.querySelector("#chatroom-error");
+    const usernameError = document.querySelector("#username-error");
+
+    let isValid = true;
+
+    // Reset error messages
+    chatroomError.textContent = "";
+    usernameError.textContent = "";
+
+    // Validate chatroom name
+    if (chatroomInput.value.trim() === "") {
+        chatroomError.textContent = "Chatroom name is required.";
+        isValid = false;
+    } else if (chatroomInput.value.length < 3) {
+        chatroomError.textContent = "Chatroom name must be at least 3 characters.";
+        isValid = false;
+    }
+
+    // Validate username
+    if (usernameInput.value.trim() === "") {
+        usernameError.textContent = "Nickname is required.";
+        isValid = false;
+    } else if (usernameInput.value.length < 3) {
+        usernameError.textContent = "Nickname must be at least 3 characters.";
+        isValid = false;
+    } else if (!/^[a-zA-Z]+$/.test(usernameInput.value)) {
+        usernameError.textContent = "Nickname must contain only letters.";
+        isValid = false;
+    }
+
+    // If valid, emit event to the server
+    if (isValid) {
+        const chatroom = chatroomInput.value.trim();
+        const username = usernameInput.value.trim();
+
+        // Emit event to server
+        socket.emit("newuser", { username, chatroom });
+
+        // Switch to the chat screen
+        document.querySelector(".join-screen").classList.remove("active");
+        document.querySelector(".chat-screen").classList.add("active");
+    }
+});
+
+    </script>
 </body>
 </html>
