@@ -87,34 +87,27 @@ html, body {
     background-color: #0056b3;
 }
 
-/* Make the chatroom form and messages containers transparent */
-.chat-room-container {
-    background: rgba(255, 255, 255, 0.8); /* Slightly less transparent background for the form */
-    padding: 15px;
-    border-radius: 8px;
+/* Chatbox styling */
+.typebox {
+    display: flex;
+    align-items: center; /* Vertically align items */
+    justify-content: space-between; /* Space out items */
+    width: 100%;
+    max-width: 800px; /* Optional, sets max width */
+    padding: 10px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.8);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(8px); /* Optional blur effect */
+    backdrop-filter: blur(8px);
+    gap: 10px;
 }
 
-.messages-container {
-    background: rgba(255, 255, 255, 0.8); /* Transparent background for the messages container */
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow-y: auto; /* Ensures the messages are scrollable if needed */
-    backdrop-filter: blur(8px); /* Optional blur effect */
-}
-button {
+/* Ensure the message input container is a flex container */
+.message-input-container {
     display: flex;
-    align-items: center; /* Vertically center content */
-    justify-content: center; /* Horizontally center content */
-    border: none;
-    border-radius: 50px; /* Rounded corners */
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    align-items: center; /* Vertically center items */
+    justify-content: flex-start; /* Align items from the left */
+    flex-grow: 1; /* Allow the container to take up remaining space */
 }
 
 /* Emoji Button Styling */
@@ -122,12 +115,30 @@ button {
     background: linear-gradient(45deg, #ff9a9e, #fad0c4);
     color: #fff;
     box-shadow: 0 4px 6px rgba(255, 154, 158, 0.4);
-    font-size: 20px; /* Adjust font size for emoji */
+    font-size: 20px;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-right: 10px;
 }
 
-#emoji-btn:hover {
-    background: linear-gradient(45deg, #fad0c4, #ff9a9e);
-    transform: scale(1.1);
+/* Input Message Styling */
+#message-input {
+    flex: 1;
+    padding: 12px 20px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #f0f4ff, #e2e6f7);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    outline: none;
+    border: none;
+    margin: 0 10px;
+    transition: all 0.3s ease-in-out;
+    min-width: 200px;
 }
 
 /* Send Button Styling */
@@ -135,75 +146,67 @@ button {
     background: linear-gradient(45deg, #6a11cb, #2575fc);
     color: #fff;
     box-shadow: 0 4px 6px rgba(102, 51, 153, 0.4);
-    font-size: 18px; /* Adjust font size for consistency */
-}
-
-#send-message:hover {
-    background: linear-gradient(45deg, #2575fc, #6a11cb);
-    transform: scale(1.1);
-}
-#message-input {
-    width: 100%;
-    max-width: 400px; /* Optional, limits the width of the input */
+    font-size: 18px;
     padding: 12px 20px;
     border: none;
-    border-radius: 25px; /* Rounded corners */
-    background: linear-gradient(135deg, #f0f4ff, #e2e6f7); /* Subtle gradient background */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    font-size: 16px;
-    font-family: 'Arial', sans-serif;
-    color: #333; /* Text color */
-    outline: none; /* Removes the default outline */
+    border-radius: 50px;
+    cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
 
-#message-input:focus {
-    background: linear-gradient(135deg, #e6eaff, #d0d7f0); /* Change background on focus */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
-    border: 2px solid #6a11cb; /* Add a border for focus effect */
-    transform: scale(1.02); /* Slightly enlarge the input */
-}
-
-#message-input::placeholder {
-    color: #aaa; /* Placeholder text color */
-    font-style: italic; /* Makes the placeholder text more elegant */
-    transition: color 0.3s ease-in-out;
-}
-
-#message-input:focus::placeholder {
-    color: #ccc; /* Fades placeholder text on focus */
-}
-
-.chat-icon {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #0056b3;
-    color: white;
-    font-size: 24px;
-    width: 50px;
-    height: 50px;
+/* GIF Results Styling */
+#gif-results {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-decoration: none;
-    z-index: 1000; /* Ensure it appears above other elements */
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    display: none; /* Initially hidden */
 }
 
-.chat-icon:hover {
-    background-color: #004494;
-    transform: scale(1.1); /* Slight zoom effect on hover */
+#gif-results img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
 }
 
-.chat-icon i {
-    pointer-events: none; /* Prevent icon from being clickable separately */
+#gif-results img:hover {
+    transform: scale(1.1);
 }
 
-.error-message {
-    color: red;
-    font-size: 12px;
-    margin: 5px 0;
+/* Search icon button */
+.gif-search-icon {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.gif-search-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Input and button for the GIF search */
+#search-input {
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+}
+
+#search-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+#search-btn:hover {
+    background-color: #0056b3;
 }

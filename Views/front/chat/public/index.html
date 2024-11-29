@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="css/aos.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/styleo.css">
+    <style>
+        
+    </style>
 </head>
 <body>
     <nav class="site-nav mb-5 sticky-nav">
@@ -75,11 +78,25 @@
                 <!-- System updates (e.g., user joins) will be displayed here -->
             </div>
             <div class="typebox">
-                <input type="text" id="message-input" placeholder="Type your message...">
-                <button id="emoji-btn">😊</button>
-                <button id="send-message">Send</button>
+                <div class="message-input-container">
+                    <button id="emoji-btn">😊</button> <!-- Emoji button -->
+                    <input id="message-input" type="text" placeholder="Type a message..."> <!-- Message input -->
+                    <button id="send-message">Send</button> <!-- Send button -->
+                </div>
+            
+                <!-- GIF search icon -->
+                <button id="gif-search-icon" class="gif-search-icon">
+                    🔍
+                </button>
+            
+                <!-- GIF search container -->
+                <div id="gif-results" class="gif-results">
+                    <input type="text" id="search-input" placeholder="Search for GIFs...">
+                    <button id="search-btn">Search</button>
+                    <div id="gif-display"></div> <!-- Area to display selected GIF -->
+                </div>
             </div>
-
+            
             <!-- Emoji Picker -->
             <div class="emoji-picker" id="emoji-picker">
                 <span>😀</span>
@@ -179,7 +196,28 @@
         document.querySelector(".chat-screen").classList.add("active");
     }
 });
+    </script>
+    <script>
+        const gifSearchIcon = document.getElementById("gif-search-icon");
+const gifResults = document.getElementById("gif-results");
 
+gifSearchIcon.addEventListener("click", () => {
+    // Toggle the visibility of the GIF search section
+    gifResults.style.display = gifResults.style.display === "none" || gifResults.style.display === "" ? "block" : "none";
+});
+
+// Optional: Implement the search functionality (you can integrate with a GIF API like Giphy)
+const searchBtn = document.getElementById("search-btn");
+const searchInput = document.getElementById("search-input");
+
+searchBtn.addEventListener("click", () => {
+    const query = searchInput.value.trim();
+    if (query) {
+        console.log("Searching for GIFs:", query);
+        // Here you would integrate an API call to fetch the GIFs (e.g., Giphy or Tenor)
+        // For now, this is just a placeholder action.
+    }
+});
     </script>
 </body>
 </html>

@@ -40,6 +40,10 @@ app.get("/", (req, res) => {
 
 // WebSocket connection
 io.on("connection", (socket) => {
+
+    socket.on('chatMessage', (message) => {
+        io.emit('chatMessage', message); // Broadcast the message to all clients
+      });
     // Handle new user joining
     socket.on("newuser", ({ username, chatroom }) => {
         if (!username || !chatroom) {

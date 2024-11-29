@@ -37,26 +37,25 @@
             background-color: #3e8e41;
             transform: scale(1.1);
         }
+        
+                
+        
     `;
     document.head.appendChild(style);
 
     // Handle user joining the chat
     document.querySelector(".join-screen #join-user").addEventListener("click", function () {
         let username = document.querySelector(".join-screen #username").value;
-        let chatroom = document.querySelector(".join-screen #chatroom").value; // Add chatroom input
-    
+        let chatroom = document.querySelector(".join-screen #chatroom").value;
+
         if (username.length === 0 || chatroom.length === 0) {
             alert("Username and chatroom are required!");
             return;
         }
-    
-        // Emit username and chatroom to the server
+
         socket.emit("newuser", { username, chatroom });
-    
-        // Save the username for later use
         uname = username;
-    
-        // Switch screens
+
         document.querySelector(".join-screen").classList.remove("active");
         document.querySelector(".chat-screen").classList.add("active");
     });
@@ -67,21 +66,20 @@
         if (message.length === 0) {
             return;
         }
-        const timestamp = new Date().toISOString().slice(0, 19).replace("T", " ");
         const messageData = {
-            id: Date.now(), // Generate a unique ID for the message
+            id: Date.now(),
             username: uname,
             text: message
         };
         renderMessage("my", messageData);
-        socket.emit("chat", messageData); // Emit message to server
-        app.querySelector(".chat-screen #message-input").value = ""; // Clear input
+        socket.emit("chat", messageData);
+        app.querySelector(".chat-screen #message-input").value = "";
     });
 
     // Handle user exit
     app.querySelector(".chat-screen #exit-chat").addEventListener("click", function () {
         socket.emit("exituser", uname);
-        window.location.href = window.location.href; // Refresh page
+        window.location.href = window.location.href;
     });
 
     // Listen for user updates (joins or leaves)
@@ -98,7 +96,7 @@
     socket.on("message-deleted", function (id) {
         const messageElement = document.querySelector(`.message[data-id='${id}']`);
         if (messageElement) {
-            messageElement.remove(); // Remove the message from DOM
+            messageElement.remove();
         }
     });
 
@@ -117,34 +115,41 @@
         if (type === "my" || type === "other") {
             let el = document.createElement("div");
             el.setAttribute("class", `message ${type}-message`);
-            el.setAttribute("data-id", message.id); // Store the message ID
+            el.setAttribute("data-id", message.id);
 
-            el.innerHTML =
-                `<div>
-                    <div class="name">${type === "my" ? "You" : message.username}</div>
-                    <div class="text">${message.text}</div>
-                </div>`;
+            if (message.text.startsWith("GIF:")) {
+                el.innerHTML = `
+                    <div>
+                        <div class="name">${type === "my" ? "You" : message.username}</div>
+                        <div class="text">
+                            <img src="${message.text.replace("GIF:", "")}" alt="GIF" style="max-width: 200px;">
+                        </div>
+                    </div>`;
+            } else {
+                el.innerHTML = `
+                    <div>
+                        <div class="name">${type === "my" ? "You" : message.username}</div>
+                        <div class="text">${message.text}</div>
+                    </div>`;
+            }
 
-            // Add buttons for the user's messages
             if (type === "my") {
-                // Delete button
                 const deleteButton = document.createElement("button");
                 deleteButton.textContent = "Delete";
                 deleteButton.classList.add("delete");
                 deleteButton.addEventListener("click", () => {
-                    socket.emit("delete-message", message.id); // Emit deletion
+                    socket.emit("delete-message", message.id);
                 });
                 el.appendChild(deleteButton);
 
-                // Modify button
                 const modifyButton = document.createElement("button");
                 modifyButton.textContent = "Modify";
                 modifyButton.classList.add("modify");
                 modifyButton.addEventListener("click", () => {
                     const newMessageText = prompt("Edit your message:", message.text);
                     if (newMessageText !== null && newMessageText.trim() !== "") {
-                        message.text = newMessageText; // Update the message text
-                        socket.emit("modify-message", message); // Emit modification
+                        message.text = newMessageText;
+                        socket.emit("modify-message", message);
                     }
                 });
                 el.appendChild(modifyButton);
@@ -158,7 +163,44 @@
             messageContainer.appendChild(el);
         }
 
-        // Scroll to the bottom
         messageContainer.scrollTop = messageContainer.scrollHeight - messageContainer.clientHeight;
+    }
+
+    // GIF Search Functionality
+    const API_KEY = "srhoeza0eIgGydSh2TGJYUz5JEUZtmzn";
+    const searchInput = document.getElementById("search-input");
+    const searchBtn = document.getElementById("search-btn");
+    const gifResults = document.getElementById("gif-results");
+
+    searchBtn.addEventListener("click", () => {
+        const query = searchInput.value.trim();
+        if (!query) return;
+
+        fetch(`https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${query}&limit=10`)
+            .then(response => response.json())
+            .then(data => {
+                gifResults.innerHTML = "";
+                data.data.forEach(gif => {
+                    const img = document.createElement("img");
+                    img.src = gif.images.fixed_height.url;
+                    img.alt = gif.title;
+                    img.style.cursor = "pointer";
+                    img.addEventListener("click", () => selectGIF(gif.images.fixed_height.url));
+                    gifResults.appendChild(img);
+                });
+            })
+            .catch(error => console.error("Error fetching GIFs:", error));
+    });
+
+    function selectGIF(url) {
+        const messageData = {
+            id: Date.now(),
+            username: uname,
+            text: `GIF:${url}`
+        };
+        renderMessage("my", messageData);
+        socket.emit("chat", messageData);
+        gifResults.innerHTML = "";
+        searchInput.value = "";
     }
 })();
