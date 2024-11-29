@@ -3,6 +3,63 @@
     const socket = io();
     let uname;
 
+    const recordBtn = document.getElementById("audio");
+    let mediaRecorder;
+    let audioChunks = [];
+    
+    // Start/Stop recording
+    recordBtn.addEventListener("click", async () => {
+        if (!mediaRecorder || mediaRecorder.state === "inactive") {
+            // Start recording
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+            mediaRecorder.start();
+    
+            recordBtn.textContent = "⏹️ Stop Recording";
+    
+            mediaRecorder.ondataavailable = (event) => {
+                audioChunks.push(event.data);
+            };
+    
+            mediaRecorder.onstop = async () => {
+                const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+                audioChunks = []; // Reset chunks for future recordings
+    
+                // Send audio to the server
+                const formData = new FormData();
+                formData.append("audio", audioBlob);
+    
+                try {
+                    const response = await fetch("/upload-audio", {
+                        method: "POST",
+                        body: formData,
+                    });
+    
+                    if (!response.ok) {
+                        throw new Error("Failed to upload audio");
+                    }
+    
+                    const data = await response.json();
+                    const audioFilePath = data.filePath;
+    
+                    // Emit the audio file path via WebSocket
+                    socket.emit("voiceMessage", {
+                        username: uname,
+                        filePath: audioFilePath,
+                    });
+    
+                    recordBtn.textContent = "🎙️ Record";
+                } catch (error) {
+                    console.error("Error uploading audio:", error);
+                    recordBtn.textContent = "🎙️ Record";
+                }
+            };
+        } else {
+            // Stop recording
+            mediaRecorder.stop();
+        }
+    });
+
     // Inject CSS Styles into the document head
     const style = document.createElement("style");
     style.innerHTML = `
@@ -90,6 +147,21 @@
     // Listen for new chat messages
     socket.on("chat", function (message) {
         renderMessage("other", message);
+    });
+    socket.on("voiceMessage", (data) => {
+        const { username, filePath } = data;
+    
+        // Use the renderMessage function for consistency
+        const messageData = {
+            id: Date.now(),
+            username: username,
+            text: `<audio controls>
+                      <source src="${filePath}" type="audio/webm">
+                      Your browser does not support the audio element.
+                   </audio>`
+        };
+    
+        renderMessage(username === uname ? "my" : "other", messageData);
     });
 
     // Handle message deletion

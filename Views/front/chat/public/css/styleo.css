@@ -89,44 +89,34 @@ html, body {
 
 /* Chatbox styling */
 .typebox {
-    display: flex;
-    align-items: center; /* Vertically align items */
-    justify-content: space-between; /* Space out items */
+    display: flex; /* Enable flexbox layout */
+    align-items: center; /* Vertically center all items */
+    justify-content: space-between; /* Distribute items horizontally */
     width: 100%;
-    max-width: 800px; /* Optional, sets max width */
+    max-width: 800px; /* Limit maximum width */
     padding: 10px;
     border-radius: 25px;
     background: rgba(255, 255, 255, 0.8);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(8px);
-    gap: 10px;
+    gap: 10px; /* Small spacing between items */
 }
 
-/* Ensure the message input container is a flex container */
-.message-input-container {
-    display: flex;
-    align-items: center; /* Vertically center items */
-    justify-content: flex-start; /* Align items from the left */
-    flex-grow: 1; /* Allow the container to take up remaining space */
-}
-
-/* Emoji Button Styling */
+/* Emoji Button */
 #emoji-btn {
     background: linear-gradient(45deg, #ff9a9e, #fad0c4);
     color: #fff;
-    box-shadow: 0 4px 6px rgba(255, 154, 158, 0.4);
-    font-size: 20px;
+    font-size: 22px;
     border: none;
     border-radius: 50%;
     padding: 10px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    margin-right: 10px;
 }
 
-/* Input Message Styling */
+/* Input Field */
 #message-input {
-    flex: 1;
+    flex: 1; /* Take available space */
     padding: 12px 20px;
     border-radius: 25px;
     background: linear-gradient(135deg, #f0f4ff, #e2e6f7);
@@ -136,25 +126,46 @@ html, body {
     color: #333;
     outline: none;
     border: none;
-    margin: 0 10px;
     transition: all 0.3s ease-in-out;
-    min-width: 200px;
+    margin: 0 10px; /* Space between input and buttons */
+    min-width: 200px; /* Prevent input from shrinking too small */
 }
 
-/* Send Button Styling */
+/* Audio Button */
+#audio {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(102, 51, 153, 0.4);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Send Button */
 #send-message {
     background: linear-gradient(45deg, #6a11cb, #2575fc);
     color: #fff;
-    box-shadow: 0 4px 6px rgba(102, 51, 153, 0.4);
     font-size: 18px;
     padding: 12px 20px;
     border: none;
     border-radius: 50px;
     cursor: pointer;
+    box-shadow: 0 4px 6px rgba(102, 51, 153, 0.4);
     transition: all 0.3s ease-in-out;
 }
 
-/* GIF Results Styling */
+/* GIF Search Icon */
+#gif-search-icon {
+    font-size: 24px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    transition: transform 0.3s ease-in-out;
+}
 #gif-results {
     display: flex;
     flex-wrap: wrap;
@@ -162,7 +173,6 @@ html, body {
     margin-top: 10px;
     display: none; /* Initially hidden */
 }
-
 #gif-results img {
     width: 80px;
     height: 80px;
@@ -172,41 +182,9 @@ html, body {
     transition: transform 0.3s ease-in-out;
 }
 
-#gif-results img:hover {
-    transform: scale(1.1);
-}
-
-/* Search icon button */
-.gif-search-icon {
-    background-color: transparent;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 10px;
-    transition: transform 0.3s ease-in-out;
-}
-
-.gif-search-icon:hover {
-    transform: scale(1.1);
-}
-
-/* Input and button for the GIF search */
-#search-input {
-    padding: 8px 12px;
-    border-radius: 20px;
-    border: 1px solid #ddd;
-    margin-right: 10px;
-}
-
-#search-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-}
-
-#search-btn:hover {
-    background-color: #0056b3;
+#gif-search-icon:hover,
+#emoji-btn:hover,
+#audio:hover,
+#send-message:hover {
+    transform: scale(1.1); /* Scale on hover */
 }

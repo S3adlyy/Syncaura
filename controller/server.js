@@ -4,6 +4,21 @@ const mysql = require("mysql2");
 const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
+const multer = require("multer");
+const fs = require("fs");
+const upload = multer({ dest: "uploads/" });
+
+
+app.post("/upload-audio", upload.single("audio"), (req, res) => {
+    if (!req.file) {
+        return res.status(400).send("No file uploaded.");
+    }
+
+    const filePath = `/uploads/${req.file.filename}`;
+    res.status(200).send({ filePath });
+});
+
+
 
 // MySQL database configuration
 const db = mysql.createConnection({
@@ -23,6 +38,8 @@ db.connect((err) => {
 });
 
 // Serve static files
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(express.static(path.join(__dirname, "../views/front/chat/public")));
 
 app.use("/main", express.static(path.join(__dirname, "../views/front/main")));
@@ -44,6 +61,10 @@ io.on("connection", (socket) => {
     socket.on('chatMessage', (message) => {
         io.emit('chatMessage', message); // Broadcast the message to all clients
       });
+    //voice message server code
+    socket.on("voiceMessage", (data) => {
+        io.emit("voiceMessage", data); // Broadcast audio file path and sender
+    });
     // Handle new user joining
     socket.on("newuser", ({ username, chatroom }) => {
         if (!username || !chatroom) {
