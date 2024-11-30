@@ -1,8 +1,9 @@
-<?php
+<<?php
 include('../../controller/plancontroller.php');
 
 $planController = new PlanController();
 
+// Fetch all plans to display in the form
 $plans = $planController->listPlans();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_plan'])) {
@@ -22,15 +23,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_plan'])) {
         $errors[] = "Plan name should not start with a number.";
     }
 
+    // Check if plan name already exists in the database
+    $existingPlan = $planController->getPlanByName($nom);
+    if ($existingPlan) {
+        $errors[] = "A plan with this name already exists.";
+    }
+
     // If no errors, proceed to add the plan
     if (empty($errors)) {
-        $date_plan = date('Y-m-d'); 
+        $date_plan = date('Y-m-d');
         $planController->addPlan($nom, $date_plan);
-        header("Location: todotasks.php?planName=$nom"); 
+        header("Location: todotasks.php?planName=$nom");
         exit();
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

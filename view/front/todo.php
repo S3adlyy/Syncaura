@@ -1,3 +1,10 @@
+<?php
+include('../../controller/plancontroller.php');
+$planController = new PlanController();
+$plans = $planController->listPlans();
+$planName = $_GET['planName'];
+$tasks = $planController->listTaskByPlanName($planName);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -193,19 +200,34 @@ button:hover {
             <input type="text" id="taskInput" placeholder="Enter a new task">
             <button id="addTaskButton">Add Task</button>
             <div id="taskList"></div>
+            <?php foreach ($tasks as $task) {
+        if ($task['etat'] === 'To Do') {
+            echo "<div class='task'>{$task['nom']}</div>";
+        }
+            } ?>
             
         </div>
 
         <div class="column" id="inProgressColumn" ondrop="drop(event)" ondragover="allowDrop(event)">
             <h1>In Progress</h1>
             <div id="inProgressList"></div>
-           
+            <?php foreach ($tasks as $task) {
+        if ($task['etat'] === 'In Progress') {
+            echo "<div class='task'>{$task['nom']}</div>";
+        }
+    } ?>
+
         </div>
 
         <div class="column" id="doneColumn" ondrop="drop(event)" ondragover="allowDrop(event)">
             <h1>Done</h1>
             <div id="doneList"></div>
-            
+            <?php foreach ($tasks as $task) {
+        if ($task['etat'] === 'Done') {
+            echo "<div class='task'>{$task['nom']}</div>";
+        }
+        } ?>
+
         </div>
     </div>
 

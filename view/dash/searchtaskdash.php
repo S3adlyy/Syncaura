@@ -51,9 +51,7 @@
         </ul>
         
         <!-- Content Area -->
-        <div class="container-fluid" style="margin-left: 200px; padding-top: 20px;">
-            <h2 class="text-center" style="font-weight: bold; color:#355CCC;">Search tasks by plan</h2>
-            
+        <div class="container-fluid" style="margin-left: 200px; padding-top: 20px;">            
             <!-- Include the tasks list from listeplan.php -->
             <?php include_once 'searchtask.php'; ?> 
 

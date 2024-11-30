@@ -3,6 +3,15 @@ include(__DIR__ . '/../config.php');
 
 class PlanController
 {
+    public function getPlanByName($nom) {
+        $query = "SELECT * FROM plan WHERE nom = :nom";
+        $db = config::getConnexion();  // Directly get the database connection
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':nom', $nom);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC); // Returns the plan if it exists, or false if not
+    }
+    
     public function addPlan($nom)
     {
         $date_plan = date('Y-m-d'); // Set the current date as the date_plan
@@ -12,8 +21,15 @@ class PlanController
             $stmt = $db->prepare($sql);
             $stmt->execute(['nom' => $nom, 'date_plan' => $date_plan]);
         } catch (Exception $e) {
-            die('Error: ' . $e->getMessage());
+            if ($e->getCode() == 23000) {  // Integrity constraint violation (duplicate entry)
+                echo "Error: Plan name already exists. Please choose a different name.";
+            } 
+            else {
+                // Handle other errors
+                echo "Error: " . $e->getMessage();
+            }        
         }
+
     }
 
 
@@ -78,7 +94,6 @@ class PlanController
     $db = config::getConnexion();
     
     try {
-        // Start a transaction to ensure both deletes happen atomically
         $db->beginTransaction();
 
         // First, delete the tasks associated with the plan_name
@@ -91,11 +106,9 @@ class PlanController
         $stmt = $db->prepare($deletePlanSql);
         $stmt->execute(['planName' => $planName]);
 
-        // Commit the transaction
         $db->commit();
 
     } catch (Exception $e) {
-        // Rollback the transaction if an error occurs
         $db->rollBack();
         die('Error: ' . $e->getMessage());
     }
