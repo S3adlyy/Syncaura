@@ -191,6 +191,7 @@ body {
     color: var(--red);
 }
 
+
 /* Animations */
 .posts-container .box {
     animation: fadeIn 0.4s ease-in-out;

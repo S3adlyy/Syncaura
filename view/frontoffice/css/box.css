@@ -24,7 +24,7 @@ html, body {
     align-items: center;
 }
 
-/* Background container styles */
+/* Scrollable container styles */
 .box-container {
     display: flex;
     flex-wrap: wrap;
@@ -35,7 +35,13 @@ html, body {
     border-radius: 15px;
     box-shadow: var(--box-shadow);
     backdrop-filter: blur(10px);
+
+    /* Add scroll functionality */
+    max-height: 500px; /* Adjust the height as needed */
+    overflow-y: auto; /* Enables vertical scrolling */
 }
+
+
 
 .box {
     background: var(--background-white);

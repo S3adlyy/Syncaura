@@ -19,6 +19,7 @@ include '../../model/like_post.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -104,6 +105,7 @@ include '../../model/like_post.php';
           }
          ?>
       </div>
+      
 
       <div class="box">
          <p>categories</p>
@@ -111,13 +113,8 @@ include '../../model/like_post.php';
             <a href="category.php?category=nature" class="links">nature</a>
             <a href="category.php?category=education" class="links">education</a>
             <a href="category.php?category=business" class="links">business</a>
-            <a href="category.php?category=travel" class="links">travel</a>
             <a href="category.php?category=news" class="links">news</a>
             <a href="category.php?category=gaming" class="links">gaming</a>
-            <a href="category.php?category=sports" class="links">sports</a>
-            <a href="category.php?category=design" class="links">design</a>
-            <a href="category.php?category=fashion" class="links">fashion</a>
-            <a href="category.php?category=persional" class="links">persional</a>
             <a href="../../model/all_category.php" class="btn">view all</a>
          </div>
       </div>
@@ -148,12 +145,12 @@ include '../../model/like_post.php';
 
 <section class="posts-container">
 
-   <h1 class="heading">latest posts</h1>
+   <h1 class="heading">Latest Post</h1>
 
    <div class="box-container">
 
       <?php
-         $select_posts = $conn->prepare("SELECT * FROM `posts` WHERE status = ? LIMIT 6 ");
+         $select_posts = $conn->prepare("SELECT * FROM `posts` WHERE status = ? LIMIT 1");
          $select_posts->execute(['active']);
          if($select_posts->rowCount() > 0){
             while($fetch_posts = $select_posts->fetch(PDO::FETCH_ASSOC)){
@@ -185,33 +182,34 @@ include '../../model/like_post.php';
          <?php
             if($fetch_posts['image'] != ''){  
          ?>
-         <img src="../assets/uploaded_img/<?= $fetch_posts['image']; ?>" class="post-image" alt="">
+         <img src="../assets/uploaded_img/<?= $fetch_posts['image']; ?>" class="post-image" alt="Post Image">
          <?php
          }
          ?>
          <div class="post-title"><?= $fetch_posts['title']; ?></div>
          <div class="post-content content-150"><?= $fetch_posts['content']; ?></div>
-         <a href="../../controller/view_post.php?post_id=<?= $post_id; ?>" class="inline-btn">read more</a>
+         <a href="../../controller/view_post.php?post_id=<?= $post_id; ?>" class="inline-btn">Read more</a>
          <a href="../../model/category.php?category=<?= $fetch_posts['category']; ?>" class="post-cat"> <i class="fas fa-tag"></i> <span><?= $fetch_posts['category']; ?></span></a>
          <div class="icons">
             <a href="../../controller/view_post.php?post_id=<?= $post_id; ?>"><i class="fas fa-comment"></i><span>(<?= $total_post_comments; ?>)</span></a>
-            <button type="submit" name="like_post"><i class="fas fa-heart" style="<?php if($confirm_likes->rowCount() > 0){ echo 'color:var(--red);'; } ?>  "></i><span>(<?= $total_post_likes; ?>)</span></button>
+            <button type="submit" name="like_post"><i class="fas fa-heart" style="<?php if($confirm_likes->rowCount() > 0){ echo 'color:var(--red);'; } ?>"></i><span>(<?= $total_post_likes; ?>)</span></button>
          </div>
-      
       </form>
       <?php
          }
       }else{
-         echo '<p class="empty">no posts added yet!</p>';
+         echo '<p class="empty">No posts added yet!</p>';
       }
       ?>
    </div>
 
-   <div class="more-btn" style="text-align: center; margin-top:1rem;">
-      <a href="../../controller/posts.php" class="inline-btn">view all posts</a>
+   <!-- Fixer le bouton "View All Posts" -->
+   <div class="more-btn fixed-btn">
+      <a href="../../controller/posts.php" class="inline-btn">View All Posts</a>
    </div>
 
 </section>
+
 
 <div class="spline-viewer">
         <spline-viewer url="https://prod.spline.design/O4wdVneKYyKKbJbX/scene.splinecode"></spline-viewer>

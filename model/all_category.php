@@ -79,12 +79,12 @@ include 'like_post.php';
    <div class="box-container">
       <div class="box"><span>01</span><a href="category.php?category=nature">nature</a></div>
       <div class="box"><span>02</span><a href="category.php?category=eduction">education</a></div>
-      <div class="box"><span>04</span><a href="category.php?category=technology">technology</a></div>
-      <div class="box"><span>06</span><a href="category.php?category=entertainment">entertainment</a></div>
-      <div class="box"><span>08</span><a href="category.php?category=gaming">gaming</a></div>
-      <div class="box"><span>11</span><a href="category.php?category=news">news</a></div>
-      <div class="box"><span>14</span><a href="category.php?category=design and development">design and development</a></div>
-      <div class="box"><span>18</span><a href="category.php?category=business">business</a></div>
+      <div class="box"><span>03</span><a href="category.php?category=technology">technology</a></div>
+      <div class="box"><span>04</span><a href="category.php?category=entertainment">entertainment</a></div>
+      <div class="box"><span>05</span><a href="category.php?category=gaming">gaming</a></div>
+      <div class="box"><span>06</span><a href="category.php?category=news">news</a></div>
+      <div class="box"><span>07</span><a href="category.php?category=design and development">design and development</a></div>
+      <div class="box"><span>08</span><a href="category.php?category=business">business</a></div>
    </div>
 
 </section>

@@ -103,7 +103,7 @@ a:hover {
 
 /* Welcome Text Styling */
 .welcome-text {
-  font-family: 'Playfair Display', serif; /* Stylish font */
+  font-family: 'Century Gothic', sans-serif; /* Stylish font */
   font-size: 50px; /* Large text size */
   font-weight: bold; /* Bold text */
   color: #fff; /* White color */
@@ -111,6 +111,19 @@ a:hover {
   letter-spacing: 3px; /* Spacing between letters */
   text-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Shadow effect for depth */
   animation: glow 1.5s ease-in-out infinite; /* Animation effect */
+}
+
+/* Animation for glowing effect */
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 10px #fff, 0 0 20px #B93AFF, 0 0 30px #B93AFF, 0 0 40px #B93AFF;
+  }
+  50% {
+    text-shadow: 0 0 20px #fff, 0 0 30px #B93AFF, 0 0 40px #B93AFF, 0 0 50px #B93AFF;
+  }
+  100% {
+    text-shadow: 0 0 10px #fff, 0 0 20px #B93AFF, 0 0 30px #B93AFF, 0 0 40px #B93AFF;
+  }
 }
 
 /* Animation for glowing effect */

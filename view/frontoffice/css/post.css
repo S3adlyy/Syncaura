@@ -51,10 +51,13 @@ body {
 /* Post Box Styles */
 .posts-container .box-container {
     display: flex;
-    flex-wrap: wrap;
+    margin-top: 50px;
+    margin-right: 500px;
     gap: 30px;
     justify-content: center;
 }
+
+
 
 .posts-container .box {
     background: var(--white);
