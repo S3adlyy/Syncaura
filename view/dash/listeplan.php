@@ -1,8 +1,8 @@
 <?php
 include('../../controller/plancontroller.php');
 $planController = new PlanController();
-$planName = $_POST['plan'];
-$tasks = $planController->listTaskByPlanName($planName);
+$plans = $planController->listPlans();
+
 ?>
 
 <!-- Link to external CSS file -->

@@ -1,4 +1,4 @@
-<<?php
+<?php
 include('../../controller/plancontroller.php');
 
 $planController = new PlanController();
@@ -80,7 +80,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_plan'])) {
                 <tbody>
                     <?php foreach ($plans as $plan): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($plan['nom']); ?></td>
+                            <td>
+                                <a href="todotasks.php?planName=<?php echo urlencode($plan['nom']); ?>" class="plan-link">
+                                    <?php echo htmlspecialchars($plan['nom']); ?>
+                                </a></td>
                             <td>
                                 <a href="modifyplan.php?id=<?php echo $plan['id']; ?>" class="btn modify-btn">Modify</a>
                                 <a href="deleteplan.php?nom=<?php echo urlencode($plan['nom']); ?>"class="btn delete-btn" onclick="return confirm('Are you sure you want to delete this plan?');">Delete</a>

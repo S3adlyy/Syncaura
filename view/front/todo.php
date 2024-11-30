@@ -202,7 +202,10 @@ button:hover {
             <div id="taskList"></div>
             <?php foreach ($tasks as $task) {
         if ($task['etat'] === 'To Do') {
-            echo "<div class='task'>{$task['nom']}</div>";
+            echo "<div class='task' id='{$task['id']}' draggable='true'>
+                        <span class='task-text'>{$task['nom']}</span>
+                        <button onclick='deleteTask(\"{$task['id']}\")'>Delete</button>                 
+                </div>";
         }
             } ?>
             
@@ -213,7 +216,10 @@ button:hover {
             <div id="inProgressList"></div>
             <?php foreach ($tasks as $task) {
         if ($task['etat'] === 'In Progress') {
-            echo "<div class='task'>{$task['nom']}</div>";
+            echo "<div class='task' id='{$task['id']}' draggable='true'>
+                        <span class='task-text'>{$task['nom']}</span>
+                        <button onclick='deleteTask(\"{$task['id']}\")'>Delete</button>                 
+                </div>";
         }
     } ?>
 
@@ -224,7 +230,10 @@ button:hover {
             <div id="doneList"></div>
             <?php foreach ($tasks as $task) {
         if ($task['etat'] === 'Done') {
-            echo "<div class='task'>{$task['nom']}</div>";
+            echo "<div class='task' id='{$task['id']}' draggable='true'>
+                        <span class='task-text'>{$task['nom']}</span>
+                        <button onclick='deleteTask(\"{$task['id']}\")'>Delete</button>                 
+                </div>";
         }
         } ?>
 
@@ -332,49 +341,51 @@ button:hover {
         }
 
         // Allow dropping tasks into columns
-        function allowDrop(event) {
+        function allowDrop(event) 
+        {
             event.preventDefault();
         }
 
         // Handle task drop into a column (mark as completed or not)
-        function drop(event) {
-    event.preventDefault();
-    const taskId = event.dataTransfer.getData("text/plain");
-    const taskElement = document.getElementById(taskId);
-    const taskText = taskElement.querySelector('.task-text').textContent;
+        function drop(event) 
+        {
+            event.preventDefault();
+            const taskId = event.dataTransfer.getData("text/plain");
+            const taskElement = document.getElementById(taskId);
+            const taskText = taskElement.querySelector('.task-text').textContent;
 
-    if (taskElement) {
-        const columnId = event.target.id;
-        let completed = false;
-        let inProgress = false;
-        let newEtat = 'To Do'; // Default state
+            if (taskElement) {
+            const columnId = event.target.id;
+            let completed = false;
+            let inProgress = false;
+            let newEtat = 'To Do'; // Default state
 
-        // Check which column the task was dropped into and update the 'etat'
-        if (columnId === "doneColumn") {
-            taskElement.classList.add("completed");
-            completed = true;
-            newEtat = 'Done';  // Task moved to 'Done'
-            doneList.appendChild(taskElement);
-        } else if (columnId === "inProgressColumn") {
-            taskElement.classList.remove("completed");  // Remove completed class if moved to in-progress
-            inProgress = true;
-            newEtat = 'In Progress';  // Task moved to 'In Progress'
-            inProgressList.appendChild(taskElement);
-        } else {
-            taskElement.classList.remove("completed");  // Task removed from 'Done' state if moved back to 'To Do'
-            newEtat = 'To Do';  // Task moved back to 'To Do'
-            taskList.appendChild(taskElement);
-        }
+            // Check which column the task was dropped into and update the 'etat'
+            if (columnId === "doneColumn") {
+                taskElement.classList.add("completed");
+                completed = true;
+                newEtat = 'Done';  // Task moved to 'Done'
+                doneList.appendChild(taskElement);
+            } else if (columnId === "inProgressColumn") {
+                taskElement.classList.remove("completed");  // Remove completed class if moved to in-progress
+                inProgress = true;
+                newEtat = 'In Progress';  // Task moved to 'In Progress'
+                inProgressList.appendChild(taskElement);
+            } else {
+                taskElement.classList.remove("completed");  // Task removed from 'Done' state if moved back to 'To Do'
+                newEtat = 'To Do';  // Task moved back to 'To Do'
+                taskList.appendChild(taskElement);
+            }
 
-        // Emit the updated task with the correct 'etat' value
-        socket.emit("update task", {
-            id: taskId,
-            completed,
-            inProgress,
-            text: taskText,
-            etat: newEtat // Send the updated 'etat' based on the column
-        });
-    }
+            // Emit the updated task with the correct 'etat' value
+            socket.emit("update task", {
+                id: taskId,
+                completed,
+                inProgress,
+                text: taskText,
+                etat: newEtat // Send the updated 'etat' based on the column
+            });
+           }
 }
 
     </script>
@@ -385,6 +396,25 @@ button:hover {
                 const logo = shadowRoot.querySelector('#logo');
                 if (logo) logo.remove();
             }
+             // Initialize draggable tasks and attach delete button listeners
+            const tasks = document.querySelectorAll('.task');
+            tasks.forEach(task => {
+            // Ensure the task is draggable
+            task.setAttribute('draggable', 'true');
+            
+            // Add event listener for the delete button
+            const deleteButton = task.querySelector('button');
+            deleteButton.addEventListener('click', () => {
+                const taskId = task.id;
+                deleteTask(taskId); // Emit task deletion via socket
+            });
+
+        // Ensure the task is draggable
+        task.ondragstart = (event) => {
+            event.dataTransfer.setData("text/plain", task.id);
+            };
+        });
+
         }
     </script>
 
