@@ -188,3 +188,68 @@ html, body {
 #send-message:hover {
     transform: scale(1.1); /* Scale on hover */
 }
+.gif-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 500px;
+    height: 70%;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none; /* Hidden by default */
+    z-index: 100;
+    overflow: hidden;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* Header inside the modal */
+.gif-search-header {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.gif-search-header input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.gif-search-header button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.gif-display {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+.gif-display img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.gif-display img:hover {
+    transform: scale(1.1);
+}
+
+
+

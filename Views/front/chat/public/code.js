@@ -148,6 +148,21 @@
     socket.on("chat", function (message) {
         renderMessage("other", message);
     });
+
+    socket.on("imageMessage", (data) => {
+        const { username, filePath } = data;
+    
+        // Create an image message object
+        const messageData = {
+            id: Date.now(),
+            username: username,
+            text: `<img src="${filePath}" alt="Image" style="max-width: 200px;">`,
+        };
+    
+        // Render the message on the screen
+        renderMessage(username === uname ? "my" : "other", messageData);
+    });
+
     socket.on("voiceMessage", (data) => {
         const { username, filePath } = data;
     
@@ -181,14 +196,15 @@
     });
 
     // Render messages on the screen
-    function renderMessage(type, message) {
+    function renderMessage(type, message) { 
         let messageContainer = app.querySelector(".chat-screen .messages");
-
+    
         if (type === "my" || type === "other") {
             let el = document.createElement("div");
             el.setAttribute("class", `message ${type}-message`);
             el.setAttribute("data-id", message.id);
-
+    
+            // Check for GIF
             if (message.text.startsWith("GIF:")) {
                 el.innerHTML = `
                     <div>
@@ -197,14 +213,27 @@
                             <img src="${message.text.replace("GIF:", "")}" alt="GIF" style="max-width: 200px;">
                         </div>
                     </div>`;
-            } else {
+            } 
+            // Check for image
+            else if (message.text.startsWith("<img")) {
+                el.innerHTML = `
+                    <div>
+                        <div class="name">${type === "my" ? "You" : message.username}</div>
+                        <div class="text">
+                            ${message.text}
+                        </div>
+                    </div>`;
+            } 
+            // Normal text message
+            else {
                 el.innerHTML = `
                     <div>
                         <div class="name">${type === "my" ? "You" : message.username}</div>
                         <div class="text">${message.text}</div>
                     </div>`;
             }
-
+    
+            // Handle delete and modify buttons for the current user
             if (type === "my") {
                 const deleteButton = document.createElement("button");
                 deleteButton.textContent = "Delete";
@@ -213,7 +242,7 @@
                     socket.emit("delete-message", message.id);
                 });
                 el.appendChild(deleteButton);
-
+    
                 const modifyButton = document.createElement("button");
                 modifyButton.textContent = "Modify";
                 modifyButton.classList.add("modify");
@@ -226,7 +255,7 @@
                 });
                 el.appendChild(modifyButton);
             }
-
+    
             messageContainer.appendChild(el);
         } else if (type === "update") {
             let el = document.createElement("div");
@@ -234,9 +263,11 @@
             el.innerText = message;
             messageContainer.appendChild(el);
         }
-
+    
+        // Scroll to the bottom of the message container
         messageContainer.scrollTop = messageContainer.scrollHeight - messageContainer.clientHeight;
     }
+    
 
     // GIF Search Functionality
     const API_KEY = "srhoeza0eIgGydSh2TGJYUz5JEUZtmzn";
@@ -275,4 +306,39 @@
         gifResults.innerHTML = "";
         searchInput.value = "";
     }
+    // Handle image upload
+const imageUploadInput = document.getElementById("image-upload");
+
+imageUploadInput.addEventListener("change", async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+        const response = await fetch("/upload-image", {
+            method: "POST",
+            body: formData,
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to upload image");
+        }
+
+        const data = await response.json();
+        const imagePath = data.filePath;
+
+        // Emit the image path via WebSocket
+        socket.emit("imageMessage", {
+            username: uname,
+            filePath: imagePath,
+        });
+
+    } catch (error) {
+        console.error("Error uploading image:", error);
+    }
+});
+
+
 })();

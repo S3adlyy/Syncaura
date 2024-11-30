@@ -39,6 +39,15 @@ db.connect((err) => {
 
 // Serve static files
 
+app.post("/upload-image", upload.single("image"), (req, res) => {
+    if (!req.file) {
+        return res.status(400).send("No image uploaded.");
+    }
+
+    const filePath = `/uploads/${req.file.filename}`;
+    res.status(200).send({ filePath });
+});
+
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(express.static(path.join(__dirname, "../views/front/chat/public")));
 
@@ -61,6 +70,10 @@ io.on("connection", (socket) => {
     socket.on('chatMessage', (message) => {
         io.emit('chatMessage', message); // Broadcast the message to all clients
       });
+
+      socket.on("imageMessage", (data) => {
+        io.emit("imageMessage", data); // Broadcast the image path to all clients
+    });
     //voice message server code
     socket.on("voiceMessage", (data) => {
         io.emit("voiceMessage", data); // Broadcast audio file path and sender
