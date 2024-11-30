@@ -1,20 +1,3 @@
-<?php
-////////////////not working cuz we re dealing with socket.io//////////////////
-
-include('../../controller/plancontroller.php');
-$plancontroller = new plancontroller();
-$errorMessage = '';
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nom = trim($_POST['nom']);
-    if (empty($nom)) {
-        $errorMessage = 'task name cannot be empty';
-    } elseif (preg_match('/[^a-zA-Z0-9 ]/', $nom)) {
-        $errorMessage = 'task name should not contain special characters';
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,9 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     top: 50px;
     left: 50%;
     transform: translateX(-50%); /* Ensure proper centering */
+    font-family: 'Segoe UI', sans-serif;
     font-size: 32px;
-    z-index: 100;
-    font-weight: bold;
+    z-index: 2;
     color: white;
     text-align: center;
 }
@@ -187,6 +170,7 @@ button:hover {
     animation: fadeIn 0.5s ease;
 }
 
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -200,13 +184,13 @@ button:hover {
     </style>
 </head>
 <body>
+    <div class="plan-name" id="planNameDisplay"></div>
+    <br>
     <div class="container">
+    <br><br><br>
         <div class="column" id="todoColumn" ondrop="drop(event)" ondragover="allowDrop(event)">
             <h1>To Do</h1>
             <input type="text" id="taskInput" placeholder="Enter a new task">
-            <?php if ($errorMessage): ?>
-                        <p style="color: red;"><?= $errorMessage; ?></p>
-            <?php endif; ?>
             <button id="addTaskButton">Add Task</button>
             <div id="taskList"></div>
             
@@ -216,7 +200,7 @@ button:hover {
             <h1>In Progress</h1>
             <div id="inProgressList"></div>
            
-    </div>
+        </div>
 
         <div class="column" id="doneColumn" ondrop="drop(event)" ondragover="allowDrop(event)">
             <h1>Done</h1>
@@ -238,6 +222,14 @@ button:hover {
         const addTaskButton = document.getElementById("addTaskButton");
         const inProgressList = document.getElementById("inProgressList");
         const doneList = document.getElementById("doneList");
+        // Get plan_name from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const planName = urlParams.get('planName');  // This will give you the 'planName' from the URL query string
+        if (planName) {
+            planNameDisplay.textContent = planName; // Set plan name
+        } else {
+            planNameDisplay.textContent = "No Plan Selected"; // Fallback if no plan name is passed
+        }
 
         // Initialize task list when connected
         socket.on("initialize", () => {
@@ -273,18 +265,19 @@ button:hover {
 
         // Add a new task
         addTaskButton.addEventListener("click", () => {
-            const taskText = taskInput.value.trim();
-            if (taskText) {
-                const task = {
-                    id: Date.now().toString(),
-                    text: taskText,
-                    completed: false,
-                    plan_id: 1 // Adjust this based on your plan ID logic
-                };
-                socket.emit("add task", task);
-                taskInput.value = "";
-            }
-        });
+    const taskText = taskInput.value.trim();
+    if (taskText && planName) { // Ensure planName exists
+        const task = {
+            id: Date.now().toString(),
+            text: taskText,
+            completed: false,
+            plan_name: planName // Pass plan_name from URL
+        };
+        socket.emit("add task", task); // Emit task to the server with plan_name
+        taskInput.value = ""; // Clear input
+    }
+});
+
 
         // Function to add task to the DOM
         function addTaskToDOM(task) {

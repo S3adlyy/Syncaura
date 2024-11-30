@@ -1,5 +1,5 @@
 <?php
-include('../../Controller/PlanController.php');
+include('../../controller/plancontroller.php');
 $planController = new PlanController();
 $id = $_GET['id'];
 $plan = $planController->listPlans();
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif (preg_match('/[^a-zA-Z0-9 ]/', $nom)) {
         $errorMessage = 'Plan name should not contain special characters';
     } else {
-        $planController->modifyPlan($id, $nom);
+        $planController->modifyPlan($id, $nom); // Updates both plan and tasks
         header('Location: todolist.php');
         exit();
     }

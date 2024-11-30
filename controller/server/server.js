@@ -11,7 +11,6 @@ const io = new Server(httpServer, {
         methods: ["GET", "POST"],
     },
 });
-
 // Database connection
 const db = mysql.createConnection({
     host: "localhost",
@@ -35,22 +34,22 @@ io.on("connection", (socket) => {
     // Send the current tasks to the newly connected client
     socket.emit("initialize");
 
-    // Add new task to the database and broadcast it
-    socket.on("add task", (task) => {
-        
-        const sql = "INSERT INTO tachee (nom, date, etat, plan_id) VALUES (?, NOW(), ?, ?)";
-        const values = [task.text, "To Do", task.plan_id]; // Set etat to 'To Do' by default
-    
-        db.query(sql, values, (err, result) => {
-            if (err) {
-                console.error("Error inserting task:", err);
-                return;
-            }
-            console.log("Task inserted into DB:", result);
-            task.id = result.insertId; // Assign the ID from the database
-            io.emit("add task", task); // Broadcast task to all clients
-        });
-    });   
+   // Add new task to the database and broadcast it
+   socket.on("add task", (task) => {
+    // SQL query to insert task using plan_name
+    const sql = "INSERT INTO tachee (nom, date, etat, plan_name) VALUES (?, NOW(), ?, ?)";
+    const values = [task.text, "To Do", task.plan_name]; // Set etat to 'To Do' by default
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error("Error inserting task:", err);
+            return;
+        }
+        console.log("Task inserted into DB:", result);
+        task.id = result.insertId; // Assign the ID from the database
+        io.emit("add task", task); // Broadcast task to all clients
+    });
+});
 
     socket.on("update task", (updatedTask) => {
         const sql = "UPDATE tachee SET etat = ?, nom = ? WHERE id = ?";

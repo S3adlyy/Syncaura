@@ -1,22 +1,21 @@
 <?php
-include('../../Controller/PlanController.php');
+include('../../controller/plancontroller.php');
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+if (isset($_GET['nom'])) { 
+    $planName = $_GET['nom']; // Get the plan name from the query parameter
 
     // Check if the user confirmed deletion
-    if (isset($_GET['confirm']) && $_GET['confirm'] == 'yes') {
+    if (isset($_GET['confirm']) && $_GET['confirm'] === 'yes') {
         $planController = new PlanController();
-        $planController->deletePlan($id);
-        header('Location: plandash.php');
+        $planController->deletePlan($planName); // Call deletePlan with the plan name
+        header('Location: plandash.php'); // Redirect to the plans page
         exit();
     }
 
     // Display a confirmation message before deletion
     echo "<script>
-        var result = confirm('Are you sure you want to delete this plan?');
-        if (result) {
-            window.location.href = 'deleteplan.php?id=$id&confirm=yes';
+        if (confirm('Are you sure you want to delete the plan \"$planName\"?')) {
+            window.location.href = 'deleteplan.php?nom=" . urlencode($planName) . "&confirm=yes';
         } else {
             window.location.href = 'plandash.php';
         }

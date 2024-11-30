@@ -1,13 +1,12 @@
 <?php
 include('../../controller/plancontroller.php');
 
-// Create an instance of the PlanController
 $planController = new PlanController();
 
 $plans = $planController->listPlans();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_plan'])) {
-    // Validate plan name (server-side validation)
+
     $nom = $_POST['nom'];
     $errors = [];
 
@@ -27,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_plan'])) {
     if (empty($errors)) {
         $date_plan = date('Y-m-d'); 
         $planController->addPlan($nom, $date_plan);
-        header('Location: todotasks.php?plan_id=$planId&planName=$nom'); 
+        header("Location: todotasks.php?planName=$nom"); 
         exit();
     }
 }
@@ -76,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_plan'])) {
                             <td><?php echo htmlspecialchars($plan['nom']); ?></td>
                             <td>
                                 <a href="modifyplan.php?id=<?php echo $plan['id']; ?>" class="btn modify-btn">Modify</a>
-                                <a href="deleteplan.php?id=<?php echo $plan['id']; ?>" class="btn delete-btn" onclick="return confirm('Are you sure you want to delete this plan?');">Delete</a>
+                                <a href="deleteplan.php?nom=<?php echo urlencode($plan['nom']); ?>"class="btn delete-btn" onclick="return confirm('Are you sure you want to delete this plan?');">Delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

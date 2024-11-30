@@ -73,7 +73,7 @@ html, body {
   <nav class="site-nav mb-5 sticky-nav">
     
         <div class="site-navigation text-center">
-            <a href="main/main.php" class="logo menu-absolute m-0" align="left">SyncAura<span class="text-primary"></span></a>
+            <a href="main/main.html" class="logo menu-absolute m-0" align="left">SyncAura<span class="text-primary"></span></a>
             <ul class="site-menu d-flex justify-content-center align-items-center">
                 <li><a href="../front/createmeet/loadng2.php">Cree un meet</a></li>
                 <li><a href="./Ai/loding3.php">Ai ChatBot</a></li>
