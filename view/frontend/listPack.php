@@ -77,7 +77,7 @@ $packs = $PackController->listPacks(); // Fetch all packs data
                 <li><a href="loading_screen/loadng.php">Acheter un Pack</a></li>
                 <li><a href="todo.php">To Do List</a></li>
                 <li><a href="contact.php">Support Client</a></li>
-                <li><a href="../loading_screen/loadng.html">Chat</a></li>
+                <li><a href="send.php">Chat</a></li>
                 <li><a href="./white/white.php">Whiteboard</a></li>
             </ul>
         </div>
