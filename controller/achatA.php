@@ -4,7 +4,7 @@ include 'C:\xampp1\htdocs\projetrayen\model\achat.php';
 
 class AchatManager
 {
-    function adAchat($achat)
+    function addAchat($achat)
     {
         $sql = "INSERT INTO achat (ida, nom_user, email, prixFinale, idPack) VALUES (:ida, :nom_user, :email, :prixFinale, :idPack)";
         $db = config::getConnexion();
