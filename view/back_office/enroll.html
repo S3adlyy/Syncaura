@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Admin Dashboard | Korsat X Parmaga</title>
+    <!-- Fontawesom Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+      <div class="navigation">
+        <ul>
+          <li>
+            <a href="#">
+              <span class="icon">
+                <i class="fa-sharp fa-solid fa-shield-halved"></i>
+              </span>
+              <span class="title brand">SkySchool</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="dashboard.html">
+              <span class="icon">
+                <i class="fa-solid fa-gauge"></i>
+              </span>
+              <span class="title">Dashboard</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="enroll.html">
+              <span class="icon">
+                <i class="fas fa-duotone fa-book"></i>
+              </span>
+              <span class="title">Course Enrollemnet</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="classes.html">
+              <span class="icon">
+                <i class="fas fa-duotone fa-person-chalkboard"></i>
+              </span>
+              <span class="title">My Classes</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="attendence.html">
+              <span class="icon">
+                <i class="fa-solid fa-clipboard-user"></i>
+              </span>
+              <span class="title">Attendence</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="assignment.html">
+              <span class="icon">
+                <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+              </span>
+              <span class="title">Assignment</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="Forum.php">
+              <span class="icon">
+                <i class="fa-solid fa-square-poll-vertical"></i>
+              </span>
+              <span class="title">Forum</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="fee.html">
+              <span class="icon">
+                <i class="fa-solid fa-sack-dollar"></i>
+              </span>
+              <span class="title">Fee</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="login.html">
+              <span class="icon">
+                <i class="fa-solid fa-right-from-bracket"></i>
+              </span>
+              <span class="title">Sign Out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ========================= Main ==================== -->
+      <div class="main" id="enroll">
+        <div class="topbar">
+          <div class="toggle">
+            <i class="fa-solid fa-list"></i>
+          </div>
+
+          <div class="search">
+            <label>
+              <input type="text" placeholder="Search here" />
+              <ion-icon name="search-outline"></ion-icon>
+            </label>
+          </div>
+
+          <div class="user">
+            <img src="assets/imgs/customer01.jpg" alt="" />
+          </div>
+        </div>
+
+        <!-- Course Enrollments -->
+        <div class="courseenroll">
+          <div class="enrollHeader">
+            <h2>Enroll Your Course</h2>
+          </div>
+          <section class="enroll">
+            <form action="#" class="form">
+              <div class="input-box">
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter full name" />
+              </div>
+              <div class="input-box">
+                <label>Email Address</label>
+                <input type="text" placeholder="Enter email address" />
+              </div>
+              <div class="column">
+                <div class="input-box">
+                  <label>Phone Number</label>
+                  <input type="number" placeholder="Enter phone number" />
+                </div>
+                <div class="input-box">
+                  <label>Date</label>
+                  <input type="date" placeholder="Enter birth date" />
+                </div>
+              </div>
+              <div class="input-box subject">
+                <label>Subject</label>
+                <div class="column">
+                  <div class="select-box">
+                    <select>
+                      <option hidden>Subject</option>
+                      <option>Combined Maths</option>
+                      <option>Chemistry</option>
+                      <option>Physics</option>
+                      <option>English</option>
+                    </select>
+                  </div>
+                  <div class="select-box">
+                    <select>
+                      <option hidden>Grade</option>
+                      <option>Grade 12</option>
+                      <option>Grade 13</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <button>Enroll</button>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

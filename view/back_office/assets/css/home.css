@@ -1,0 +1,189 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+:root {
+	--grey: #331db1;
+	--dark-grey: #B7B7B7;
+
+	--green: #23AE00;
+	--light-green: #BDFFAC;
+
+	--red: #FE2727;
+	--light-red: #FFD2D2;
+
+	--blue: #48428a;
+	--light-blue: #B6C6FF;
+	--dark-blue: #2a2185;
+	--darker-blue: #2a2185;
+
+	--bs: #AECFFF;
+	--text: #9B9B9B;
+
+	--black1: #222;
+	--black2: #999;
+}
+
+body {
+	background-size: cover;
+  	background-repeat: no-repeat;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	padding: 0 16px;
+}
+
+/* Login & Register Page Style */
+.authentication .reg,
+.authentication .forget-pw,
+.authentication .log  {
+	color: var(--blue);
+	transition: all .3s ease;
+	text-decoration: none;
+}
+.authentication .reg:hover,
+.authentication .forget-pw:hover,
+.authentication .log:hover {
+	color: var(--dark-blue);
+}
+.authentication {
+	max-width: 500px;
+	width: 100%;
+	position: relative;
+}
+form {
+	width: 100%;
+	padding: 28px;
+	border-radius: 12px;
+	background: #fff;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%) scale(.8);
+	opacity: 0;
+	z-index: 100;
+	transition: all .3s ease;
+	transition-delay: 0s;
+}
+form.active {
+	transform: translateY(-50%);
+	opacity: 1;
+	z-index: 200;
+	transition-delay: .3s;
+}
+.title {
+	font-size: 24px;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+.form-group {
+	margin-bottom: 14px;
+}
+.form-group label {
+	display: inline-block;
+	margin-bottom: 4px;
+}
+.input-group {
+	width: 100%;
+	position: relative;
+}
+.input-group input {
+	padding: 12px 40px 12px 20px;
+	outline: none;
+	border-radius: 6px;
+	border: 1px solid var(--dark-grey);
+	width: 100%;
+	transition: all .3s ease;
+}
+form .checkbox-text{
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0px;
+}
+.checkbox-text .checkbox-content{
+    display: flex;
+    align-items: center;
+}
+.checkbox-content input{
+    margin-right: 10px;
+	accent-color: var(--dark-blue);
+}
+
+/* Login & Register Validation */
+.input-group input:focus,
+.input-group input:not(:placeholder-shown) {
+	border-color: var(--blue);
+	background: var(--grey);
+}
+.input-group input:focus + i,
+.input-group input:not(:placeholder-shown) + i {
+	color: var(--blue);
+}
+.input-group input:focus:valid {
+	box-shadow: 0 0 0 4px var(--light-green);
+}
+.input-group input:valid:not(:placeholder-shown) {
+	border-color: var(--green);
+}
+.input-group input:valid:not(:placeholder-shown) + i {
+	color: var(--green);
+}
+.input-group input:invalid:not(:placeholder-shown) {
+	border-color: var(--red);
+}
+.input-group input:invalid:not(:placeholder-shown) + i {
+	color: var(--red);
+}
+.input-group input:focus:invalid {
+	box-shadow: 0 0 0 4px var(--light-red);
+}
+.input-group input:focus,
+.input-group input:focus:placeholder-shown {
+	box-shadow: 0 0 0 4px var(--bs);
+}
+/* Login & Register Validation */
+
+.input-group i {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 20px;
+	color: var(--text);
+	pointer-events: none;
+	transition: all .3s ease;
+}
+.form-group .help-text {
+	font-size: 12px;
+	color: var(--text);
+}
+.authentication .btn-submit {
+	padding: 12px 0;
+	display: block;
+	width: 100%;
+	color: #fff;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: all .3s ease;
+	border: none;
+	font-weight: 500;
+	background: var(--blue);
+	margin-bottom: 20px;
+	text-align: center;
+}
+.authentication .btn-submit:hover {
+	background: var(--dark-blue);
+}
+
+.authentication .btn-submit a {
+	color: #fff;
+	text-decoration: none;
+}
+
+/* Home Page Style */

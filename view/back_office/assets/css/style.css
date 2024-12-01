@@ -1,0 +1,1087 @@
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+/* Globals */
+* {
+  font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #3d30cb;
+  --white: #fff;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+}
+
+/* Navigation */
+.navigation {
+  position: fixed;
+  width: 280px;
+  height: 100%;
+  background: var(--blue);
+  border-left: 15px solid var(--blue);
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+.navigation.active {
+  width: 80px;
+}
+
+.navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--white);
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.navigation ul li:hover a,
+.navigation ul li.hovered a{
+  color: var(--blue);
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+
+.navigation ul li a .icon i {
+  font-size: 1.35rem;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+  padding-top: 3px;
+}
+
+.navigation ul li a .brand {
+  font-weight: bold;
+  font-size: large;
+}
+
+/* --------- curve outside ---------- */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+
+/* Main */
+.main {
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  min-height: 100vh;
+  background: var(--white);
+  transition: 0.5s;
+}
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+
+.topbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  justify-content: space-between;
+}
+
+.toggle {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.search {
+  position: relative;
+  width: 400px;
+  margin: 0 10px;
+}
+
+.search label {
+  position: relative;
+  width: 100%;
+}
+
+.search label input {
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  padding: 5px 20px;
+  padding-left: 35px;
+  font-size: 18px;
+  outline: none;
+  border: 1px solid var(--black2);
+}
+
+.search label ion-icon {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 1.2rem;
+}
+
+.user {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.user img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dashboard Page */
+/* Cards */
+.cardBox {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+}
+
+.cardBox .card {
+  position: relative;
+  background: var(--white);
+  padding: 50px 20px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 7px 13px rgba(0, 0, 0, 0.3);
+}
+
+.cardBox .card .numbers {
+  position: relative;
+  font-weight: 500;
+  font-size: 2.5rem;
+  color: var(--blue);
+}
+
+.cardBox .card .income {
+  min-width: 70px;
+  word-break:break-word;
+}
+
+.cardBox .card .cardName {
+  color: var(--black2);
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+.cardBox .card .iconBx i {
+  font-size: 3rem;
+  color: var(--black2);
+  padding-left: 10px;
+}
+
+.cardBox .card:hover {
+  background: var(--blue);
+}
+.cardBox .card:hover .numbers,
+.cardBox .card:hover .cardName,
+.cardBox .card:hover .iconBx i {
+  color: var(--white);
+}
+
+/* Time Table */
+.details {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 30px;
+}
+
+.details .timetable {
+  width: 100%;
+  overflow-y: hidden;
+  position: relative;
+  /* display: grid; */
+  min-height: 500px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.35);
+  border-radius: 20px;
+}
+
+.details .timetableheader h2 {
+  font-weight: 600;
+  color: var(--blue);
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.details table {
+  width: 900px;
+  overflow: scroll;
+  border-collapse: collapse;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.timetable table th,
+.timetable table td {
+  text-align: center;
+}
+
+.timetable thead {
+  height: 3em;
+}
+
+.timetable tbody td {
+  height: 4em;
+}
+
+.timetable thead th,
+.timetable tbody td {
+  padding: 0px 5px;
+}
+
+.timetable table th,
+.timetable table td {
+  border: 1px solid #7c7c7c;
+}
+
+.timetable .maths {
+  background: #d0ccff;
+}
+
+.timetable .eng {
+  background: #f2bdfb;
+}
+
+.timetable .phy {
+  background: #fcc5c5;
+}
+
+.timetable .chem {
+  background: #c3f3d5;
+}
+
+.timetable .lunch {
+  background: #fff1c7;
+}
+
+/* Progress Bar */
+.progressbar {
+  position: relative;
+  display: grid;
+  min-height: 500px;
+  padding: 20px;
+  background: var(--white);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.35);
+  border-radius: 20px;
+  justify-content: center;
+}
+
+.progressbar .progressheader h2 {
+  font-weight: 600;
+  color: var(--blue);
+  text-align: center;
+}
+
+.progressbar .circular-progress {
+  position: relative;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  background: conic-gradient(var(--blue) 3.6deg, #ededed 0deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progressbar .circular-progress::before {
+  content: "";
+  position: absolute;
+  height: 210px;
+  width: 210px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.progressbar .progress-value {
+  position: relative;
+  font-size: 40px;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.progressbar .progresscont {
+  font-size: 16px;
+  font-weight: 500;
+  color: #6d6d6d;
+}
+
+.progressbar .progresscont p {
+  text-align: center;
+}
+
+.progressbar .progresscont .maths {
+  color: #e9b10a;
+}
+
+.progressbar .progresscont .phy {
+  color: #f00;
+}
+
+.progressbar .progresscont .chem {
+  color: #1f7408;
+}
+
+.progressbar .progresscont .eng {
+  color: #e40bcf;
+}
+
+/* Fee Page */
+.fee {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+}
+
+.fee .coursefee {
+  position: relative;
+  display: grid;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.fee .cardHeader h2 {
+  font-weight: 600;
+  color: var(--blue);
+  text-align: center;
+}
+
+.fee table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.fee table th,
+.fee table td {
+  text-align: center;
+}
+
+.fee table thead td {
+  font-weight: 600;
+}
+
+.fee .coursefee table tr {
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.fee .coursefee table tr:last-child {
+  border-bottom: none;
+}
+
+.fee .coursefee table tbody tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.fee .coursefee table tr td {
+  padding: 10px;
+}
+
+.fee .status.fully {
+  padding: 2px 4px;
+  background: #1795ce;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.fee .status.partially {
+  padding: 2px 4px;
+  background: #e9b10a;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.fee .status.not {
+  padding: 2px 4px;
+  background: #f00;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* My Classes Page */
+.myclasses {
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.myclasses .cards_wrap{
+	padding: 20px;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.myclasses .recent .cards_wrap {
+  justify-content: center;
+}
+
+.myclasses .all .cards_wrap {
+  justify-content: space-between;
+}
+
+.myclasses .all .select-box select {
+  height: 100%;
+  width: 15%;
+  outline: none;
+  border: none;
+  color: #707070;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.myclasses .classHeader h2,
+.myclasses .recentclassHeader h3,
+.myclasses .allclassHeader h3 {
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.myclasses .recentclassHeader h3 {
+  margin-top: 15px;
+}
+
+.myclasses .classHeader h2 {
+  text-align: center;
+}
+
+.myclasses .cards_wrap .card_item{
+	padding: 15px 25px;
+	width: 25%;
+}
+
+.myclasses .cards_wrap .card_inner{
+	background: var(--white);
+	border-radius: 5px;
+	padding: 30px 20px;
+  border-radius: 20px;
+  box-shadow: 0 7px 13px rgba(0, 0, 0, 0.3);
+	min-width: 225px;
+	max-height: 370px;
+	width: 100%;
+}
+
+.myclasses .cards_wrap .card_item img{
+	width: 70px;
+	height: 70px;
+	margin-bottom: 5px;
+  border-radius: 50%;
+  box-shadow: 0 6px 13px rgba(0, 0, 0, 0.3);
+}
+
+.myclasses .cards_wrap .card_item .subject{
+	color: var(--blue);;
+	font-weight: 900;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	font-size: 20px;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.myclasses .cards_wrap .card_item .date{
+	color: #939494;
+	font-size: 12px;
+	font-weight: 500;
+	margin: 10px 0 10px;
+}
+
+.myclasses .cards_wrap .card_item .det{
+	font-size: 14px;
+	line-height: 24px;
+	color: #2d2f32;
+  margin-bottom: 10px;
+}
+
+.myclasses .cards_wrap .card_item .teacher_name {
+  color: #3c3c3c;
+	font-size: 12px;
+	font-weight: 600;
+	margin: 5px 0 10px;
+}
+
+/* Course Enrollement Page */
+.courseenroll {
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.courseenroll .enrollHeader h2 {
+  font-weight: 600;
+  color: var(--blue);
+  text-align: center;
+}
+
+.enroll .form {
+  margin-top: 30px;
+}
+
+.enroll .form .input-box {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.enroll .input-box label {
+  color: #333;
+}
+
+.enroll .form :where(.input-box input, .select-box) {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  outline: none;
+  font-size: 1rem;
+  color: #707070;
+  margin-top: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 15px;
+}
+
+.enroll .input-box input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.enroll .form .column {
+  display: flex;
+  column-gap: 15px;
+}
+
+.enroll .select-box select {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  color: #707070;
+  font-size: 1rem;
+}
+
+.enroll .form button {
+  height: 55px;
+  width: 100%;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--blue);
+}
+
+.enroll .form button:hover {
+  background: #48418e;
+}
+
+/* Assignment Page */
+.assignment {
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.assignment .assignmentHeader h2 {
+  font-weight: 600;
+  color: var(--blue);
+  text-align: center;
+}
+
+.assignment .cards_wrap{
+	padding: 20px;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.assignment .classHeader h2 {
+  font-weight: 600;
+  color: var(--blue);
+  text-align: center;
+}
+
+.assignment .cards_wrap .card_item{
+	padding: 15px 25px;
+	width: 25%;
+}
+
+.assignment .cards_wrap .card_inner{
+	background: var(--white);
+	border-radius: 5px;
+	padding: 30px 20px;
+  border-radius: 20px;
+  box-shadow: 0 7px 13px rgba(0, 0, 0, 0.3);
+	min-width: 225px;
+	max-height: 370px;
+	width: 100%;
+}
+
+.assignment .cards_wrap .card_item img{
+	width: 70px;
+	height: 70px;
+	margin-bottom: 5px;
+  border-radius: 50%;
+  box-shadow: 0 6px 13px rgba(0, 0, 0, 0.3);
+}
+
+.assignment .cards_wrap .card_item .subject{
+	color: var(--blue);;
+	font-weight: 900;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	font-size: 20px;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.assignment .cards_wrap .card_item .Date{
+	color: #939494;
+	font-size: 12px;
+	font-weight: 500;
+	margin: 5px 0 10px;
+}
+
+.assignment .noofassignmnets {
+  padding-bottom: 20px;
+}
+
+.assignment .status.complete {
+  padding: 4px;
+  background: #1795ce;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.assignment .status.notcomplete {
+  padding: 4px;
+  background: #f00;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Attendence Page */
+.courseattendence {
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.courseattendence .attendencecont {
+  margin-top: 20px;
+}
+
+.courseattendence .attendenceHeader h2 {
+  font-weight: 600;
+  color: var(--blue);
+  text-align: center;
+}
+
+.courseattendence .attendence-box {
+  margin-top: 20px;
+}
+
+.courseattendence .attendence-box h3 {
+  color: #333;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.courseattendence :where(.attendence-option, .attendence) {
+  display: flex;
+  align-items: center;
+  column-gap: 50px;
+  flex-wrap: wrap;
+}
+
+.courseattendence .attendence {
+  column-gap: 5px;
+}
+
+.courseattendence .attendence input {
+  accent-color: rgb(130, 106, 251);
+}
+
+.courseattendence.form :where(.attendence input, .attendence label) {
+  cursor: pointer;
+}
+
+.courseattendence.attendence label {
+  color: #707070;
+}
+
+.courseattendence button {
+  height: 35px;
+  padding: 0px 20px;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--blue);
+}
+
+.courseattendence button:hover {
+  background: #48418e;
+}
+
+.courseattendence {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+} 
+
+.courseattendence .courseattendencetable {
+  position: relative;
+  display: grid;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.courseattendence .courseattendencetable .attendenceHeader h2 {
+  font-weight: 600;
+  color: var(--blue);
+  text-align: center;
+}
+
+.courseattendence table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.courseattendence table th,
+.courseattendence table td {
+  text-align: center;
+}
+
+.courseattendence table thead td {
+  font-weight: 600;
+}
+
+.courseattendence table tr {
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.courseattendence table tr:last-child {
+  border-bottom: none;
+}
+
+.courseattendence table tbody tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.courseattendence table tr td {
+  padding: 10px;
+}
+
+.courseattendence .status.attend {
+  padding: 2px 4px;
+  background: #1795ce;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.courseattendence .status.notattend {
+  padding: 2px 4px;
+  background: #f00;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Results Page */
+.results {
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.results .courseresults {
+  position: relative;
+  display: grid;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.results .courseresults h2 {
+  font-weight: 600;
+  color: var(--blue);
+  text-align: center;
+}
+
+.results table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.results table th,
+.results table td {
+  text-align: center;
+}
+
+.results table thead td {
+  font-weight: 600;
+}
+
+.results .courseresults table tr {
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.results .courseresults table tr:last-child {
+  border-bottom: none;
+}
+
+.results .courseresults table tbody tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.results .courseresults table tr td {
+  padding: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+	.myclasses .cards_wrap .card_item{
+		width: 33%;
+	}
+  .assignment .cards_wrap .card_item{
+		width: 33%;
+	}
+}
+
+@media (max-width: 991px) {
+  .navigation {
+    left: -300px;
+  }
+  .navigation.active {
+    width: 300px;
+    left: 0;
+  }
+  .main {
+    width: 100%;
+    left: 0;
+  }
+  .main.active {
+    left: 300px;
+  }
+  .cardBox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .details,
+  .fee {
+    grid-template-columns: 1fr;
+  }
+  .fee .coursefee,
+  .courseattendence .courseattendencetable,
+  .results .courseresults {
+    overflow-x: auto;
+  }
+  .myclasses .cards_wrap .card_item{
+		width: 50%;
+	}
+  .assignment .cards_wrap .card_item{
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 568px) {
+	.myclasses .cards_wrap .card_item{
+		width: 100%;
+	}
+  .assignment .cards_wrap .card_item{
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 500px) {
+  .enroll .form .column {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardBox {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .fee .cardHeader h2,
+  .courseattendence .attendenceHeader h2,
+  .results .courseresults h2 {
+    font-size: 20px;
+  }
+  .user {
+    min-width: 40px;
+  }
+  .navigation {
+    width: 100%;
+    left: -100%;
+    z-index: 1000;
+  }
+  .navigation.active {
+    width: 100%;
+    left: 0;
+  }
+  .toggle {
+    z-index: 10001;
+  }
+  .main.active .toggle {
+    color: #fff;
+    position: fixed;
+    right: 0;
+    left: initial;
+  }
+}

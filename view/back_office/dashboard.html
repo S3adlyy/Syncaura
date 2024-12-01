@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Admin Dashboard | Korsat X Parmaga</title>
+    <!-- Fontawesom Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+      <div class="navigation">
+        <ul>
+          <li>
+            <a href="#">
+              <span class="icon">
+                <i class="fa-sharp fa-solid fa-shield-halved"></i>
+              </span>
+              <span class="title brand">SkySchool</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="dashboard.html">
+              <span class="icon">
+                <i class="fa-solid fa-gauge"></i>
+              </span>
+              <span class="title">Dashboard</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="enroll.html">
+              <span class="icon">
+                <i class="fas fa-duotone fa-book"></i>
+              </span>
+              <span class="title">Course Enrollemnet</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="classes.html">
+              <span class="icon">
+                <i class="fas fa-duotone fa-person-chalkboard"></i>
+              </span>
+              <span class="title">My Classes</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="attendence.html">
+              <span class="icon">
+                <i class="fa-solid fa-clipboard-user"></i>
+              </span>
+              <span class="title">Attendence</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="assignment.html">
+              <span class="icon">
+                <i class="fa-sharp fa-solid fa-pen-to-square"></i>
+              </span>
+              <span class="title">Assignment</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="Forum.php">
+              <span class="icon">
+                <i class="fa-solid fa-square-poll-vertical"></i>
+              </span>
+              <span class="title">Forum</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="fee.html">
+              <span class="icon">
+                <i class="fa-solid fa-sack-dollar"></i>
+              </span>
+              <span class="title">Fee</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="login.html">
+              <span class="icon">
+                <i class="fa-solid fa-right-from-bracket"></i>
+              </span>
+              <span class="title">Sign Out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ========================= Main ==================== -->
+      <div class="main" id="dashboard">
+        <div class="topbar">
+          <div class="toggle">
+            <i class="fa-solid fa-list"></i>
+          </div>
+
+          <div class="search">
+            <label>
+              <input type="text" placeholder="Search here" />
+              <ion-icon name="search-outline"></ion-icon>
+            </label>
+          </div>
+
+          <div class="user">
+            <img src="assets/imgs/customer01.jpg" alt="" />
+          </div>
+        </div>
+
+        <!-- ======================= Cards ================== -->
+        <div class="cardBox">
+          <div class="card">
+            <div>
+              <div class="numbers">2,139</div>
+              <div class="cardName">Students</div>
+            </div>
+
+            <div class="iconBx">
+              <i class="fas fa-user-graduate"></i>
+            </div>
+          </div>
+
+          <div class="card">
+            <div>
+              <div class="numbers">60</div>
+              <div class="cardName">Teachers</div>
+            </div>
+
+            <div class="iconBx">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+          </div>
+
+          <div class="card">
+            <div>
+              <div class="numbers">6</div>
+              <div class="cardName">Schools</div>
+            </div>
+
+            <div class="iconBx">
+              <i class="fas fa-university"></i>
+            </div>
+          </div>
+
+          <div class="card">
+            <div>
+              <div class="numbers income">Rs.46,842</div>
+              <div class="cardName">Income</div>
+            </div>
+
+            <div class="iconBx">
+              <i class="fas fa-hand-holding-usd"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Time Table & Progress -->
+
+        <div class="details">
+          <div class="timetable">
+            <div class="timetableheader">
+              <h2>Average Results</h2>
+            </div>
+            <div class="tablecont">
+              <table cellspacing="0">
+                <thead>
+                  <tr>
+                    <th class="period"></th>
+                    <th>7.30-8.15</th>
+                    <th>8.15-9.00</th>
+                    <th>9.00-9.45</th>
+                    <th>9.45-10.30</th>
+                    <th>10.30-11.15</th>
+                    <th>11.15-12.00</th>
+                    <th>12.00-12.45</th>
+                    <th>12.45-1.30</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="week"><b>Mon</b></td>
+                    <td colspan="2" class="maths">Combined Maths</td>
+                    <td colspan="2" class="phy">Physics</td>
+                    <td class="chem">Chemistry</td>
+                    <td rowspan="5" class="lunch">Lunch Break</td>
+                    <td class="chem">Chemistry</td>
+                    <td class="eng">English</td>
+                  </tr>
+                  <tr>
+                    <td class="week"><b>Tue</b></td>
+                    <td class="eng">English</td>
+                    <td colspan="2" class="maths">Combined Maths</td>
+                    <td colspan="2" class="phy">Physics</td>
+                    <td colspan="2" class="chem">Chemistry</td>
+                  </tr>
+                  <tr>
+                    <td class="week"><b>Wed</b></td>
+                    <td colspan="2" class="phy">Physics</td>
+                    <td class="maths">Combined Maths</td>
+                    <td class="chem">Chemistry</td>
+                    <td></td>
+                    <td colspan="2" class="eng">English</td>
+                  </tr>
+                  <tr>
+                    <td class="week"><b>Thu</b></td>
+                    <td colspan="2" class="maths">Combined Maths</td>
+                    <td></td>
+                    <td colspan="2" class="chem">Chemistry</td>
+                    <td class="phy">Physics</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="week"><b>Fri</b></td>
+                    <td></td>
+                    <td class="phy">Physics</td>
+                    <td colspan="2" class="maths">Combined Maths</td>
+                    <td class="chem">Chemistry</td>
+                    <td colspan="2" class="eng">English</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="progressbar">
+            <div class="progressheader">
+              <h2>Average Results</h2>
+            </div>
+            <div class="circle">
+              <div class="circular-progress">
+                <span class="progress-value">0%</span>
+              </div>
+            </div>
+            <div class="progresscont">
+              <p>Combine Maths = <span class="maths">75%</span></p>
+              <p>Physic = <span class="phy">80%</span></p>
+              <p>Chemistry = <span class="chem">77%</span></p>
+              <p>English = <span class="eng">85%</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
