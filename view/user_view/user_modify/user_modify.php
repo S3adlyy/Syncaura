@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $update_stmt->execute();
 
         // Redirect to the dashboard
-        header("Location: ../user_dash/main.php");
+        header("Location: ../user_modify/user_modify.php");
         exit();
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();

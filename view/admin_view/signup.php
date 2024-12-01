@@ -156,14 +156,24 @@ if (!surname) {
                 isValid = false;
             }
 
-            // Validate password
-            if (!password) {
-                document.getElementById("passwordError").textContent = "Password is required.";
-                isValid = false;
-            } else if (password.length < 8) {
-                document.getElementById("passwordError").textContent = "Password must be at least 8 characters.";
-                isValid = false;
-            }
+          // Validate password
+if (!password) {
+    document.getElementById("passwordError").textContent = "Password is required.";
+    isValid = false;
+} else if (password.length < 8) {
+    document.getElementById("passwordError").textContent = "Password must be at least 8 characters.";
+    isValid = false;
+} else if (!/[a-zA-Z]/.test(password)) {
+    document.getElementById("passwordError").textContent = "Password must contain at least one letter.";
+    isValid = false;
+} else if (!/[0-9]/.test(password)) {
+    document.getElementById("passwordError").textContent = "Password must contain at least one number.";
+    isValid = false;
+} else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+    document.getElementById("passwordError").textContent = "Password must contain at least one symbol.";
+    isValid = false;
+}
+
 
             // Prevent form submission if validation fails
             if (!isValid) {

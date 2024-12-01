@@ -31,7 +31,7 @@
 
         .error-messages {
             background-color: white;
-            color: black;
+            color: red;
             margin-top: 10px;
             padding: 5px;
             font-size: 0.9rem;
@@ -51,7 +51,7 @@
         <form id="signin-form" action="../../controller/loginController.php" method="post" autocomplete="on" onsubmit="return validateForm(event)">
             <h1>Login Form</h1>
             <!-- Username Input -->
-            <input type="text" placeholder="Enter your username" name="name" id="name" autocomplete="username" required>
+            <input type="text" placeholder="Enter your username" name="name" id="name" autocomplete="username" >
             <div id="username-error" class="error-messages"></div>
 
             <!-- Password Input -->

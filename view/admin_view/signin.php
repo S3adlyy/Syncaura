@@ -63,7 +63,7 @@
             </div>
 
             <button type="submit">Login</button>
-            <p>Not a member? <a href="signup.php">Sign Up</a></p>
+           <!--  <p>Not a member? <a href="signup.php">Sign Up</a></p>-->
             <!-- PHP error messages (if any) will be displayed here -->
             <div id="error-messages" class="error-messages" style="display: block;">
                 <?php if (isset($_GET['error'])): ?>

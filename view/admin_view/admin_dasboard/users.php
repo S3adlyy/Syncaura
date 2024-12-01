@@ -16,7 +16,7 @@ try {
         $stmt = $connect->prepare("DELETE FROM client WHERE id = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        header("Location: dash.php");
+        header("Location: users.php");
         exit();
     }
 
@@ -26,7 +26,7 @@ try {
         $stmt = $connect->prepare("UPDATE client SET status = 0 WHERE id = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        header("Location: dash.php");
+        header("Location: users.php");
         exit();
     }
 
@@ -36,12 +36,12 @@ try {
         $stmt = $connect->prepare("UPDATE client SET status = 1 WHERE id = :id");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
-        header("Location: dash.php");
+        header("Location: users.php");
         exit();
     }
 
     // Fetch all clients
-    $stmt = $connect->query("SELECT id, name, email, password, status FROM client WHERE role != 1");
+    $stmt = $connect->query("SELECT id, username, email, password, status FROM client WHERE role != 1");
     $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo 'Database Error: ' . $e->getMessage();
@@ -107,8 +107,8 @@ if (!isset($_SESSION["user_id"])) {
     <caption>Client Management</caption>
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
+            
+            <th>userName</th>
             <th>Email</th>
             <th>Status</th>
             <th>Actions</th>
@@ -118,8 +118,8 @@ if (!isset($_SESSION["user_id"])) {
         <?php if (!empty($clients)): ?>
             <?php foreach ($clients as $client): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($client['id']); ?></td>
-                    <td><?php echo htmlspecialchars($client['name']); ?></td>
+                   
+                    <td><?php echo htmlspecialchars($client['username']); ?></td>
                     <td><?php echo htmlspecialchars($client['email']); ?></td>
                     <td><?php echo $client['status'] == 1 ? 'Unlocked' : 'Locked'; ?></td>
                     <td>
