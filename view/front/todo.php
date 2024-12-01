@@ -198,6 +198,7 @@ button:hover {
         <div class="column" id="todoColumn" ondrop="drop(event)" ondragover="allowDrop(event)">
             <h1>To Do</h1>
             <input type="text" id="taskInput" placeholder="Enter a new task">
+            <div id="error-message"></div>
             <button id="addTaskButton">Add Task</button>
             <div id="taskList"></div>
             <?php foreach ($tasks as $task) {
@@ -270,8 +271,12 @@ button:hover {
 
         // Listen for new tasks from the server
         socket.on("add task", (task) => {
+            document.getElementById("error-message").textContent = "";
             addTaskToDOM(task);
         });
+        document.getElementById("taskInput").addEventListener("input", () => {
+        document.getElementById("error-message").textContent = ""; // Clear error message
+         });
 
         // Listen for task deletions
         socket.on("delete task", (taskId) => {
@@ -291,6 +296,14 @@ button:hover {
                     taskElement.classList.remove("completed");
                     inProgressList.appendChild(taskElement);
                 }
+            }
+        });
+        socket.on("task error", (error) => {
+        // Display the error message to the user
+        const errorContainer = document.getElementById("error-message");
+        if (errorContainer) {
+            errorContainer.textContent = error.message;
+            errorContainer.style.color = "red";
             }
         });
 

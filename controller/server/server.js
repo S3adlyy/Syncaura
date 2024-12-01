@@ -36,7 +36,17 @@ io.on("connection", (socket) => {
 
    // Add new task to the database and broadcast it
    socket.on("add task", (task) => {
-    // SQL query to insert task using plan_name
+    const validNamePattern = /^[a-zA-Z0-9 ]+$/; 
+
+    if (!validNamePattern.test(task.text)) {
+        // If validation fails, send an error message back to the client
+        socket.emit("task error", {
+            message: "Task name should not contain special characters.",
+        });
+        return; // Stop further execution if validation fails
+    }
+
+    // If validation passes, insert the task into the database
     const sql = "INSERT INTO tachee (nom, date, etat, plan_name) VALUES (?, NOW(), ?, ?)";
     const values = [task.text, "To Do", task.plan_name]; // Set etat to 'To Do' by default
 
@@ -77,7 +87,6 @@ io.on("connection", (socket) => {
             io.emit("delete task", taskId); // Broadcast task deletion
         });
     });
-
     // Handle user connection and disconnection
     socket.on("disconnect", () => {
         console.log("A user disconnected:", socket.id);
