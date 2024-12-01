@@ -123,11 +123,11 @@ if (!isset($_SESSION["user_id"])) {
                     <td><?php echo htmlspecialchars($client['email']); ?></td>
                     <td><?php echo $client['status'] == 1 ? 'Unlocked' : 'Locked'; ?></td>
                     <td>
-                        <a href="dash.php?action=delete&id=<?php echo $client['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">Delete</a>
+                        <a href="users.php?action=delete&id=<?php echo $client['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">Delete</a>
                         <?php if ($client['status'] == 1): ?>
-                            <a href="dash.php?action=lock&id=<?php echo $client['id']; ?>" class="btn btn-secondary btn-sm">Lock</a>
+                            <a href="users.php?action=lock&id=<?php echo $client['id']; ?>" class="btn btn-secondary btn-sm">Lock</a>
                         <?php else: ?>
-                            <a href="dash.php?action=unlock&id=<?php echo $client['id']; ?>" class="btn btn-success btn-sm">Unlock</a>
+                            <a href="users.php?action=unlock&id=<?php echo $client['id']; ?>" class="btn btn-success btn-sm">Unlock</a>
                         <?php endif; ?>
                     </td>
                 </tr>

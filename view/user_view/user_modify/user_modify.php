@@ -37,14 +37,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Update username and password
         $hashed_password = password_hash($new_password, PASSWORD_BCRYPT);
-        $update_stmt = $pdo->prepare("UPDATE client SET name = :name, password = :password WHERE id = :id");
+        $update_stmt = $pdo->prepare("UPDATE client SET username = :name, password = :password WHERE id = :id");
         $update_stmt->bindParam(':name', $new_username, PDO::PARAM_STR);
         $update_stmt->bindParam(':password', $hashed_password, PDO::PARAM_STR);
         $update_stmt->bindParam(':id', $user_id, PDO::PARAM_INT);
         $update_stmt->execute();
 
         // Redirect to the dashboard
-        header("Location: ../user_modify/user_modify.php");
+        header("Location: ../user_modify/main.php");
         exit();
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
