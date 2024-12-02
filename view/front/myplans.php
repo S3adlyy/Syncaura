@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_plan'])) {
                     <?php foreach ($plans as $plan): ?>
                         <tr>
                             <td>
-                                <a href="todotasks.php?planName=<?php echo urlencode($plan['nom']); ?>" class="plan-link">
+                                <a href="todotasks.php?planName=<?php echo urlencode($plan['nom']); ?>" class="plan-link" style="text-decoration: none; color: #000733; font-weight: bold;">
                                     <?php echo htmlspecialchars($plan['nom']); ?>
                                 </a></td>
                             <td>

@@ -4,6 +4,7 @@ $planController = new PlanController();
 $plans = $planController->listPlans();
 $planName = $_GET['planName'];
 $tasks = $planController->listTaskByPlanName($planName);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +19,6 @@ $tasks = $planController->listTaskByPlanName($planName);
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -177,6 +177,26 @@ button:hover {
     animation: fadeIn 0.5s ease;
 }
 
+/* Clearfix for ensuring content after the container doesn't interfere */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.new-section {
+    left: 10px;   /* Horizontal position (X) */
+    top: 50px;   /* Horizontal position (X) */
+    margin-top: 20px; /* Add space between the columns and the new section */
+    padding: 20px;
+    z-index: 2;
+    background-color: rgba(240, 240, 245, 0.9); /* Similar background for consistency */
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    
+}
+
 
 @keyframes fadeIn {
     from {
@@ -194,7 +214,7 @@ button:hover {
     <div class="plan-name" id="planNameDisplay"></div>
     <br>
     <div class="container">
-    <br><br><br>
+        <br><br><br>
         <div class="column" id="todoColumn" ondrop="drop(event)" ondragover="allowDrop(event)">
             <h1>To Do</h1>
             <input type="text" id="taskInput" placeholder="Enter a new task">
@@ -202,13 +222,13 @@ button:hover {
             <button id="addTaskButton">Add Task</button>
             <div id="taskList"></div>
             <?php foreach ($tasks as $task) {
-        if ($task['etat'] === 'To Do') {
-            echo "<div class='task' id='{$task['id']}' draggable='true'>
-                        <span class='task-text'>{$task['nom']}</span>
-                        <button onclick='deleteTask(\"{$task['id']}\")'>Delete</button>                 
-                </div>";
-        }
-            } ?>
+            if ($task['etat'] === 'To Do') {
+                echo "<div class='task' id='{$task['id']}' draggable='true'>
+                            <span class='task-text'>{$task['nom']}</span>
+                            <button onclick='deleteTask(\"{$task['id']}\")'>Delete</button>                 
+                    </div>";
+            }
+                } ?>
             
         </div>
 
@@ -216,13 +236,13 @@ button:hover {
             <h1>In Progress</h1>
             <div id="inProgressList"></div>
             <?php foreach ($tasks as $task) {
-        if ($task['etat'] === 'In Progress') {
+            if ($task['etat'] === 'In Progress') {
             echo "<div class='task' id='{$task['id']}' draggable='true'>
                         <span class='task-text'>{$task['nom']}</span>
                         <button onclick='deleteTask(\"{$task['id']}\")'>Delete</button>                 
                 </div>";
-        }
-    } ?>
+                    }
+            } ?>
 
         </div>
 
@@ -230,16 +250,33 @@ button:hover {
             <h1>Done</h1>
             <div id="doneList"></div>
             <?php foreach ($tasks as $task) {
-        if ($task['etat'] === 'Done') {
+            if ($task['etat'] === 'Done') {
             echo "<div class='task' id='{$task['id']}' draggable='true'>
                         <span class='task-text'>{$task['nom']}</span>
                         <button onclick='deleteTask(\"{$task['id']}\")'>Delete</button>                 
                 </div>";
-        }
-        } ?>
-
+                }
+                } ?>
         </div>
     </div>
+    <div class="clearfix"></div>
+
+<!-- New Section Below the Container -->
+<div class="new-section">
+    <h2>Mood Helper</h2>
+    <label for="mood">Select Your Mood:</label>
+        <select id="mood" name="mood">
+            <option value="" disabled selected>Select your mood...</option>
+            <option value="neutral"> Neutral😌</option>
+            <option value="stressed"> Stressed😟</option>
+            <option value="motivated"> Motivated😁</option>
+        </select>
+        <div id="suggestions" class="suggestions-box">
+            <h3>Suggestions</h3>
+            <p id="suggestion-text">Select a mood to get started!😊</p>
+            <a href="tapgame.php?planName=<?php echo urlencode($_GET['planName']); ?>"style="text-decoration: none; color: #4CAF50; font-weight: bold;">Play "Catch the Emoji" Game 🎮</a>
+        </div>
+</div> 
 
     <div class="spline-viewer">
         <spline-viewer url="https://prod.spline.design/NlYMwsWFwYQczsL5/scene.splinecode"></spline-viewer>
@@ -259,6 +296,7 @@ button:hover {
         const planName = urlParams.get('planName');  // This will give you the 'planName' from the URL query string
         if (planName) {
             planNameDisplay.textContent = planName; // Set plan name
+            planNameDisplay.style.fontWeight = "bold";
         } else {
             planNameDisplay.textContent = "No Plan Selected"; // Fallback if no plan name is passed
         }
@@ -400,6 +438,83 @@ button:hover {
             });
            }
 }
+
+////////////////mood suggestions 
+const moodSelector = document.getElementById('mood');
+const suggestionText = document.getElementById('suggestion-text');
+const suggestionsContainer = document.getElementById('suggestions-container'); // Add this container in HTML
+
+const suggestions = {
+    neutral: [
+        "Take a moment to review your tasks and organize your day. 📝",
+        "A good time to reflect on your progress so far. 🤔",
+        "Start by tackling the easiest task on your list to gain momentum. 💪",
+        "Write down three things you're grateful for today. 🙏",
+        "Set a timer for 15 minutes to focus on one task. ⏳",
+        "Rearrange your workspace to feel more productive. 🖥️"
+    ],
+    stressed: [
+        "Try a short breathing exercise before tackling your to-do list. 🌬️",
+        "Take a break and step outside for a few minutes. ☀️",
+        "Focus on one task at a time, take it slow. 🧘",
+        "Drink some water to refresh your mind and body. 💧",
+        "Take a 5-minute stretch break to relieve tension. 🤸‍♀️",
+        "Close your eyes for a few seconds and breathe deeply. 😌",
+        "Set a small, achievable goal to get started. 🎯",
+        "Try listening to calming music for a few minutes. 🎶"
+    ],
+    motivated: [
+        "Challenge yourself to finish an extra task today! 🚀",
+        "Set a personal goal to accomplish two tasks before the end of the day. 🎯",
+        "Push yourself to start a new task and complete it today! 💥",
+        "Visualize the satisfaction of completing your tasks. 🌟",
+        "Give yourself a reward for completing a task, even a small one. 🎉",
+        "Take a moment to celebrate your progress so far. 🏅",
+        "Break your tasks into steps and conquer them one by one. 🧗‍♀️",
+        "Try to exceed your expectations and surprise yourself today! 💪"
+    ]
+};
+
+moodSelector.addEventListener('change', function () {
+    const mood = moodSelector.value;
+    const moodSuggestions = suggestions[mood];
+
+    // Clear previous content
+    suggestionText.textContent = '';
+    const existingButton = document.getElementById('relax-game-button');
+    if (existingButton) existingButton.remove();
+
+    if (moodSuggestions && moodSuggestions.length > 0) {
+        // Generate a random suggestion
+        const randomSuggestion = moodSuggestions[Math.floor(Math.random() * moodSuggestions.length)];
+        suggestionText.textContent = randomSuggestion;
+
+        // Add a 'Try a game to relax' button if the mood is stressed
+        if (mood === 'stressed') {
+            const relaxButton = document.createElement('button');
+            relaxButton.id = 'relax-game-button';
+            relaxButton.textContent = 'Try a game to relax';
+            relaxButton.style.cssText = `
+                margin-top: 10px; 
+                padding: 8px 15px; 
+                background-color: #4CAF50; 
+                color: white; 
+                border: none; 
+                border-radius: 5px; 
+                cursor: pointer;
+                font-size: 14px;
+            `;
+            relaxButton.addEventListener('click', function () {
+                window.location.href = 'tapgame.php'; // Redirect to tapgame page
+            });
+
+            suggestionsContainer.appendChild(relaxButton);
+        }
+    } else {
+        suggestionText.textContent = "Select a mood to see suggestions! 😊";
+    }
+});
+
 
     </script>
     <script>
