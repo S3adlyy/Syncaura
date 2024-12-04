@@ -44,7 +44,7 @@
     <script>
         setTimeout(function() {
             window.location.href = "http://localhost:5000"; 
-        }, 10000); 
+        }, 5000); 
         window.onload = function() {
             const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
             if (shadowRoot) {
