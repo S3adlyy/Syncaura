@@ -9,7 +9,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 // Include the UserModel class
-include_once '../../model/usersign/UserModel.php';
+include_once '../../models/usersign/UserModel.php';
 
 // Create a PDO instance
 try {
@@ -36,21 +36,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate form data
     if (empty($name) || empty($surname) || empty($username) || empty($email) || empty($password) || empty($phone) || is_null($gender) || empty($birthdate)) {
-        header("Location: ../../view/user_view/signup.php?error=1" );
+        header("Location: ../../Views/front/sign/signin.php?error=1" );
         exit();
     }
 
 
     // Check if the email already exists
     if ($userModel->emailExists($email)) {
-        header("Location: ../../view/user_view/signup.php?error=2");
+        header("Location:../../Views/front/sign/signin.php?error=2");
         exit();
     }
 
     
     // Check if the username already exists
     if ($userModel->usernameExists($username)) {
-        header("Location: ../../view/user_view/signup.php?error=2");
+        header("Location: ../../Views/front/sign/signin.php?error=2");
         exit();
     }
 
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $userModel->createUser($name, $surname, $username, $email, $hashedPassword, $phone, $gender, $birthdate);
 
         // Redirect to the login page after successful registration
-        header("Location: ../../view/user_view/signin.php?success=1");
+        header("Location: ../../Views/front/sign/signin.php?success=1");
         exit();
     } catch (Exception $e) {
         // Handle any errors during user creation
