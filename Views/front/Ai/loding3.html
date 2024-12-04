@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Page</title>
+    <link rel="stylesheet" href="lodaing.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            /* Optional: change to desired background color */
+        }
+
+        .logo-container {
+            margin-bottom: 20px; /* Space between logo and loading circle */
+        }
+
+        .loader {
+            border: 8px solid #f3f3f3; /* Light grey */
+            border-top: 8px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 50px; /* Size of the loader */
+            height: 50px; /* Size of the loader */
+            animation: spin 1s linear infinite; /* Animation */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="imggg.png" alt="logo" class="logo">
+    </div>
+    <div class="loader"></div> <!-- Loader added here -->
+    
+    <script>
+        setTimeout(function() {
+            window.location.href = "chatbot.html"; 
+        }, 5000); 
+
+        const splineViewer = document.querySelector('spline-viewer');
+        document.addEventListener('mousemove', (event) => {
+            const { innerWidth, innerHeight } = window;
+            const x = (event.clientX / innerWidth) * 2 - 1;
+            const y = -(event.clientY / innerHeight) * 2 + 1;
+            const rotationSpeed = 1;
+            splineViewer.camera.rotation.x = y * rotationSpeed;
+            splineViewer.camera.rotation.y = x * rotationSpeed;
+        });
+
+        window.onload = function() {
+            const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
+            if (shadowRoot) {
+                const logo = shadowRoot.querySelector('#logo');
+                if (logo) logo.remove();
+            }
+        }
+    </script>
+</body>
+</html>

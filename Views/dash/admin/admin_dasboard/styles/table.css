@@ -1,0 +1,97 @@
+/* Table styling */
+table {
+    width: 60%; /* Decrease table width */
+    max-width: 700px; /* Smaller max-width */
+    margin: 30px auto;
+    border-collapse: collapse;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+caption {
+    font-size: 20px; /* Slightly smaller caption font */
+    font-weight: bold;
+    color: #333;
+    padding: 8px 0; /* Less padding for a more compact look */
+}
+
+th, td {
+    padding: 12px 18px; /* Reduced padding */
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 14px; /* Smaller font size */
+}
+
+th {
+    background-color: #1E90FF; /* Blue */
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9ff; /* Light Blue */
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff; /* White */
+}
+
+tr:hover {
+    background-color: #e1f0ff; /* Light Blue hover effect */
+}
+
+td a {
+    display: inline-block;
+    padding: 6px 10px; /* Reduced padding for links */
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 12px; /* Smaller font size for links */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Button styles */
+.btn {
+    border: none;
+    cursor: pointer;
+}
+
+.btn-danger {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #ff1a1a;
+}
+
+.btn-secondary {
+    background-color: #808080;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #4d4d4d;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    table {
+        width: 90%; /* Adjust width on small screens */
+    }
+
+    th, td {
+        padding: 10px 14px; /* Adjust padding */
+        font-size: 12px; /* Smaller font for smaller screens */
+    }
+}

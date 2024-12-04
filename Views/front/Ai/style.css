@@ -1,0 +1,159 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ensure the spline viewer background is at the back */
+.spline-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* Lower z-index to be behind the chat and join screens */
+}
+
+.chatbot {
+    position: relative;
+    width: 420px;
+    background: rgba(255, 255, 255, 0.7); /* Make the background semi-transparent */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1), 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out 3s forwards; /* Shortened the delay */
+    z-index: 1;
+}
+
+.chatbot header {
+    background-color: #724ae8;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.chatbot header h2 {
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+
+.chatbot .chatbox {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #fafafa;
+    border-bottom: 2px solid #f0f0f0;
+    max-height: 400px; /* Added max-height for better scroll */
+}
+
+.chatbox .chat {
+    display: flex;
+    margin-bottom: 15px;
+    animation: fadeIn 0.3s ease-in;
+    transition: transform 0.2s ease-in-out; /* Smooth transition for chat messages */
+}
+
+.chatbox .chat p {
+    color: #fff;
+    max-width: 75%;
+    font-size: 1rem;
+    padding: 12px 18px;
+    border-radius: 20px; /* Make the edges more rounded */
+    background: #724ae8;
+    word-wrap: break-word;
+    line-height: 1.4;
+}
+
+.chatbox .chat.outgoing p {
+    background: #8e44ad;
+    margin-left: auto;
+    animation: slideInRight 0.3s ease-out; /* Add animation for outgoing messages */
+}
+
+.chatbox .chat.incoming p {
+    background: #9b59b6;
+    animation: slideInLeft 0.3s ease-out; /* Add animation for incoming messages */
+}
+
+/* Styling the input area */
+.chat-input {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #fff;
+    border-top: 2px solid #f0f0f0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.chat-input textarea {
+    width: 85%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    resize: none;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out; /* Add smooth transition for focus */
+}
+
+.chat-input textarea:focus {
+    border-color: #724ae8; /* Highlight border on focus */
+    box-shadow: 0 0 5px rgba(114, 74, 232, 0.6); /* Focus shadow */
+}
+
+#send-btn {
+    font-size: 1.5rem;
+    color: #724ae8;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+#send-btn:hover {
+    color: #8e44ad;
+    transform: scale(1.1); /* Add hover effect to enlarge the button */
+}
+
+/* Animation for fading in chat messages */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
