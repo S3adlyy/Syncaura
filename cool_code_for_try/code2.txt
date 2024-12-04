@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch the Falling Objects Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #3498db, #9b59b6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .game-container {
+            position: relative;
+            width: 300px;
+            height: 500px;
+            border: 2px solid white;
+            background-color: rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .player {
+            position: absolute;
+            bottom: 10px;
+            width: 50px;
+            height: 50px;
+            background-color: #2ecc71;
+            border-radius: 50%;
+        }
+
+        .falling-object {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #e74c3c;
+            border-radius: 50%;
+            animation: fall 3s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -30px;
+            }
+            100% {
+                top: 100%;
+            }
+        }
+
+        .score {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .game-over {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            color: red;
+        }
+
+        .restart {
+            font-size: 20px;
+            color: yellow;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="score">Score: <span id="score">0</span></div>
+        <div class="player" id="player"></div>
+        <div class="game-over" id="game-over">
+            Game Over! <br>
+            <span class="restart" onclick="startGame()">Restart</span>
+        </div>
+    </div>
+
+    <script>
+        let score = 0;
+        let gameOver = false;
+        const scoreElement = document.getElementById('score');
+        const player = document.getElementById('player');
+        const gameOverElement = document.getElementById('game-over');
+        const gameContainer = document.querySelector('.game-container');
+
+        function startGame() {
+            score = 0;
+            scoreElement.textContent = score;
+            gameOver = false;
+            gameOverElement.style.display = 'none';
+            generateFallingObjects();
+        }
+
+        function generateFallingObjects() {
+            if (gameOver) return;
+
+            const fallingObject = document.createElement('div');
+            fallingObject.classList.add('falling-object');
+            fallingObject.style.left = Math.random() * (gameContainer.offsetWidth - 30) + 'px';
+            gameContainer.appendChild(fallingObject);
+
+            fallingObject.addEventListener('animationiteration', () => {
+                if (!gameOver) {
+                    checkCollision(fallingObject);
+                    fallingObject.remove();
+                }
+            });
+
+            setTimeout(generateFallingObjects, 1000);
+        }
+
+        function checkCollision(fallingObject) {
+            const objectRect = fallingObject.getBoundingClientRect();
+            const playerRect = player.getBoundingClientRect();
+
+            if (
+                objectRect.top + objectRect.height > playerRect.top &&
+                objectRect.left + objectRect.width > playerRect.left &&
+                objectRect.left < playerRect.left + playerRect.width
+            ) {
+                score++;
+                scoreElement.textContent = score;
+                fallingObject.remove();
+            } else if (objectRect.top + objectRect.height > gameContainer.offsetHeight) {
+                gameOver = true;
+                gameOverElement.style.display = 'block';
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (gameOver) return;
+
+            const playerRect = player.getBoundingClientRect();
+            const containerRect = gameContainer.getBoundingClientRect();
+
+            if (e.key === 'ArrowLeft' && playerRect.left > containerRect.left) {
+                player.style.left = playerRect.left - 20 + 'px';
+            }
+            if (e.key === 'ArrowRight' && playerRect.right < containerRect.right) {
+                player.style.left = playerRect.left + 20 + 'px';
+            }
+        });
+
+        startGame(); // Start the game when the page loads
+    </script>
+</body>
+</html>

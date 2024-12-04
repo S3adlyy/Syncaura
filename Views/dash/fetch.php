@@ -33,6 +33,11 @@
                 Tables
             </div>
             <li class="nav-item">
+            <a class="nav-link collapsed" href="admin/admin_dasboard/users.php" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Users</span>
+                </a>
                 <a class="nav-link" href="table_Chatuser.php">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Chat users</span>

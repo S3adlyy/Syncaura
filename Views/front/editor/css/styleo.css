@@ -1,0 +1,345 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ensure the spline viewer background is at the back */
+.spline-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* Lower z-index to be behind the chat and join screens */
+}
+
+/* Make sure the screens are positioned correctly */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none; /* Hide all screens initially */
+}
+
+/* Active screen will be displayed */
+.screen.active {
+    display: block;
+}
+
+.join-screen {
+    z-index: 10; /* Set the z-index of the join screen above the background */
+    background: rgba(255, 255, 255, 0.7); /* Transparent background for join screen */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* Optional: adds a blur effect behind the container */
+}
+
+.chat-screen {
+    z-index: 20; /* Set the z-index of the chat screen above the join screen */
+    background: rgba(255, 255, 255, 0.7); /* Transparent background for chat screen */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* Optional: adds a blur effect behind the container */
+}
+
+/* Style for the form and other elements */
+.form {
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-input {
+    margin-bottom: 20px;
+}
+
+.form-input input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.form-input button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-input button:hover {
+    background-color: #0056b3;
+}
+
+/* Chatbox styling */
+.typebox {
+    display: flex; /* Enable flexbox layout */
+    align-items: center; /* Vertically center all items */
+    justify-content: space-between; /* Distribute items horizontally */
+    width: 100%;
+    max-width: 800px; /* Limit maximum width */
+    padding: 10px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    gap: 10px; /* Small spacing between items */
+}
+
+/* Emoji Button */
+#emoji-btn {
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    color: #fff;
+    font-size: 22px;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Input Field */
+#message-input {
+    flex: 1; /* Take available space */
+    padding: 12px 20px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #f0f4ff, #e2e6f7);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    outline: none;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    margin: 0 10px; /* Space between input and buttons */
+    min-width: 200px; /* Prevent input from shrinking too small */
+}
+
+/* Audio Button */
+#audio {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(102, 51, 153, 0.4);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Send Button */
+#send-message {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: #fff;
+    font-size: 18px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(102, 51, 153, 0.4);
+    transition: all 0.3s ease-in-out;
+}
+
+/* GIF Search Icon */
+#gif-search-icon {
+    font-size: 24px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+#gif-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    display: none; /* Initially hidden */
+}
+#gif-results img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+#gif-search-icon:hover,
+#emoji-btn:hover,
+#audio:hover,
+#send-message:hover {
+    transform: scale(1.1); /* Scale on hover */
+}
+.gif-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 500px;
+    height: 70%;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: none; /* Hidden by default */
+    z-index: 100;
+    overflow: hidden;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* Header inside the modal */
+.gif-search-header {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.gif-search-header input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.gif-search-header button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.gif-display {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+.gif-display img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.gif-display img:hover {
+    transform: scale(1.1);
+}
+
+.user-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-width: 300px;
+}
+
+.modal-content {
+    text-align: center;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#user-list {
+    list-style: none;
+    padding: 0;
+}
+
+#user-list li {
+    margin: 10px 0;
+    cursor: pointer;
+    color: #0056b3;
+}
+/* Container styling for alignment */
+.custom-file-upload {
+    position: relative;
+    display: inline-block;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Hide the default input */
+#image-upload {
+    display: none;
+}
+
+/* Style the label as a button */
+.custom-file-upload {
+    position: relative;
+    display: inline-block;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Hide the default input */
+#image-upload {
+    display: none;
+}
+
+/* Style the label as a button */
+.custom-file-upload label {
+    display: inline-block;
+    padding: 12px 24px;
+    color: #fff;
+    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Matching gradient */
+    border-radius: 50px; /* Round button edges */
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(102, 51, 153, 0.4); /* Subtle shadow for depth */
+}
+
+/* Hover effect */
+.custom-file-upload label:hover {
+    background: linear-gradient(45deg, #5a0bb1, #2061e5); /* Darker gradient for hover */
+    transform: scale(1.05); /* Slight scaling effect */
+    box-shadow: 0 6px 8px rgba(102, 51, 153, 0.6); /* Enhance shadow on hover */
+}
+
+/* Active effect */
+.custom-file-upload label:active {
+    transform: translateY(2px); /* Button presses down slightly */
+    box-shadow: 0 4px 6px rgba(102, 51, 153, 0.4); /* Lighter shadow when pressed */
+}
+
+/* Focus effect for accessibility */
+.custom-file-upload label:focus {
+    outline: 2px solid #80bdff; /* Add a focus outline */
+    outline-offset: 2px;
+}
+
+
