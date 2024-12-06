@@ -215,23 +215,51 @@ try {
             <hr class="sidebar-divider">
             <div class="sidebar-heading">Tables</div>
             <li class="nav-item">
-                <a class="nav-link" href="users.php">
+            <a class="nav-link" href="users.php">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Users</span>
                 </a>
-                <a class="nav-link" href="../../Table_Chatuser.php">
+                <a class="nav-link collapsed" href="../../table_Chatuser.php" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Chat users</span>
                 </a>
-                <a class="nav-link" href="../../table_messages.php">
+                <a class="nav-link collapsed" href="../../table_messages.php" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Chat Messages</span>
+                    <span>Chat messages</span>
                 </a>
-                <a class="nav-link" href="../../fetch.php">
+                <a class="nav-link collapsed" href="../../fetch.php" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Users and Messages</span>
+                    <span>users and messages </span>
                 </a>
-            </li>
+                <a class="nav-link collapsed" href="../../listPack.php" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Gestion Packs</span>
+                </a>
+                <a class="nav-link collapsed" href="../../recherche.php" data-toggle="collapse" data-target="#collapseUtilities"
+                aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>recherche  Achats</span>
+            </a>
+            <a class="nav-link collapsed" href="../../ai pack.php" data-toggle="collapse" data-target="#collapseUtilities"
+                aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>ai description pack</span>
+            </a>
+
+            <a class="nav-link collapsed" href="../../send.php" data-toggle="collapse" data-target="#collapseUtilities"
+                aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Mailing</span>
+            </a>
+            <a class="nav-link collapsed" href="../../listAchat.php" data-toggle="collapse" data-target="#collapseUtilities"
+                aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Gestion Achats</span>
+            </a>
         </ul>
 
         <div class="container-fluid" style="background-color: white;">
