@@ -29,15 +29,6 @@ if (isset($_POST['search']) && isset($_POST['plan'])) {
             padding: 0;
         }
 
-        .container {
-            width: 80%;
-            margin: 30px auto;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
         h2 {
             text-align: center;
             color: #355ccc;
@@ -119,9 +110,7 @@ if (isset($_POST['search']) && isset($_POST['plan'])) {
 </head>
 <body>
 
-<div class="container">
-    <h2>Search Tasks by Plan</h2>
-
+<div >
     <!-- Form to select a plan and search for tasks -->
     <form action="searchtaskdash.php" method="POST">
         <label for="plan">Choose a plan:</label>

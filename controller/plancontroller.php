@@ -32,18 +32,39 @@ class PlanController
 
     }
 
+ // This function will fetch plans from the database with pagination
+ public function listPlans($offset = 0, $limit = 7)
+ {
+     $sql = "SELECT * FROM plan LIMIT :limit OFFSET :offset";
+     $db = config::getConnexion();
+     try {
+         // Prepare the query
+         $stmt = $db->prepare($sql);
+         // Bind parameters
+         $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+         $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+         // Execute the query
+         $stmt->execute();
+         // Fetch all results
+         return $stmt->fetchAll();
+     } catch (Exception $e) {
+         die('Error: ' . $e->getMessage());
+     }
+ }
 
-    public function listPlans()
-    {
-        $sql = "SELECT * FROM plan";
-        $db = config::getConnexion();
-        try {
-            $result = $db->query($sql);
-            return $result->fetchAll();
-        } catch (Exception $e) {
-            die('Error: ' . $e->getMessage());
-        }
-    }
+ // This function will return the total count of plans
+ public function getTotalPlans()
+ {
+     $sql = "SELECT COUNT(*) AS total FROM plan";
+     $db = config::getConnexion();
+     try {
+         $result = $db->query($sql);
+         $row = $result->fetch();
+         return $row['total'];
+     } catch (Exception $e) {
+         die('Error: ' . $e->getMessage());
+     }
+ }  
 
     // Modify Plan (only the name)
     public function modifyPlan($id, $newName)
