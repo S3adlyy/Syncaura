@@ -2,7 +2,7 @@
 include 'C:\xampp1\htdocs\projetrayen\view\config.php';
 include 'C:\xampp1\htdocs\projetrayen\model\achat.php';
 
-class AchatManager
+class AchatManage
 {
     function addAchat($achat)
     {
