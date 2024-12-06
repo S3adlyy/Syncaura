@@ -128,10 +128,10 @@
 
   <!-- Center Buttons -->
   <div class="button-container">
-    <button class="btn" onclick="window.location.href='../user_view/signin.php';">Sign In</button>
-    <button class="btn" onclick="window.location.href='../user_view/signup.php';">Sign Up</button>
+    <button class="btn" onclick="window.location.href='../sign/signin.php';">Sign In</button>
+    <button class="btn" onclick="window.location.href='../sign/signup.php';">Sign Up</button>
     <!-- Admin button, initially hidden -->
-    <button class="btn admin-btn" onclick="window.location.href='../home _admin/home.php';">Admin Home</button>
+    <button class="btn admin-btn" onclick="window.location.href='../sign/admin/signin.php';">Admin Home</button>
   </div>
 
   <div class="spline-viewer">

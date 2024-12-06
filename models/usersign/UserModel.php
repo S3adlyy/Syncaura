@@ -3,46 +3,80 @@ class UserModel
 {
     private $db;
 
-    public function __construct($db)
+    public function __construct(PDO $db)
     {
         $this->db = $db;
     }
 
     // Check if email already exists
-    public function emailExists($email)
+    public function emailExists(string $email): bool
     {
-        $query = "SELECT COUNT(*) FROM client WHERE email = :email";
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-        return $stmt->fetchColumn() > 0;
+        try {
+            $query = "SELECT COUNT(*) FROM client WHERE email = :email";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            return (int)$stmt->fetchColumn() > 0;
+        } catch (PDOException $e) {
+            error_log("Error checking email existence: " . $e->getMessage());
+            return false; // Failsafe to avoid application crash
+        }
     }
 
     // Check if username already exists
-    public function usernameExists($username)
+    public function usernameExists(string $username): bool
     {
-        $query = "SELECT COUNT(*) FROM client WHERE username = :username";
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':username', $username);
-        $stmt->execute();
-        return $stmt->fetchColumn() > 0;
+        try {
+            $query = "SELECT COUNT(*) FROM client WHERE username = :username";
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':username', $username);
+            $stmt->execute();
+            return (int)$stmt->fetchColumn() > 0;
+        } catch (PDOException $e) {
+            error_log("Error checking username existence: " . $e->getMessage());
+            return false; // Failsafe to avoid application crash
+        }
     }
 
     // Create a new user
-    public function createUser($name, $surname, $username, $email, $hashedPassword, $phone, $gender, $birthdate)
-    {
-        $query = "INSERT INTO client (name, surname, username, email, password, phone, gender, birthdate, role, status) 
-                  VALUES (:name, :surname, :username, :email, :password, :phone, :gender, :birthdate, 0, 1)"; // 0 = regular user, 1 = active
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':name', $name);
-        $stmt->bindParam(':surname', $surname);
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $hashedPassword);
-        $stmt->bindParam(':phone', $phone);
-        $stmt->bindParam(':gender', $gender); // Assuming gender is stored as 1 (male) or 0 (female)
-        $stmt->bindParam(':birthdate', $birthdate);
-        $stmt->execute();
+    public function createUser(
+        string $name,
+        string $surname,
+        string $username,
+        string $email,
+        string $password,
+        string $phone,
+        string $gender,
+        string $birthdate,
+        ?string $profilePicturePath
+    ): bool {
+        try {
+            $sql = "INSERT INTO client (name, surname, username, email, password, phone, gender, birthdate, profile_picture, status) 
+        VALUES (:name, :surname, :username, :email, :password, :phone, :gender, :birthdate, :profile_picture, 1)";
+$stmt = $this->db->prepare($sql);
+
+$stmt->bindParam(':name', $name);
+$stmt->bindParam(':surname', $surname);
+$stmt->bindParam(':username', $username);
+$stmt->bindParam(':email', $email);
+$stmt->bindParam(':password', $password);
+$stmt->bindParam(':phone', $phone);
+$stmt->bindParam(':gender', $gender);
+$stmt->bindParam(':birthdate', $birthdate);
+$stmt->bindParam(':profile_picture', $profile_picture);
+
+
+
+    
+            // Use bindValue for profile_picture as it is a literal value
+            $stmt->bindValue(':profile_picture', "../../" . $profilePicturePath);
+    
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            error_log("Error creating user: " . $e->getMessage());
+            return false; // Failsafe to avoid application crash
+        }
     }
+    
 }
 ?>

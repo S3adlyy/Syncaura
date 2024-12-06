@@ -51,7 +51,7 @@
         <form id="signin-form" action="../../../controller/loginController.php" method="post" autocomplete="on" onsubmit="return validateForm(event)">
             <h1>Login Form</h1>
             <!-- Username Input -->
-            <input type="text" placeholder="Enter your username" name="name" id="name" autocomplete="username" >
+            <input type="text" placeholder="Enter your username" name="username" id="username" autocomplete="username" >
             <div id="username-error" class="error-messages"></div>
 
             <!-- Password Input -->
@@ -93,7 +93,7 @@
             let errors = false;
 
             // Get values from form inputs
-            const username = document.getElementById('name').value.trim();
+            const username = document.getElementById('username').value.trim();
             const password = document.getElementById('pass').value.trim();
 
             // Validate username

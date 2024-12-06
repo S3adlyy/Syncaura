@@ -16,7 +16,8 @@ try {
 function authenticateUser($username, $password_input) {
     global $db;  // Use the global database connection
 
-    $stmt = $db->prepare("SELECT id, username, password, status FROM client WHERE username = :username");
+    // Prepare SQL query to select user data including profile picture
+    $stmt = $db->prepare("SELECT id, username, password, status, profile_picture FROM client WHERE username = :username");
     $stmt->bindParam(":username", $username);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -24,7 +25,7 @@ function authenticateUser($username, $password_input) {
     if ($user) {
         // If the user exists, verify the password
         if (password_verify($password_input, $user["password"])) {
-            // If the password is correct, return user details
+            // If the password is correct, return user details including profile picture
             return $user;
         }
     }

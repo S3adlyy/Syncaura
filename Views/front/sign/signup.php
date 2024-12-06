@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" type="x-icon" href="img.png">
+    <link rel="shortcut icon" type="image/x-icon" href="img.png">
     <style>
         /* Global styles */
         body {
@@ -23,11 +23,11 @@
         /* Form container */
         #registrationForm {
             background-color: white;
-            padding: 15px 25px;  
-            border-radius: 8px;  
+            padding: 20px;
+            border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 400px;  
+            max-width: 400px;
             box-sizing: border-box;
         }
 
@@ -35,8 +35,8 @@
         h1 {
             text-align: center;
             color: #4CAF50;
-            font-size: 20px;  
-            margin-bottom: 15px;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
 
         /* Input fields */
@@ -44,14 +44,14 @@
         input[type="password"],
         input[type="date"],
         input[type="radio"],
-        input[type="email"] {
+        input[type="email"],
+        input[type="file"] {
             width: 100%;
-            padding: 12px;
-            margin: 8px 0;  
+            padding: 10px;
+            margin: 8px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
-            box-sizing: border-box;
-            font-size: 16px;  
+            font-size: 16px;
         }
 
         /* Placeholder styling */
@@ -59,40 +59,12 @@
             color: #888;
         }
 
-        /* Label for radio buttons */
-        label {
-            margin-right: 8px; 
-            font-size: 14px;   
-        }
-
-        /* Form Group */
-        .form-group {
-            margin-bottom: 12px; 
-        }
-
-        .form-group-horizontal {
-            display: flex;
-            justify-content: space-between;
-            gap: 8px; 
-        }
-
-        .form-group-horizontal .form-group {
-            width: calc(50% - 4px);  
-        }
-
         /* Error messages */
         .error {
             color: red;
-            font-size: 12px;  
-            margin-top: 4px;  
+            font-size: 12px;
+            margin-top: 4px;
             display: block;
-        }
-
-        /* Radio buttons container */
-        .radio-group {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px; 
         }
 
         /* Submit button styling */
@@ -100,12 +72,12 @@
             background-color: #4CAF50;
             color: white;
             border: none;
-            padding: 15px; 
+            padding: 15px;
             width: 100%;
             border-radius: 5px;
-            font-size: 16px;  
+            font-size: 16px;
             cursor: pointer;
-            margin-top: 15px; 
+            margin-top: 20px;
             transition: background-color 0.3s;
         }
 
@@ -123,215 +95,178 @@
             border-radius: 5px;
             color: red;
         }
-
-        /* Make sure the form is well-centered and responsive */
-        @media (max-width: 600px) {
-            .form-group-horizontal {
-                flex-direction: column;
-            }
-
-            .form-group-horizontal .form-group {
-                width: 100%;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="spline-viewer">
-        <spline-viewer url="https://prod.spline.design/O4wdVneKYyKKbJbX/scene.splinecode"></spline-viewer>
-    </div>
-
-    <form id="registrationForm" action="../../../controller/usersign/SignupController.php" method="post">
+    <form id="registrationForm" action="../../../controller/usersign/SignupController.php" method="post" enctype="multipart/form-data">
         <h1>Signup Form</h1>
 
-        <!-- Name and Surname displayed horizontally -->
-        <div class="form-group form-group-horizontal">
-            <div class="form-group">
-                <input type="text" placeholder="Put your name" name="namex" id="namex">
-                <div id="nameError" class="error"></div>
-            </div>
-
-            <div class="form-group">
-                <input type="text" placeholder="Put your surname" name="surname" id="surname">
-                <div id="surnameError" class="error"></div>
-            </div>
+        <!-- Name and Surname -->
+        <div>
+            <input type="text" placeholder="Put your name" name="namex" id="namex" >
+            <div id="nameError" class="error"></div>
+        </div>
+        <div>
+            <input type="text" placeholder="Put your surname" name="surname" id="surname" >
+            <div id="surnameError" class="error"></div>
         </div>
 
-        <!-- Username, Email, and Password (one per line) -->
-        <div class="form-group">
-            <input type="text" placeholder="Put your username" name="name" id="name">
-            <div id="usernameError" class="error"></div>
+        <!-- Username -->
+        <div>
+            <input type="text" placeholder="Put your username" name="name" id="name" >
+            <div id="username-error" class="error"></div>
         </div>
 
-        <div class="form-group">
-            <input type="text" placeholder="Email" name="email" id="email">
-            <div id="emailError" class="error"></div>
+        <!-- Email -->
+        <div>
+            <input type="text" placeholder="Email" name="email" id="email" >
+            <div id="email-error" class="error"></div>
         </div>
 
-        <div class="form-group">
-            <input type="password" placeholder="Password" name="pass" id="pass">
-            <div id="passwordError" class="error"></div>
+        <!-- Password -->
+        <div>
+            <input type="password" placeholder="Password" name="pass" id="pass" >
+            <div id="password-error" class="error"></div>
         </div>
 
-        <!-- Gender displayed horizontally -->
-        <div class="form-group radio-group">
-            <label for="genderMale">Male</label>
-            <input type="radio" name="gender" value="Male" id="genderMale">
-            <label for="genderFemale">Female</label>
-            <input type="radio" name="gender" value="Female" id="genderFemale">
-            <label for="genderOther">Other</label>
-            <input type="radio" name="gender" value="Other" id="genderOther">
-            <div id="genderError" class="error"></div>
+        <!-- Gender -->
+        <div>
+    <label for="genderMale">Male</label>
+    <input type="radio" name="gender" value="Male" id="genderMale">
+    <label for="genderFemale">Female</label>
+    <input type="radio" name="gender" value="Female" id="genderFemale">
+    <div id="genderError" class="error"></div>
+</div>
+
+
+        <!-- Birthdate -->
+        <div>
+            <input type="date" name="birthdate" id="birthdate" >
+            <div id="birthdateError" class="error"></div>
         </div>
 
-        <!-- Birthdate and Phone Number displayed horizontally -->
-        <div class="form-group form-group-horizontal">
-            <div class="form-group">
-                <input type="date" name="birthdate" id="birthdate">
-                <div id="birthdateError" class="error"></div>
-            </div>
-
-            <div class="form-group">
-                <input type="text" placeholder="Phone Number" name="phone" id="phone">
-                <div id="phoneError" class="error"></div>
-            </div>
+        <!-- Phone Number -->
+        <div>
+            <input type="text" placeholder="Phone Number" name="phone" id="phone" >
+            <div id="phoneError" class="error"></div>
         </div>
 
-        <!-- Sign Up Button -->
-        <input type="submit" id="send" value="Sign Up">
-        
+        <!-- Profile Picture -->
+        <div>
+            <input type="file" name="profilePicture" id="profilePicture" accept="image/*">
+            <div id="profilePictureError" class="error"></div>
+        </div>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Sign Up">
+
         <!-- Error message display -->
-        <div id="php-error-messages" class="error-messages" <?php echo isset($_GET['error']) ? 'style="display:block;"' : 'style="display:none;"'; ?>>
-            <?php if (isset($_GET['error'])): ?>
-                <?php
-                    $error_message = '';
-                    if ($_GET['error'] == 2) {
-                        $error_message = "Username or email already exist.";
-                    }
-                    echo '<p class="error">' . $error_message . '</p>';
-                ?>
-            <?php endif; ?>
+        <div id="php-error-messages">
+            <?php
+            if (isset($_GET['error'])) {
+                $error_message = $_GET['error'] == 2 ? "Username or email already exists." : "";
+                echo '<p>' . $error_message . '</p>';
+            }
+            ?>
         </div>
         <p>Already a member? <a href="signin.php" style="color: blue;">Sign In</a></p>
     </form>
 
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
-
     <script>
-        // Custom validation script
         document.getElementById("registrationForm").addEventListener("submit", function(event) {
-            // Clear previous error messages
-            document.getElementById("nameError").textContent = "";
-            document.getElementById("surnameError").textContent = "";
-            document.getElementById("usernameError").textContent = "";
-            document.getElementById("emailError").textContent = "";
-            document.getElementById("passwordError").textContent = "";
-            document.getElementById("phoneError").textContent = "";
+        // Clear error messages
+        document.querySelectorAll(".error").forEach(el => el.textContent = "");
 
-            const name = document.getElementById("namex").value.trim();
-            const surname = document.getElementById("surname").value.trim();
-            const username = document.getElementById("name").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("pass").value.trim();
-            const phone = document.getElementById("phone").value.trim();
+        let errors = false;
 
-            let isValid = true;
-
-            // Validate name
-            const namePattern = /^[A-Za-z]+$/;
-            if (!name) {
-                document.getElementById("nameError").textContent = "Name is required.";
-                isValid = false;
-            } else if (!namePattern.test(name)) {
-                document.getElementById("nameError").textContent = "Name must contain only letters.";
-                isValid = false;
-            } else if (name.length < 3) {
-                document.getElementById("nameError").textContent = "Name minimum length is 3 characters.";
-                isValid = false;
-            }
-
-            // Validate surname
-            const surnamePattern = /^[A-Za-z]+$/;
-            if (!surname) {
-                document.getElementById("surnameError").textContent = "Surname is required.";
-                isValid = false;
-            } else if (!surnamePattern.test(surname)) {
-                document.getElementById("surnameError").textContent = "Surname must contain only letters.";
-                isValid = false;
-            } else if (surname.length < 3) {
-                document.getElementById("surnameError").textContent = "Surname minimum length is 3 characters.";
-                isValid = false;
-            }
-
-            // Validate username
-            const usernamePattern = /^[A-Za-z0-9]+$/;
-            if (!username) {
-                document.getElementById("usernameError").textContent = "Username is required.";
-                isValid = false;
-            } else if (username.length < 3) {
-                document.getElementById("usernameError").textContent = "Username minimum length is 3 characters.";
-                isValid = false;
-            } else if (/^\d+$/.test(username)) {
-                document.getElementById("usernameError").textContent = "Username cannot be composed of only numbers.";
-                isValid = false;
-            }
-
-            // Validate email
-            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-            if (!email) {
-                document.getElementById("emailError").textContent = "Email is required.";
-                isValid = false;
-            } else if (!emailPattern.test(email)) {
-                document.getElementById("emailError").textContent = "Please enter a valid email address.";
-                isValid = false;
-            }
-
-            // Validate password
-            const passwordPattern = /^(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-            if (!password) {
-                document.getElementById("passwordError").textContent = "Password is required.";
-                isValid = false;
-            } else if (password.length < 8) {
-                document.getElementById("passwordError").textContent = "Password minimum length is 8 characters.";
-                isValid = false;
-            } else if (!passwordPattern.test(password)) {
-                document.getElementById("passwordError").textContent = "Password must contain at least one number and one symbol.";
-                isValid = false;
-            }
-
-           // Validate phone number
-const phonePattern = /^[0-9]{9,}$/;  // Ensure phone number is numeric and at least 9 digits
-if (!phone) {
-    document.getElementById("phoneError").textContent = "Phone number is required.";
-    isValid = false;
-} else {
-    const cleanedPhone = phone.replace(/\D/g, '');  // Remove non-numeric characters (like spaces or dashes)
-    if (!cleanedPhone) {
-        document.getElementById("phoneError").textContent = "Phone number must contain only numbers.";
-        isValid = false;
-    } else if (cleanedPhone.length < 9) {
-        document.getElementById("phoneError").textContent = "Phone number must contain at least 9 digits.";
-        isValid = false;
-    }
-}
-
-
-            // Prevent form submission if validation fails
-            if (!isValid) {
-                event.preventDefault();
-            }
-        });
-    
-    </script>
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
-    <script>
-        window.onload = function() {
-            const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
-            if (shadowRoot) {
-                const logo = shadowRoot.querySelector('#logo');
-                if (logo) logo.remove();
+        //////////////////////////////////////////////////
+        // Profile Picture Validation
+        const profilePicture = document.getElementById("profilePicture").files[0];
+        const allowedExtensions = ["image/jpeg", "image/png", "image/gif"];
+        
+        if (profilePicture) {
+            if (!allowedExtensions.includes(profilePicture.type)) {
+                document.getElementById("profilePictureError").textContent = "Invalid file type. Only JPEG, PNG, and GIF are allowed.";
+                errors = true;
+            } else if (profilePicture.size > 2 * 1024 * 1024) {  // Check if file size exceeds 2MB
+                document.getElementById("profilePictureError").textContent = "File size exceeds 2MB.";
+                errors = true;
             }
         }
+
+        //////////////////////////////////////////////////
+        // Name validation
+        let name = document.getElementById('namex').value;
+        if (name === '') {
+            errors = true;
+            document.getElementById('nameError').textContent = 'Name is required.';
+        }
+
+        // Surname validation
+        let surname = document.getElementById('surname').value;
+        if (surname === '') {
+            errors = true;
+            document.getElementById('surnameError').textContent = 'Surname is required.';
+        }
+
+        // Username validation
+        let username = document.getElementById('name').value;
+        if (username === '') {
+            errors = true;
+            document.getElementById('usernameError').textContent = 'Username is required.';
+        } else if (username.length < 3) {
+            errors = true;
+            document.getElementById('usernameError').textContent = 'Username must be at least 3 characters long.';
+        } else if (/^\d+$/.test(username)) {  // Check if username contains only numbers
+            errors = true;
+            document.getElementById('usernameError').textContent = 'Username cannot contain only numbers.';
+        }
+
+        // Email validation
+        let email = document.getElementById('email').value;
+        let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!emailPattern.test(email)) {
+            errors = true;
+            document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+        }
+
+        // Password validation
+        let password = document.getElementById('pass').value;
+        if (password === '') {
+            errors = true;
+            document.getElementById('passwordError').textContent = 'Password is required.';
+        } else if (password.length < 6) {
+            errors = true;
+            document.getElementById('passwordError').textContent = 'Password must be at least 6 characters long.';
+        }
+
+        // Gender validation
+        let gender = document.querySelector('input[name="gender"]:checked');
+        if (!gender) {
+            errors = true;
+            document.getElementById('genderError').textContent = 'Gender is required.';
+        }
+
+        // Birthdate validation
+        let birthdate = document.getElementById('birthdate').value;
+        if (birthdate === '') {
+            errors = true;
+            document.getElementById('birthdateError').textContent = 'Birthdate is required.';
+        }
+
+        // Phone number validation
+        let phone = document.getElementById('phone').value;
+        let phonePattern = /^[0-9]{10}$/;  // Assumes a 10-digit phone number
+        if (!phonePattern.test(phone)) {
+            errors = true;
+            document.getElementById('phoneError').textContent = 'Please enter a valid phone number.';
+        }
+
+        // Prevent submission if there are errors
+        if (errors) {
+            event.preventDefault();
+        }
+    });
     </script>
 </body>
 </html>

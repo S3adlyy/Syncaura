@@ -118,6 +118,22 @@ if (!isset($_SESSION["user_id"])) {
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Users</span>
                 </a>
+                <li class="nav-item">
+                <a class="nav-link collapsed" href="../../Table_Chatuser.php" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Chat users</span>
+                </a>
+                <a class="nav-link collapsed" href="../../table_messages.php" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Chat messages</span>
+                </a>
+                <a class="nav-link collapsed" href="../../fetch.php" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>users and messages </span>
+                </a>
             <!-- Nav Item - Utilities Collapse Menu -->
 <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
