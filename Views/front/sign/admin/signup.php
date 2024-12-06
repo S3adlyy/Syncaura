@@ -5,191 +5,267 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" type="x-icon" href="img.png">
+    <link rel="shortcut icon" type="image/x-icon" href="img.png">
     <style>
-        /* Styles for the form and error messages */
-        form {
-            max-width: 400px;
-            margin: auto;
-            padding: 20px;
-            background-color: #f4f4f4;
-            border-radius: 8px;
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
         }
 
-        input {
+        /* Form container */
+        #registrationForm {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+
+        /* Heading */
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Input fields */
+        input[type="text"],
+        input[type="password"],
+        input[type="date"],
+        input[type="radio"],
+        input[type="email"],
+        input[type="file"] {
             width: 100%;
             padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
+            margin: 8px 0;
             border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
         }
 
+        /* Placeholder styling */
+        input::placeholder {
+            color: #888;
+        }
+
+        /* Error messages */
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 4px;
+            display: block;
+        }
+
+        /* Submit button styling */
         input[type="submit"] {
             background-color: #4CAF50;
             color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
         }
 
         input[type="submit"]:hover {
             background-color: #45a049;
         }
 
-        .error {
-            color: black;
-            font-size: 12px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        p {
-            text-align: center;
-        }
-
-        a {
-            color: blue;
+        /* Error messages in a specific container */
+        #php-error-messages {
+            display: none;
+            margin-top: 10px;
+            padding: 8px;
+            background-color: #ffdddd;
+            border: 1px solid #ff4444;
+            border-radius: 5px;
+            color: red;
         }
     </style>
 </head>
 <body>
-    <div class="spline-viewer">
-        <spline-viewer url="https://prod.spline.design/O4wdVneKYyKKbJbX/scene.splinecode"></spline-viewer>
-    </div>
-
-    <form id="registrationForm" action="config.php" method="post">
+    <form id="registrationForm" action="../../../controller/usersign/SignupController.php" method="post" enctype="multipart/form-data">
         <h1>Signup Form</h1>
 
-        <input type="text" placeholder="Put your name" name="namex" id="namex">
-        <div id="nameError" class="error"></div>
+        <!-- Name and Surname -->
+        <div>
+            <input type="text" placeholder="Put your name" name="namex" id="namex" required>
+            <div id="nameError" class="error"></div>
+        </div>
+        <div>
+            <input type="text" placeholder="Put your surname" name="surname" id="surname" required>
+            <div id="surnameError" class="error"></div>
+        </div>
 
-        <input type="text" placeholder="Put your surname" name="surname" id="surname">
-        <div id="surnameError" class="error"></div>
+        <!-- Username -->
+        <div>
+            <input type="text" placeholder="Put your username" name="name" id="name" required>
+            <div id="usernameError" class="error"></div>
+        </div>
 
-        <input type="text" placeholder="Put your username" name="name" id="name">
-        <div id="usernameError" class="error"></div>
+        <!-- Email -->
+        <div>
+            <input type="email" placeholder="Email" name="email" id="email" required>
+            <div id="emailError" class="error"></div>
+        </div>
 
-        <input type="text" placeholder="Email" name="email" id="email">
-        <div id="emailError" class="error"></div>
+        <!-- Password -->
+        <div>
+            <input type="password" placeholder="Password" name="pass" id="pass" required>
+            <div id="passwordError" class="error"></div>
+        </div>
 
-        <input type="password" placeholder="Password" name="pass" id="pass">
-        <div id="passwordError" class="error"></div>
+        <!-- Gender -->
+        <div>
+            <label for="genderMale">Male</label>
+            <input type="radio" name="gender" value="Male" id="genderMale">
+            <label for="genderFemale">Female</label>
+            <input type="radio" name="gender" value="Female" id="genderFemale">
+            <div id="genderError" class="error"></div>
+        </div>
 
-        <input type="submit" id="send" value="Sign Up">
-        
+        <!-- Birthdate -->
+        <div>
+            <input type="date" name="birthdate" id="birthdate" required>
+            <div id="birthdateError" class="error"></div>
+        </div>
 
-        <div id="php-error-messages" class="error-messages" <?php echo isset($_GET['error']) ? 'style="display:block;"' : 'style="display:none;"'; ?>>
-    <?php if (isset($_GET['error'])): ?>
-        <?php
-            $error_message = '';
-            if ($_GET['error'] == 2) {
-                $error_message = "Username or email already exist.";
+        <!-- Phone Number -->
+        <div>
+            <input type="text" placeholder="Phone Number" name="phone" id="phone" required>
+            <div id="phoneError" class="error"></div>
+        </div>
+
+        <!-- Profile Picture -->
+        <div>
+            <input type="file" name="profilePicture" id="profilePicture" accept="image/*">
+            <div id="profilePictureError" class="error"></div>
+        </div>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Sign Up">
+
+        <!-- Error message display -->
+        <div id="php-error-messages">
+            <?php
+            if (isset($_GET['error'])) {
+                $error_message = $_GET['error'] == 2 ? "Username or email already exists." : "";
+                echo '<p>' . $error_message . '</p>';
             }
-            echo "<p>{$error_message}</p>";
-        ?>
-    <?php endif; ?>
-</div>
+            ?>
+        </div>
         <p>Already a member? <a href="signin.php" style="color: blue;">Sign In</a></p>
     </form>
 
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
-
     <script>
         document.getElementById("registrationForm").addEventListener("submit", function(event) {
-            // Clear previous error messages
-            document.getElementById("nameError").textContent = "";
-            document.getElementById("surnameError").textContent = "";
-            document.getElementById("usernameError").textContent = "";
-            document.getElementById("emailError").textContent = "";
-            document.getElementById("passwordError").textContent = "";
+        // Clear error messages
+        document.querySelectorAll(".error").forEach(el => el.textContent = "");
 
-            const name = document.getElementById("namex").value.trim();
-            const surname = document.getElementById("surname").value.trim();
-            const username = document.getElementById("name").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("pass").value.trim();
+        let errors = false;
 
-            let isValid = true;
-
-            // Validate name
-            const namePattern = /^[A-Za-z]+$/;
-            if (!name) {
-    document.getElementById("nameError").textContent = "Name is required.";
-    isValid = false;
-} else if (!namePattern.test(name)) {
-    document.getElementById("nameError").textContent = "Name must contain only letters.";
-    isValid = false;
-} else if (name.length < 3) {  // Check if name is at least 3 characters long
-    document.getElementById("nameError").textContent = "Name must be at least 3 characters long.";
-    isValid = false;
-}
-
-// Validate surname
-const surnamePattern = /^[A-Za-z]+$/;
-if (!surname) {
-    document.getElementById("surnameError").textContent = "Surname is required.";
-    isValid = false;
-} else if (!surnamePattern.test(surname)) {
-    document.getElementById("surnameError").textContent = "Surname must contain only letters.";
-    isValid = false;
-} else if (surname.length < 3) {  // Check if surname is at least 3 characters long
-    document.getElementById("surnameError").textContent = "Surname must be at least 3 characters long.";
-    isValid = false;
-}
-
-            // Validate username
-            if (!username) {
-                document.getElementById("usernameError").textContent = "Username is required.";
-                isValid = false;
-            } else if (username.length < 3) {
-                document.getElementById("usernameError").textContent = "Username must be at least 3 characters.";
-                isValid = false;
-            }
-
-            // Validate email
-            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-            if (!email) {
-                document.getElementById("emailError").textContent = "Email is required.";
-                isValid = false;
-            } else if (!emailPattern.test(email)) {
-                document.getElementById("emailError").textContent = "Please enter a valid email address.";
-                isValid = false;
-            }
-
-          // Validate password
-if (!password) {
-    document.getElementById("passwordError").textContent = "Password is required.";
-    isValid = false;
-} else if (password.length < 8) {
-    document.getElementById("passwordError").textContent = "Password must be at least 8 characters.";
-    isValid = false;
-} else if (!/[a-zA-Z]/.test(password)) {
-    document.getElementById("passwordError").textContent = "Password must contain at least one letter.";
-    isValid = false;
-} else if (!/[0-9]/.test(password)) {
-    document.getElementById("passwordError").textContent = "Password must contain at least one number.";
-    isValid = false;
-} else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-    document.getElementById("passwordError").textContent = "Password must contain at least one symbol.";
-    isValid = false;
-}
-
-
-            // Prevent form submission if validation fails
-            if (!isValid) {
-                event.preventDefault();
-            }
-        });
-    </script>
-
-    <script>
-        window.onload = function() {
-            const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
-            if (shadowRoot) {
-                const logo = shadowRoot.querySelector('#logo');
-                if (logo) logo.remove();
+        //////////////////////////////////////////////////
+        // Profile Picture Validation
+        const profilePicture = document.getElementById("profilePicture").files[0];
+        const allowedExtensions = ["image/jpeg", "image/png", "image/gif"];
+        
+        if (profilePicture) {
+            if (!allowedExtensions.includes(profilePicture.type)) {
+                document.getElementById("profilePictureError").textContent = "Invalid file type. Only JPEG, PNG, and GIF are allowed.";
+                errors = true;
+            } else if (profilePicture.size > 2 * 1024 * 1024) {  // Check if file size exceeds 2MB
+                document.getElementById("profilePictureError").textContent = "File size exceeds 2MB.";
+                errors = true;
             }
         }
+
+        //////////////////////////////////////////////////
+        // Name validation
+        let name = document.getElementById('namex').value;
+        if (name === '') {
+            errors = true;
+            document.getElementById('nameError').textContent = 'Name is required.';
+        }
+
+        // Surname validation
+        let surname = document.getElementById('surname').value;
+        if (surname === '') {
+            errors = true;
+            document.getElementById('surnameError').textContent = 'Surname is required.';
+        }
+
+        // Username validation
+        let username = document.getElementById('name').value;
+        if (username === '') {
+            errors = true;
+            document.getElementById('usernameError').textContent = 'Username is required.';
+        } else if (username.length < 3) {
+            errors = true;
+            document.getElementById('usernameError').textContent = 'Username must be at least 3 characters long.';
+        } else if (/^\d+$/.test(username)) {  // Check if username contains only numbers
+            errors = true;
+            document.getElementById('usernameError').textContent = 'Username cannot contain only numbers.';
+        }
+
+        // Email validation
+        let email = document.getElementById('email').value;
+        let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!emailPattern.test(email)) {
+            errors = true;
+            document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+        }
+
+        // Password validation
+        let password = document.getElementById('pass').value;
+        if (password === '') {
+            errors = true;
+            document.getElementById('passwordError').textContent = 'Password is required.';
+        } else if (password.length < 6) {
+            errors = true;
+            document.getElementById('passwordError').textContent = 'Password must be at least 6 characters long.';
+        }
+
+        // Gender validation
+        let gender = document.querySelector('input[name="gender"]:checked');
+        if (!gender) {
+            errors = true;
+            document.getElementById('genderError').textContent = 'Gender is required.';
+        }
+
+        // Birthdate validation
+        let birthdate = document.getElementById('birthdate').value;
+        if (birthdate === '') {
+            errors = true;
+            document.getElementById('birthdateError').textContent = 'Birthdate is required.';
+        }
+
+        // Phone number validation
+        let phone = document.getElementById('phone').value;
+        let phonePattern = /^[0-9]{10}$/;  // Assumes a 10-digit phone number
+        if (!phonePattern.test(phone)) {
+            errors = true;
+            document.getElementById('phoneError').textContent = 'Please enter a valid phone number.';
+        }
+
+        // Prevent submission if there are errors
+        if (errors) {
+            event.preventDefault();
+        }
+    });
     </script>
 </body>
 </html>

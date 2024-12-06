@@ -51,13 +51,13 @@
         <form id="signin-form" action="loading.php" method="post" autocomplete="on" onsubmit="return validateForm(event)">
             <h1>Login Form</h1>
             <!-- Username Input -->
-            <input type="text" placeholder="Enter your username" name="name" id="name" autocomplete="username" required>
+            <input type="text" placeholder="Enter your username" name="name" id="name" autocomplete="username" >
             <div id="username-error" class="error-messages">
                 <!-- Error for username will be displayed here -->
             </div>
 
             <!-- Password Input -->
-            <input type="password" placeholder="Enter your password" name="pass" id="pass" autocomplete="current-password" required>
+            <input type="password" placeholder="Enter your password" name="pass" id="pass" autocomplete="current-password" >
             <div id="password-error" class="error-messages">
                 <!-- Error for password will be displayed here -->
             </div>

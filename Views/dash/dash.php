@@ -59,6 +59,10 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
+            <a class="nav-link" href="admin/admin_dasboard/users.php">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Users</span>
+                </a>
                 <a class="nav-link collapsed" href="table_Chatuser.php" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
