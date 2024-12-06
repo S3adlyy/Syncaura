@@ -61,7 +61,7 @@ $packs = $PackController->listPacks(); // Fetch all packs data
           <div class="col-6 col-lg-9">
             <a href="listAchat.php" class="small mr-3"><span class="icon-question-circle-o mr-2"></span> <span class="d-none d-lg-inline-block"  >Consulter mes Achats</span></a> 
             <a href="#" class="small mr-3"><span class="icon-phone mr-2"></span> <span class="d-none d-lg-inline-block"  >+216 54171319</span></a> 
-            <a href="./contact/loding2.php" class="small mr-3"><span class="icon-envelope mr-2"></span> <span class="d-none d-lg-inline-block" >Contact Us Via Email</span></a> 
+            <a href="./contact/loding2.php" class="small mr-3"><span class="icon-envelope mr-2"></span> <span class="d-none d-lg-inline-block" >aide pack choix</span></a> 
           </div>
         </div>
       </div>
