@@ -4,13 +4,21 @@ include_once('../../Controller/PlanController.php');
 $planController = new PlanController();
 
 // Fetch all plans
-$plans = $planController->listPlans();
+$plans = $planController->listPlansALL();
+
+// Initialize variables
+$tasks = [];
+$totalTasksByPlanName = 0;
 
 // Check if a plan is selected and fetch tasks for that plan
 if (isset($_POST['search']) && isset($_POST['plan'])) {
     $planName = $_POST['plan'];
     $tasks = $planController->listTaskByPlanName($planName);
+    $totalTasksByPlanName = $planController->getTotalTasksByPlanName($planName);
+
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +30,6 @@ if (isset($_POST['search']) && isset($_POST['plan'])) {
     <link rel="stylesheet" href="styleplandash.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
             background-color: #f4f7fc;
             color: #333;
             margin: 0;
@@ -126,7 +133,14 @@ if (isset($_POST['search']) && isset($_POST['plan'])) {
     </form>
 
     <!-- Display tasks related to the selected plan -->
-    <?php if (isset($tasks)): ?>
+    <?php if (isset($_POST['search']) && isset($planName)): ?>
+    <br>
+    <p>
+        Total Tasks for 
+        <strong>
+            <?= htmlspecialchars($planName); ?>
+        </strong>: <?= isset($totalTasksByPlanName) ? $totalTasksByPlanName : 0; ?>
+    </p>
         <table class="custom-table">
             <thead>
                 <tr>

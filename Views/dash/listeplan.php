@@ -47,15 +47,13 @@ $plans = $planController->listPlans($offset, $limit);
                     $dateCreated = new DateTime($plan['date_plan']);
                     $dateModified = $dateCreated->diff(new DateTime());
                     $currentDate = new DateTime();
-                    $formattedCurrentDate = $currentDate->format('Y-m-d');
+                    $formattedCurrentDate = $currentDate->format('Y-m-d H:i:s');
                     $modificationDate = $dateModified->format('%d days ago');
                 ?>
                 <tr>
                     <td><?= $plan['nom']; ?></td>
                     <td><?= $plan['date_plan']; ?></td>
-                    <td>
-                        <?= $formattedCurrentDate; ?> <br> <?= $modificationDate; ?>
-                    </td>
+                    <td><?= $formattedCurrentDate; ?> <br> <?= $modificationDate; ?></td>
                     <td>
                         <a href="deleteplan.php?nom=<?= urlencode($plan['nom']); ?>" class="btn-delete" onclick="return confirm('Are you sure you want to delete this plan?');">Delete</a>
                     </td>
@@ -73,6 +71,9 @@ $plans = $planController->listPlans($offset, $limit);
             </form>
         <?php endif; ?>
 
+        <!-- Display the current page -->
+        <span>Page <?= $currentPage ?> of <?= $totalPages ?></span>
+
         <!-- Next Button -->
         <?php if ($currentPage < $totalPages): ?>
             <form method="post">
@@ -80,6 +81,4 @@ $plans = $planController->listPlans($offset, $limit);
             </form>
         <?php endif; ?>
 
-        <!-- Display the current page -->
-        <span>Page <?= $currentPage ?> of <?= $totalPages ?></span>
     </div>

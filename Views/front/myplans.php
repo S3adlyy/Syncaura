@@ -1,11 +1,32 @@
 <?php
+session_start();
 include('../../controller/plancontroller.php');
 
 $planController = new PlanController();
 
-// Fetch all plans to display in the form
-$plans = $planController->listPlans();
+// Set the number of results per page
+$limit = 7;
+// Get total plans to calculate total pages
+$totalPlans = $planController->getTotalPlans();
+$totalPages = ceil($totalPlans / $limit); // Ensure this rounds up for cases with remainder
 
+// Initialize the current page from session (or default to 1 if not set)
+if (!isset($_SESSION['current_page'])) {
+    $_SESSION['current_page'] = 1;
+}
+// Get the current page from session
+$currentPage = $_SESSION['current_page'];
+
+// Check if Next or Previous button was clicked
+if (isset($_POST['next']) && $currentPage < $totalPages) {
+    $_SESSION['current_page']++; // Increase page number when Next is clicked
+} elseif (isset($_POST['previous']) && $currentPage > 1) {
+    $_SESSION['current_page']--; // Decrease page number when Previous is clicked
+}
+// Calculate the offset for the SQL query
+$offset = ($currentPage - 1) * $limit;
+$plans = $planController->listPlans($offset, $limit);
+///////////////////////////////////////////////////////////////////
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_plan'])) {
 
     $nom = $_POST['nom'];
@@ -49,9 +70,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_plan'])) {
     
 </head>
 <body>
-    <div class="container">
+    <div align="center" class="container">
         <!-- Add Plan Form -->
-        <div class="add-plan-container">
+        <div align="center" class="add-plan-container">
             <h2>Add your plan name</h2>
             <form method="POST" action="">
                 <input type="text" name="nom" id="plan_name" placeholder="Enter plan name" 
@@ -68,22 +89,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_plan'])) {
         </div>
 
         <!-- List of Plans -->
-        <div align="center" class="plans-container">
+        <div  class="plans-container">
             <h2>Your Plans</h2>
+            <?php echo "Total Plans: " . $totalPlans; ?>
+            <br>
+            <!-- Pagination buttons -->
+            <div style="text-align:right;" class="pagination">
+                    <!-- Previous Button -->
+                    <?php if ($currentPage > 1): ?>
+                        <form method="post">
+                            <button type="submit" name="previous">Previous</button>
+                        </form>
+                    <?php endif; ?>
+                    <!-- Display the current page -->
+                    <span>Page <?= $currentPage ?> of <?= $totalPages ?></span>
+                    <!-- Next Button -->
+                    <?php if ($currentPage < $totalPages): ?>
+                        <form method="post">
+                            <button type="submit" name="next">Next</button>
+                        </form>
+                    <?php endif; ?>
+
+                   
+                </div>
             <table class="plans-table">
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Date Created</th>
+                        <th>Modification Date</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($plans as $plan): ?>
+                        <?php
+                        $dateCreated = new DateTime($plan['date_plan']);
+                        $dateModified = $dateCreated->diff(new DateTime());
+                        $currentDate = new DateTime();
+                        $formattedCurrentDate = $currentDate->format('Y-m-d H:i:s');
+                        $modificationDate = $dateModified->format('%d days ago');
+                        ?>
                         <tr>
                             <td>
                                 <a href="todotasks.php?planName=<?php echo urlencode($plan['nom']); ?>" class="plan-link" style="text-decoration: none; color: #000733; font-weight: bold;">
                                     <?php echo htmlspecialchars($plan['nom']); ?>
                                 </a></td>
+                            <td><?= $plan['date_plan']; ?></td>
+                            <td><?= $formattedCurrentDate; ?> <br> <?= $modificationDate; ?></td>
                             <td>
                                 <a href="modifyplan.php?id=<?php echo $plan['id']; ?>" class="btn modify-btn">Modify</a>
                                 <a href="deleteplan.php?nom=<?php echo urlencode($plan['nom']); ?>"class="btn delete-btn" onclick="return confirm('Are you sure you want to delete this plan?');">Delete</a>
@@ -92,6 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_plan'])) {
                     <?php endforeach; ?>
                 </tbody>
             </table>
+           
         </div>
     </div>
 </body>

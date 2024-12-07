@@ -1,6 +1,6 @@
 /* General container styles */
 .container {
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -8,9 +8,7 @@
 .add-plan-container {
     text-align: center;
     background-color: #f4f4f4;
-    padding: 30px;
     border-radius: 10px;
-    margin-bottom: 50px;
 }
 
 .add-plan-container h2 {
@@ -20,9 +18,9 @@
 }
 
 .add-plan-container input {
-    width: 60%;
+    width: 100%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
@@ -49,8 +47,8 @@
 
 /* Your Plans Section */
 .plans-container {
+    width: 90%;
     margin-top: 30px;
-    padding: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
 }
@@ -64,7 +62,7 @@
 /* Table styles */
 .plans-table {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
     border-collapse: collapse;
     border: 1px solid #ccc; /* Border around the table */
 }
@@ -106,8 +104,8 @@
 }
 
 .modify-btn:hover {
-    background-color: #000;
-    color: lightgreen;
+    background-color: #298700;
+    color: rgb(255, 255, 255);
 }
 
 /* Delete button default and hover styles */

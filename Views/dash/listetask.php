@@ -1,11 +1,31 @@
 <?php
-include('../../Controller/PlanController.php');
 
-// Instantiate the controller
+session_start();
+include('../../Controller/PlanController.php');
 $planController = new PlanController();
 
-// Fetch all tasks
-$tasks = $planController->listTasks();
+$limit = 7;
+// Get total tasks to calculate total pages
+$totalTasks = $planController->getTotalTasks();
+$totalPages = ceil($totalTasks / $limit); // Ensure this rounds up for cases with remainder
+
+// Initialize the current page from session (or default to 1 if not set)
+if (!isset($_SESSION['current_page_task'])) {
+    $_SESSION['current_page_task'] = 1;
+}
+// Get the current page from session
+$currentPage = $_SESSION['current_page_task'];
+
+// Check if Next or Previous button was clicked
+if (isset($_POST['next_task']) && $currentPage < $totalPages) {
+    $_SESSION['current_page_task']++; // Increase page number when Next is clicked
+} elseif (isset($_POST['previous_task']) && $currentPage > 1) {
+    $_SESSION['current_page_task']--; // Decrease page number when Previous is clicked
+}
+
+// Calculate the offset for the SQL query
+$offset = ($currentPage - 1) * $limit;
+$tasks = $planController->listTasks($offset, $limit);
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +38,7 @@ $tasks = $planController->listTasks();
 </head>
 <body align="center">
     <br>
+    <?php echo "Total Tasks: " . $totalTasks; ?>
 
     <!-- Task Table -->
     <table class="custom-table">
@@ -50,5 +71,12 @@ $tasks = $planController->listTasks();
             <?php endif; ?>
         </tbody>
     </table>
+    <br>
+     <!-- Pagination Controls -->
+     <form method="post">
+        <button type="submit" name="previous_task" <?php if ($currentPage <= 1) echo 'disabled'; ?>>Previous</button>
+        <span>Page <?php echo $currentPage; ?> of <?php echo $totalPages; ?></span>
+        <button type="submit" name="next_task" <?php if ($currentPage >= $totalPages) echo 'disabled'; ?>>Next</button>
+    </form>
 </body>
 </html>

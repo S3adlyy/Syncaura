@@ -14,7 +14,7 @@ class PlanController
     
     public function addPlan($nom)
     {
-        $date_plan = date('Y-m-d'); // Set the current date as the date_plan
+        $date_plan = date('Y-m-d H:i:s'); // Set the current date as the date_plan
         $sql = "INSERT INTO plan (nom, date_plan) VALUES (:nom, :date_plan)";
         $db = config::getConnexion();
         try {
@@ -31,7 +31,18 @@ class PlanController
         }
 
     }
-
+ // This function will fetch plans from the database without pagination
+        public function listPlansALL()
+        {
+            $sql = "SELECT * FROM plan";
+            $db = config::getConnexion();
+            try {
+                $result = $db->query($sql);
+                return $result->fetchAll();
+            } catch (Exception $e) {
+                die('Error: ' . $e->getMessage());
+            }
+        }
  // This function will fetch plans from the database with pagination
  public function listPlans($offset = 0, $limit = 7)
  {
@@ -148,17 +159,52 @@ public function listTaskByPlanName($planName) {
     }
 }
 
+public function getTotalTasksByPlanName($planName)
+{
+    try {
+        $pdo = config::getConnexion();
+        // Use plan_name to count tasks
+        $query = $pdo->prepare("SELECT COUNT(*) AS total FROM tachee WHERE plan_name = :planName");
+        $query->execute(['planName' => $planName]);
+        $result = $query->fetch();
+        return $result['total'];
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
 /////////////////////
-public function listTasks() {
-    $sql = "SELECT * FROM tachee";
+// Fetch tasks with pagination
+public function listTasks($offset = 0, $limit = 7) {
+    $sql = "SELECT * FROM tachee LIMIT :limit OFFSET :offset";
     $db = config::getConnexion();
     try {
-        $result = $db->query($sql);
-        return $result->fetchAll();
+        // Prepare the query
+        $stmt = $db->prepare($sql);
+        // Bind parameters
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+        // Execute the query
+        $stmt->execute();
+        // Fetch all results
+        return $stmt->fetchAll();
     } catch (Exception $e) {
         die('Error: ' . $e->getMessage());
     }
 }
+// Get the total number of tasks
+public function getTotalTasks() {
+    $sql = "SELECT COUNT(*) AS total FROM tachee";
+    $db = config::getConnexion();
+    try {
+        $result = $db->query($sql);
+        $row = $result->fetch();
+        return $row['total'];
+    } catch (Exception $e) {
+        die('Error: ' . $e->getMessage());
+    }
+}
+//////////////////////////
 public function deleteTask($taskId, $planName) {
     $sql = "DELETE FROM tachee WHERE id = :id AND plan_name = :planName";
     $db = config::getConnexion();
