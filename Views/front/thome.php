@@ -58,7 +58,7 @@ include '../../models/like_post.php';
                     <li><a href="loading_screen/loading_p.html">Pomodoro Timer</a></li>
                     <li><a href="loading_screen/loadngg.php">Acheter un Pack</a></li>
                     <li><a href="todo.php">To Do List</a></li>
-                    <li><a href="contact.php">Support Client</a></li>
+                    <li><a href="loading_screen/loading_support.html">Support Client</a></li>
                     <li><a href="loading_screen/loadng.html">Chat</a></li>
                     <li><a href="loading_screen/loading_share.html">Share files</a></li>
                     <li><a href="loading_screen/loading_editor.html">Code Editor</a></li>
