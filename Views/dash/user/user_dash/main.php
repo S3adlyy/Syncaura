@@ -25,7 +25,7 @@ echo 'Username: ' . $_SESSION["username"];
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="author" content="Untree.co">
   <link rel="shortcut icon" href="imggg.png">
@@ -34,6 +34,8 @@ echo 'Username: ' . $_SESSION["username"];
   <meta name="keywords" content="bootstrap, bootstrap4" />
 
   <link href="https://fonts.googleapis.com/css2?family=Display+Playfair:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
@@ -46,17 +48,9 @@ echo 'Username: ' . $_SESSION["username"];
   <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
   <link rel="stylesheet" href="css/aos.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/stylo.css">
+  <title>Learner Free Bootstrap Template by Untree.co</title>
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-      display: flex; /* Use flexbox for centering */
-      justify-content: center; /* Center horizontally */
-      align-items: center; /* Center vertically */
-    }
 
     .spline-viewer {
       position: fixed;
@@ -134,93 +128,92 @@ echo 'Username: ' . $_SESSION["username"];
     </div>
     <div class="site-mobile-menu-body"></div>
   </div>
-
-  <nav class="site-nav mb-5">
-    <div class="pb-2 top-bar mb-3">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-6 col-lg-9">
-            <a href="#" class="small mr-3"><span class="icon-question-circle-o mr-2"></span> <span class="d-none d-lg-inline-block">contacter les développeurs</span></a>
-            <a href="#" class="small mr-3"><span class="icon-phone mr-2"></span> <span class="d-none d-lg-inline-block">+216 54171319</span></a>
-            <a href="./contact/loding2.php" class="small mr-3"><span class="icon-envelope mr-2"></span> <span class="d-none d-lg-inline-block">Contact Us Via Email</span></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="sticky-nav js-sticky-header">
-      <div class="container position-relative">
-        <div class="site-navigation text-center">
-          <ul class="js-clone-nav d-none d-lg-inline-block site-menu">
-            <li class="has-children">
-            <li>
-              <!-- Profile display block -->
-              <div class="profile-block">
+  <div class="profile-block">
                 <img src="<?php echo $profile_picture; ?>" alt="Profile Picture">
                 <h2>Welcome, <?php echo $username; ?>!</h2>
                 <a href="../../../../Views/front/sign/signin.php">log out </a>
               </div>
-            </li>
-            <li>
-            </li>
-            <li><a href="../../../front/loading_screen/loading_p.html">Pomodoro Timer</a></li>
-            <li><a href="../../../front/loading_screen/loadngg.php">Acheter un Pack</a></li>
-            <li><a href="todo.php">To Do List</a></li>
-            <li><a href="contact.php">Contact les Développeurs</a></li>
-            <li><a href="../../../front/loading_screen/loadng.html">Chat</a></li>
-            <li><a href="../../../front/loading_screen/loading_editor.html">Code Editor</a></li>
-            <li><a href="../../../front/loading_screen/loading_share.html">Share files</a></li>
-            <li><a href="../../../front/loading_screen/laoding_modif.html">Modify Account</a></li>
-            <li><a href="../../../front/loading_screen/loading_meet.html">Meeting</a></li>
-            <li><a href="../../../front/Ai/loding3.html">Ai ChatBot</a></li>
-          </ul>
-          <a href="#" class="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light" data-toggle="collapse" data-target="#main-navbar">
-            <span></span>
-          </a>
+
+    <nav class="site-nav mb-5 sticky-nav">
+    <div class="container position-relative">
+        <div class="site-navigation text-center">
+            <a href="main.html" class="logo menu-absolute m-0" align="left">SyncAura<span class="text-primary">.</span></a>
+            <ul class="site-menu d-flex justify-content-center align-items-center">
+                <li><a href="../../../front/loading_screen/loading_meet.html">Cree un meet</a></li>
+                <li><a href="../../../front/Ai/loding3.html">Ai ChatBot</a></li>
+                <li><a href="../../../front/loading_screen/loading_p.html">Pomodoro Timer</a></li>
+                <li><a href="../../../front/loading_screen/loadngg.php">Acheter un Pack</a></li>
+                <li><a href="todo.php">To Do List</a></li>
+                <li><a href="contact.php">Support Client</a></li>
+                <li><a href="../../../front/loading_screen/loadng.html">Chat</a></li>
+                <li><a href="../../../front/loading_screen/loading_share.html">Share files</a></li>
+                <li><a href="../../../front/loading_screen/loading_editor.html">Code Editor</a></li>
+                <li><a href="../../../front/loading_screen/loading_thome.html">Blog</a></li>
+            </ul>
         </div>
-      </div>
     </div>
-  </nav>
+</nav>
+  
 
   <div class="untree_co-hero overlay" style="background-image: url('images/hero-img-1-min.jpg');">
-    <div class="container">
-      <div class="row align-items-center justify-content-center">
-        <div class="col-12">
-          <div class="row justify-content-center">
-            <div class="col-lg-6 text-center">
-              <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Collaborez en Direct Réussissez Ensemble</h1>
-              <p class="mb-0" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-secondary">Crée une salle de project</a></p>
-            </div>
-          </div>
-        </div>
-      </div> <!-- /.row -->
-    </div> <!-- /.container -->
-  </div> <!-- /.untree_co-hero -->
 
-  <div class="spline-viewer">
-    <spline-viewer url="https://prod.spline.design/O4wdVneKYyKKbJbX/scene.splinecode"></spline-viewer>
+
+<div class="container">
+  <div class="row align-items-center justify-content-center">
+    <!-- Welcome text section -->
+  <div class="welcome-text-container">
+  <h1 class="welcome-text" style="margin-right:400px">Welcome to SyncAura</h1>
   </div>
+  <button class="fullscreen-icon" onclick="toggleFullscreen()">⛶</button>
 
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.fancybox.min.js"></script>
-  <script src="js/jquery.sticky.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/custom.js"></script>
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
 
-  <script>
-    window.onload = function() {
-        const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
-        if (shadowRoot) {
-            const logo = shadowRoot.querySelector('#logo');
-            if (logo) logo.remove();
-        }
-    }
-  </script>
+
+    <div class="col-12">
+
+      <div class="row justify-content-center ">
+
+        <div class="col-lg-6 text-center ">
+          <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Collaborez en Direct Réussissez Ensemble</h1>
+          <p class="mb-0" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-secondary">Crée une salle de project </a></p>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div> <!-- /.row -->
+</div> <!-- /.container -->
+
+</div> <!-- /.untree_co-hero -->
+<div class="spline-viewer">
+  <spline-viewer url="https://prod.spline.design/O4wdVneKYyKKbJbX/scene.splinecode"></spline-viewer>
+</div>
+
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.animateNumber.min.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.fancybox.min.js"></script>
+<script src="js/jquery.sticky.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/custom.js"></script>
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
+
+<script src="main.js"></script>
+<script>
+  window.onload = function() {
+      const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
+      if (shadowRoot) {
+          const logo = shadowRoot.querySelector('#logo');
+          if (logo) logo.remove();
+      }
+  }
+</script>
+
 
 </body>
 </html>

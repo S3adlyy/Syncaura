@@ -80,6 +80,7 @@ $packs = $PackController->listPacks(); // Fetch all packs data
             <li><a href="loading_screen/loading_share.html">Share files</a></li>
             <li><a href="loading_screen/laoding_modif.html">Modify Account</a></li>
             <li><a href="loading_screen/loading_meet.html">Meeting</a></li>
+            <li><a href="loading_screen/loading_thome.html">blog</a></li>
             </ul>
         </div>
     </div>
