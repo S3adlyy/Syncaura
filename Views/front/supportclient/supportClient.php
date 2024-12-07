@@ -134,6 +134,34 @@ $questions = $questionsC->listquestion();
         .button1:hover i {
             transform: rotate(15deg);
         }
+        .cool-link {
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Ensures proper alignment */
+}
+
+    .cool-button {
+  background: linear-gradient(45deg, #007BFF, #00D4FF); /* Blue gradient */
+  color: white; /* White text */
+  border: none; /* Remove default border */
+  border-radius: 20px; /* Rounded corners */
+  padding: 10px 20px; /* Space around the text */
+  font-size: 16px; /* Font size */
+  font-weight: bold; /* Bold text */
+  cursor: pointer; /* Pointer cursor on hover */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: all 0.3s ease; /* Smooth transition */
+    }
+
+    .cool-button:hover {
+  background: linear-gradient(45deg, #00D4FF, #007BFF); /* Inverse gradient on hover */
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+  transform: translateY(-2px); /* Slight lift on hover */
+    }
+
+    .cool-button:active {
+  transform: translateY(1px); /* Pressed effect */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Reduced shadow */
+    }
     </style>
 </head>
 <body>
@@ -178,6 +206,9 @@ $questions = $questionsC->listquestion();
         echo '</div>';
     }
     ?>
+    <a href="forum_ajoutquestion.php" class="cool-link">
+  <button class="cool-button">Ajouter Question</button>
+    </a>
 </div>
 
 </body>
