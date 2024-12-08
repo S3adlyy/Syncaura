@@ -1,5 +1,7 @@
-
 const socket = io("http://localhost:3000");
+
+let completedTasksCount = 0; // Counter for tasks in the "Done" column
+let mood = ""; // Default mood
 
 const taskInput = document.getElementById("taskInput");
 const taskList = document.getElementById("taskList");
@@ -23,41 +25,18 @@ socket.on("initialize", () => {
 });
 
 // Listen for new tasks from the server
-socket.on("add task", (task) => {
-    document.getElementById("error-message").textContent = "";
-    addTaskToDOM(task);
-});
-document.getElementById("taskInput").addEventListener("input", () => {
-document.getElementById("error-message").textContent = ""; // Clear error message
- });
- // Listen for the modify task name event from the server
-socket.on("modify task name", (updatedTask) => {
-    const taskElement = document.getElementById(`task-${updatedTask.id}`);
-    if (taskElement) {
-        taskElement.innerText = updatedTask.text; // Update the task name in the UI
-    }
-});
-
-// Assume you have an "Edit" button for each task
-document.querySelectorAll('.edit-task-button').forEach(button => {
-    button.addEventListener('click', function() {
-        const taskId = this.dataset.taskId; // Assume taskId is stored in the data attribute of the button
-        const newTaskName = prompt('Enter new task name:'); // Get the new name from the user
-        
-        if (newTaskName) {
-            // Emit the modify task name event
-            socket.emit('modify task name', {
-                id: taskId,
-                text: newTaskName
-            });
-        }
+    socket.on("add task", (task) => {
+        document.getElementById("error-message").textContent = "";
+        addTaskToDOM(task);
     });
-});
+    document.getElementById("taskInput").addEventListener("input", () => {
+    document.getElementById("error-message").textContent = ""; // Clear error message
+    });
 
-// Listen for task deletions
-socket.on("delete task", (taskId) => {
-    deleteTaskFromDOM(taskId);
-});
+    // Listen for task deletions
+    socket.on("delete task", (taskId) => {
+        deleteTaskFromDOM(taskId);
+    });
 // Listen for task updates
 socket.on("update task", (updatedTask) => {
     const taskElement = document.getElementById(updatedTask.id);
@@ -111,7 +90,7 @@ function addTaskToDOM(task) {
     taskElement.innerHTML = `
         <span class="task-text">${task.text}</span>
         <button onclick="deleteTask('${task.id}')">Delete</button> <br>
-        <button  class='edit-task-button' style='z-index:3; data-task-id='1''>Edit</button>                 
+        <button class="edit-task-button">Edit</button>
 
     `;
     taskList.appendChild(taskElement);
@@ -131,52 +110,101 @@ function deleteTaskFromDOM(taskId) {
 }
 
 // Allow dropping tasks into columns
-function allowDrop(event) 
-{
+function allowDrop(event) {
     event.preventDefault();
 }
 
 // Handle task drop into a column (mark as completed or not)
-function drop(event) 
-{
+function drop(event) {
     event.preventDefault();
     const taskId = event.dataTransfer.getData("text/plain");
     const taskElement = document.getElementById(taskId);
     const taskText = taskElement.querySelector('.task-text').textContent;
 
     if (taskElement) {
-    const columnId = event.target.id;
-    let completed = false;
-    let inProgress = false;
-    let newEtat = 'To Do'; // Default state
+        const columnId = event.target.id;
+        let completed = false;
+        let inProgress = false;
+        let newEtat = 'To Do'; // Default state
 
-    // Check which column the task was dropped into and update the 'etat'
-    if (columnId === "doneColumn") {
-        taskElement.classList.add("completed");
-        completed = true;
-        newEtat = 'Done';  // Task moved to 'Done'
-        doneList.appendChild(taskElement);
-    } else if (columnId === "inProgressColumn") {
-        taskElement.classList.remove("completed");  // Remove completed class if moved to in-progress
-        inProgress = true;
-        newEtat = 'In Progress';  // Task moved to 'In Progress'
-        inProgressList.appendChild(taskElement);
-    } else {
-        taskElement.classList.remove("completed");  // Task removed from 'Done' state if moved back to 'To Do'
-        newEtat = 'To Do';  // Task moved back to 'To Do'
-        taskList.appendChild(taskElement);
+        if (columnId === "doneColumn") {
+            taskElement.classList.add("completed");
+            completed = true;
+            newEtat = 'Done';
+            doneList.appendChild(taskElement);
+        } else if (columnId === "inProgressColumn") {
+            taskElement.classList.remove("completed");
+            inProgress = true;
+            newEtat = 'In Progress';
+            inProgressList.appendChild(taskElement);
+        } else {
+            taskElement.classList.remove("completed");
+            newEtat = 'To Do';
+            taskList.appendChild(taskElement);
+        }
+
+        // Emit the updated task with the correct 'etat' value
+        socket.emit("update task", {
+            id: taskId,
+            completed,
+            inProgress,
+            text: taskText,
+            etat: newEtat
+        });
     }
-
-    // Emit the updated task with the correct 'etat' value
-    socket.emit("update task", {
-        id: taskId,
-        completed,
-        inProgress,
-        text: taskText,
-        etat: newEtat // Send the updated 'etat' based on the column
-    });
-   }
 }
+/////mood badge //
+document.getElementById("doneColumn").addEventListener("drop", (event) => {
+    event.preventDefault();
+
+    // Increment completed tasks counter
+    completedTasksCount++;
+
+    // Check if user qualifies for a badge
+    if (completedTasksCount === 3) {
+        const badgeName = badges[mood]; // Use currentMood for checking the badge
+        if (badgeName) {
+            showBadgePopup(badgeName);
+        }
+        completedTasksCount = 0; // Reset the counter
+    }
+});
+
+
+////////////////////edit task name////////////////////////////
+
+// Add event listener for the edit buttons after the DOM loads
+document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("edit-task-button")) {
+        const taskElement = event.target.closest(".task");
+        const taskId = taskElement.id;
+        const taskTextSpan = taskElement.querySelector(".task-text");
+
+        const newTaskName = prompt("Enter the new task name:", taskTextSpan.textContent);
+
+        if (newTaskName && newTaskName.trim() !== "") {
+            socket.emit("modify task name", {
+                id: taskId,
+                text: newTaskName.trim(),
+            });
+        }
+    }
+});
+
+// Listen for the updated task from the server
+socket.on("modify task name", (updatedTask) => {
+    const taskElement = document.getElementById(updatedTask.id);
+    if (taskElement) {
+        const taskTextSpan = taskElement.querySelector(".task-text");
+        taskTextSpan.textContent = updatedTask.text;
+    }
+});
+
+
+// Listen for task name errors from the server
+socket.on("task error", (error) => {
+    alert(error.message); // Display error to the user
+});
 
 ////////////////mood suggestions 
 const moodSelector = document.getElementById('mood');
@@ -215,68 +243,105 @@ motivated: [
 };
 
 moodSelector.addEventListener('change', function () {
-const mood = moodSelector.value;
+mood = moodSelector.value;
 const moodSuggestions = suggestions[mood];
-
 // Clear previous content
 suggestionText.textContent = '';
-const existingButton = document.getElementById('relax-game-button');
-if (existingButton) existingButton.remove();
-
 if (moodSuggestions && moodSuggestions.length > 0) {
 // Generate a random suggestion
 const randomSuggestion = moodSuggestions[Math.floor(Math.random() * moodSuggestions.length)];
 suggestionText.textContent = randomSuggestion;
-
-// Add a 'Try a game to relax' button if the mood is stressed
-if (mood === 'stressed') {
-    const relaxButton = document.createElement('button');
-    relaxButton.id = 'relax-game-button';
-    relaxButton.textContent = 'Try a game to relax';
-    relaxButton.style.cssText = `
-        margin-top: 10px; 
-        padding: 8px 15px; 
-        background-color: #4CAF50; 
-        color: white; 
-        border: none; 
-        border-radius: 5px; 
-        cursor: pointer;
-        font-size: 14px;
-    `;
-    relaxButton.addEventListener('click', function () {
-        window.location.href = 'tapgame.php'; // Redirect to tapgame page
-    });
-
-    suggestionsContainer.appendChild(relaxButton);
-}
+ // Debugging: Output the current mood for verification
+ console.log("Current mood:",mood);
 } else {
 suggestionText.textContent = "Select a mood to see suggestions! 😊";
 }
-});
+} );
 
+
+// Badge details
+const badges = {
+    stressed: "Pressure Pro",
+    motivated: "Motivation King",
+    neutral: "Calm Achiever"
+};
+
+// Function to show badge popup
+function showBadgePopup(badgeName) {
+    // Create a popup container
+    const badgePopup = document.createElement("div");
+    badgePopup.className = "badge-popup";
+    
+    // Add animation and sound
+    const twinkleSound = new Audio("twinkle.mp3");
+    twinkleSound.play();
+
+    // Check badge name and set the corresponding image and message
+    if (badgeName === "Pressure Pro") {
+        badgePopup.innerHTML = `
+           <div id="badge-popup" class="badge-popup">
+                <img id="badge-image" src="images/Pressure Pro.png" alt="Badge" class="badge-image">
+                <div class="badge-text">Congratulations! Pressure Pro Unlocked!</div>
+            </div>
+        `;
+    } else if (badgeName === "Motivation King") {
+        badgePopup.innerHTML = `
+           <div id="badge-popup" class="badge-popup">
+                <img id="badge-image" src="images/Motivation King.png" alt="Badge" class="badge-image">
+                <div class="badge-text">Congratulations! Motivation King Unlocked!</div>
+            </div>
+        `;
+    } else if (badgeName === "Calm Achiever") {
+        badgePopup.innerHTML = `
+           <div id="badge-popup" class="badge-popup">
+                <img id="badge-image" src="images/Calm Achiever.png" alt="Badge" class="badge-image">
+                <div class="badge-text">Congratulations! Calm Achiever Unlocked!</div>
+            </div>
+        `;
+    }
+   // Show the badge popup by setting display to block
+   badgePopup.style.display = 'block';
+
+   // Append the badge popup to the body
+    document.body.appendChild(badgePopup);
+
+
+    // Remove popup after 5 seconds
+    setTimeout(() => {
+        badgePopup.remove();
+    }, 5000);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
 window.onload = function() {
     const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
     if (shadowRoot) {
         const logo = shadowRoot.querySelector('#logo');
         if (logo) logo.remove();
     }
-     // Initialize draggable tasks and attach delete button listeners
+    
+    // Initialize draggable tasks and attach delete button listeners
     const tasks = document.querySelectorAll('.task');
     tasks.forEach(task => {
-    // Ensure the task is draggable
-    task.setAttribute('draggable', 'true');
-    
-    // Add event listener for the delete button
-    const deleteButton = task.querySelector('button');
-    deleteButton.addEventListener('click', () => {
-        const taskId = task.id;
-        deleteTask(taskId); // Emit task deletion via socket
+        task.setAttribute('draggable', 'true');
+        
+        // Add event listener for the delete button
+        const deleteButton = task.querySelector('button');
+        deleteButton.addEventListener('click', () => {
+            const taskId = task.id;
+            deleteTask(taskId); // Emit task deletion via socket
+        });
+
+        // Ensure the task is draggable
+        task.ondragstart = (event) => {
+            event.dataTransfer.setData("text/plain", task.id);
+        };
     });
 
-// Ensure the task is draggable
-task.ondragstart = (event) => {
-    event.dataTransfer.setData("text/plain", task.id);
-    };
-});
-
-}
+    // Reinitialize drop events after page refresh
+    const columns = document.querySelectorAll('.column');
+    columns.forEach(column => {
+        column.ondrop = drop;
+        column.ondragover = allowDrop;
+    });
+};

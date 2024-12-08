@@ -5,15 +5,21 @@ include('../../Controller/PlanController.php');
 $planController = new PlanController();
 
 $limit = 7;
-// Get total tasks to calculate total pages
-$totalTasks = $planController->getTotalTasks();
-$totalPages = ceil($totalTasks / $limit); // Ensure this rounds up for cases with remainder
+// Get filters from the request 
+$nameFilter = isset($_POST['nameFilter']) ? '%' . $_POST['nameFilter'] . '%' : '';
+$dateFilter = isset($_POST['dateFilter']) ? $_POST['dateFilter'] : '';
+$etatFilter = isset($_POST['etatFilter']) ? '%' . $_POST['etatFilter'] . '%' : '';
 
-// Initialize the current page from session (or default to 1 if not set)
+// Get the total count of filtered tasks for pagination
+$totalFilteredTasks = $planController->getTotalFilteredTasks($nameFilter, $dateFilter, $etatFilter);
+
+// Calculate total pages based on filtered tasks
+$totalPages = ceil($totalFilteredTasks / $limit);
+
+// Get the current page from session
 if (!isset($_SESSION['current_page_task'])) {
     $_SESSION['current_page_task'] = 1;
 }
-// Get the current page from session
 $currentPage = $_SESSION['current_page_task'];
 
 // Check if Next or Previous button was clicked
@@ -23,9 +29,12 @@ if (isset($_POST['next_task']) && $currentPage < $totalPages) {
     $_SESSION['current_page_task']--; // Decrease page number when Previous is clicked
 }
 
-// Calculate the offset for the SQL query
+// Calculate the offset for the SQL query based on the filtered tasks
 $offset = ($currentPage - 1) * $limit;
-$tasks = $planController->listTasks($offset, $limit);
+
+// Get the list of tasks with filters and pagination
+$tasks = $planController->listTasksWithFilter($offset, $limit, $nameFilter, $dateFilter, $etatFilter);
+
 ?>
 
 <!DOCTYPE html>
@@ -34,12 +43,70 @@ $tasks = $planController->listTasks($offset, $limit);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task List</title>
+
     <link rel="stylesheet" href="styleplandash.css">
+    <style>
+        body {
+            background-color: #f4f7fc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        table.custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table.custom-table th, table.custom-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        table.custom-table th {
+            background-color: #355ccc;
+            color: white;
+        }
+
+        table.custom-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table.custom-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }    
+    
+    
+    </style>
+
+    
 </head>
 <body align="center">
     <br>
-    <?php echo "Total Tasks: " . $totalTasks; ?>
+    <?php echo "Total Tasks: " . $totalFilteredTasks; ?>
+    <form method="post">
+    <input type="text" name="nameFilter" placeholder="Filter by task name">
+    <input type="date" name="dateFilter" placeholder="Filter by date">
+    <input type="text" name="etatFilter" placeholder="Filter by status">
+    <button type="submit">Apply Filters</button>
+</form>
 
+<!-- Display filtered task list and pagination -->
+    <br>
     <!-- Task Table -->
     <table class="custom-table">
         <thead>

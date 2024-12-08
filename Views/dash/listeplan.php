@@ -25,11 +25,71 @@ if (isset($_POST['next']) && $currentPage < $totalPages) {
 }
 // Calculate the offset for the SQL query
 $offset = ($currentPage - 1) * $limit;
-$plans = $planController->listPlans($offset, $limit);
+
+// Get filters from the request (for example, from a search form)
+$nameFilter = isset($_POST['nameFilter']) ? '%' . $_POST['nameFilter'] . '%' : '';
+$dateFilter = isset($_POST['dateFilter']) ? $_POST['dateFilter'] : '';
+
+// Get the list of plans with filters
+$plans = $planController->listPlansWithFilter($offset, $limit, $nameFilter, $dateFilter);
+
 ?>
 
 <!-- Link to external CSS file -->
 <link rel="stylesheet" href="styleplandash.css">
+<style>
+        body {
+            background-color: #f4f7fc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        table.custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table.custom-table th, table.custom-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        table.custom-table th {
+            background-color: #355ccc;
+            color: white;
+        }
+
+        table.custom-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table.custom-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }    
+    
+    
+    </style>
+<br>
+<form method="post">
+    <input type="text" name="nameFilter" placeholder="Filter by plan name">
+    <input type="date" name="dateFilter" placeholder="Filter by date">
+    <button type="submit">Apply Filters</button>
+</form>
 <br>
 <!-- Updated table with custom styles -->
 <table class="custom-table">

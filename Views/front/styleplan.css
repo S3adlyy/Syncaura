@@ -18,7 +18,7 @@
 }
 
 .add-plan-container input {
-    width: 100%;
+    width: 50%;
     padding: 10px;
     margin: 10px;
     border: 1px solid #ccc;
@@ -47,6 +47,7 @@
 
 /* Your Plans Section */
 .plans-container {
+    margin-top: 100px;
     width: 90%;
     margin-top: 30px;
     background-color: #f9f9f9;
@@ -60,30 +61,7 @@
 }
 
 /* Table styles */
-.plans-table {
-    width: 100%;
-    margin-top: 10px;
-    border-collapse: collapse;
-    border: 1px solid #ccc; /* Border around the table */
-}
 
-.plans-table th {
-    background-color: #000733;
-    color: white;
-    text-align: left;
-    padding: 15px;
-}
-
-.plans-table td {
-    padding: 15px;
-    border-bottom: 1px solid #ccc; /* Line only between rows */
-    font-size: 16px;
-}
-
-/* Remove border on the last row */
-.plans-table tr:last-child td {
-    border-bottom: none;
-}
 
 /* Modify and Delete buttons */
 .btn {

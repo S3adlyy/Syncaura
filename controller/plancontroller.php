@@ -215,6 +215,142 @@ public function deleteTask($taskId, $planName) {
         die('Error: ' . $e->getMessage());
     }
 }
+//////////////////filter
+public function listPlansWithFilter($offset = 0, $limit = 7, $nameFilter = '', $dateFilter = '')
+{
+    // Prepare the base SQL query
+    $sql = "SELECT * FROM plan WHERE 1";
+
+    // Add filter conditions if provided
+    if (!empty($nameFilter)) {
+        $sql .= " AND nom LIKE :nameFilter";
+    }
+    if (!empty($dateFilter)) {
+        $sql .= " AND date_plan = :dateFilter";
+    }
+
+    // Add pagination
+    $sql .= " LIMIT :limit OFFSET :offset";
+    
+    $db = config::getConnexion();
+    try {
+        // Prepare the query
+        $stmt = $db->prepare($sql);
+
+        // Bind parameters for filters
+        if (!empty($nameFilter)) {
+            $stmt->bindParam(':nameFilter', $nameFilter, PDO::PARAM_STR);
+        }
+        if (!empty($dateFilter)) {
+            $stmt->bindParam(':dateFilter', $dateFilter, PDO::PARAM_STR);
+        }
+
+        // Bind parameters for pagination
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+
+        // Execute the query
+        $stmt->execute();
+
+        // Fetch all results
+        return $stmt->fetchAll();
+    } catch (Exception $e) {
+        die('Error: ' . $e->getMessage());
+    }
+}
+
+public function listTasksWithFilter($offset = 0, $limit = 7, $nameFilter = '', $dateFilter = '', $etatFilter = '')
+{
+    // Prepare the base SQL query
+    $sql = "SELECT * FROM tachee WHERE 1";
+
+    // Add filter conditions if provided
+    if (!empty($nameFilter)) {
+        $sql .= " AND nom LIKE :nameFilter";
+    }
+    if (!empty($dateFilter)) {
+        $sql .= " AND date = :dateFilter";
+    }
+    if (!empty($etatFilter)) {
+        $sql .= " AND etat LIKE :etatFilter";
+    }
+
+    // Add pagination
+    $sql .= " LIMIT :limit OFFSET :offset";
+    
+    $db = config::getConnexion();
+    try {
+        // Prepare the query
+        $stmt = $db->prepare($sql);
+
+        // Bind parameters for filters
+        if (!empty($nameFilter)) {
+            $stmt->bindParam(':nameFilter', $nameFilter, PDO::PARAM_STR);
+        }
+        if (!empty($dateFilter)) {
+            $stmt->bindParam(':dateFilter', $dateFilter, PDO::PARAM_STR);
+        }
+        if (!empty($etatFilter)) {
+            $stmt->bindParam(':etatFilter', $etatFilter, PDO::PARAM_STR);
+        }
+
+        // Bind parameters for pagination
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+
+        // Execute the query
+        $stmt->execute();
+
+        // Fetch all filtered tasks
+        return $stmt->fetchAll();
+    } catch (Exception $e) {
+        die('Error: ' . $e->getMessage());
+    }
+}
+
+public function getTotalFilteredTasks($nameFilter = '', $dateFilter = '', $etatFilter = '')
+{
+    // Prepare the base SQL query for counting tasks with filters
+    $sql = "SELECT COUNT(*) FROM tachee WHERE 1";
+
+    // Add filter conditions if provided
+    if (!empty($nameFilter)) {
+        $sql .= " AND nom LIKE :nameFilter";
+    }
+    if (!empty($dateFilter)) {
+        $sql .= " AND date = :dateFilter";
+    }
+    if (!empty($etatFilter)) {
+        $sql .= " AND etat LIKE :etatFilter";
+    }
+
+    $db = config::getConnexion();
+    try {
+        // Prepare the query
+        $stmt = $db->prepare($sql);
+
+        // Bind parameters for filters
+        if (!empty($nameFilter)) {
+            $stmt->bindParam(':nameFilter', $nameFilter, PDO::PARAM_STR);
+        }
+        if (!empty($dateFilter)) {
+            $stmt->bindParam(':dateFilter', $dateFilter, PDO::PARAM_STR);
+        }
+        if (!empty($etatFilter)) {
+            $stmt->bindParam(':etatFilter', $etatFilter, PDO::PARAM_STR);
+        }
+
+        // Execute the query
+        $stmt->execute();
+
+        // Fetch the count of filtered tasks
+        return $stmt->fetchColumn();
+    } catch (Exception $e) {
+        die('Error: ' . $e->getMessage());
+    }
+}
+
+
 
 }
 ?>

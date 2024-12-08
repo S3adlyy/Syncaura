@@ -51,8 +51,8 @@ $tasks = $planController->listTaskByPlanName($planName);
 .container {
     display: flex;
     justify-content: space-around;
-    width: 95%; /* Improve responsiveness */
-    max-width: 1200px;
+    width: 100%; /* Improve responsiveness */
+    height:1200px;
     position: relative;
     z-index: 2;
     background-color: rgba(255, 255, 255, 0.9);
@@ -70,7 +70,7 @@ $tasks = $planController->listTaskByPlanName($planName);
     width: 30%;
     padding: 20px;
     overflow-y: auto;
-    max-height: 500px;
+    max-height: 800px;
     position: relative;
     transition: background-color 0.3s, box-shadow 0.3s;
 }
@@ -184,6 +184,7 @@ button:hover {
 .new-section {
     left: 10px;   /* Horizontal position (X) */
     top: 50px;   /* Horizontal position (X) */
+    width:100%;
     margin-top: 20px; /* Add space between the columns and the new section */
     padding: 20px;
     z-index: 2;
@@ -205,6 +206,59 @@ button:hover {
         transform: translateY(0);
     }
 }
+/* Badge popup styles */
+.badge-popup {
+    position: fixed;
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 60px;
+    border-radius: 10px;
+    text-align: center;
+    display: block; /* Ensure it's visible */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+    animation: glow-animation 1s infinite alternate; /* Glow effect */
+}
+
+.badge-image {
+    max-width: 300px;
+    margin-bottom: 15px;
+    animation: twinkle-animation 5s linear;
+}
+
+.badge-text {
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Glowing effect */
+@keyframes glow-animation {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 30px rgba(255, 255, 255, 1);
+    }
+}
+
+/* Twinkling animation */
+@keyframes twinkle-animation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
     </style>
 </head>
 <body>
@@ -224,7 +278,7 @@ button:hover {
                             <span class='task-text'>{$task['nom']}</span>
                             <button onclick='deleteTask(\"{$task['id']}\")'>Delete</button> <br>
 
-                            <button  class='edit-task-button' style='z-index:3; data-task-id='1''>Edit</button>                 
+                            <button  class='edit-task-button''>Edit</button>                 
           
                     </div>";
             }
@@ -240,7 +294,7 @@ button:hover {
             echo "<div class='task' id='{$task['id']}' draggable='true'>
                         <span class='task-text'>{$task['nom']}</span>
                         <button onclick='deleteTask(\"{$task['id']}\")'>Delete</button> <br>    
-                        <button  class='edit-task-button' style='z-index:3; data-task-id='1''>Edit</button>                                                     
+                        <button  class='edit-task-button''>Edit</button>                                                     
                 </div>";
                     }
             } ?>
@@ -255,7 +309,7 @@ button:hover {
             echo "<div class='task' id='{$task['id']}' draggable='true'>
                         <span class='task-text'>{$task['nom']}</span>
                         <button onclick='deleteTask(\"{$task['id']}\")'>Delete</button> <br>
-                        <button  class='edit-task-button' style='z-index:3; data-task-id='1''>Edit</button>                 
+                        <button  class='edit-task-button''>Edit</button>                 
                 </div>";
                 }
                 } ?>
@@ -279,6 +333,17 @@ button:hover {
             <a href="tapgame.php?planName=<?php echo urlencode($_GET['planName']); ?>"style="text-decoration: none; color: #4CAF50; font-weight: bold;">Play "Catch the Emoji" Game to relax 🎮</a>
         </div>
 </div> 
+<!--
+<div id="badge-popup" class="badge-popup">
+    <img id="badge-image" src="images/Motivation King.png" alt="Badge" class="badge-image">
+    <div class="badge-text">Congratulations! You unlocked a new badge!</div>
+</div>
+            -->
+
+
+
+
+<!-- ////////////////////SPLINE/////////////////// -->
 
     <div class="spline-viewer">
         <spline-viewer url="https://prod.spline.design/NlYMwsWFwYQczsL5/scene.splinecode"></spline-viewer>

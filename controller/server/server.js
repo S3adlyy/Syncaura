@@ -77,29 +77,29 @@ io.on("connection", (socket) => {
 
     // Modify task name
     socket.on("modify task name", (updatedTask) => {
-        const validNamePattern = /^[a-zA-Z0-9 ]+$/; // Ensure the task name is valid
-
+        const validNamePattern = /^[a-zA-Z0-9 ]+$/; // Only allow letters, numbers, and spaces
+    
         if (!validNamePattern.test(updatedTask.text)) {
-            // If validation fails, send an error message back to the client
-            socket.emit("task error", {
-                message: "Task name should not contain special characters.",
-            });
+            socket.emit("task error", { message: "Task name should not contain special characters." });
             return;
         }
-
+    
         const sql = "UPDATE tachee SET nom = ? WHERE id = ?";
         const values = [updatedTask.text, updatedTask.id];
-
+    
         db.query(sql, values, (err, result) => {
             if (err) {
                 console.error("Error updating task name:", err);
+                socket.emit("task error", { message: "Database error occurred." });
                 return;
             }
-            console.log("Task name updated:", result);
-            io.emit("modify task name", updatedTask); // Broadcast the updated task name
-        });
-    });
     
+            console.log("Task name updated in database:", result);
+    
+            // Broadcast the updated task to all clients
+            io.emit("modify task name", updatedTask);
+        });
+    });    
     // Listen for task deletions
     socket.on("delete task", (taskId) => {
         const sql = "DELETE FROM tachee WHERE id = ?";

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catch the Symbols</title>
+    <title>Catch the Emojies</title>
     <style>
         html, body {
             margin: 0;
@@ -28,8 +28,8 @@
 
         .game-container {
             position: relative;
-            width: 500px;
-            height: 500px;
+            width: 700px;
+            height: 350px;
             border-radius: 15px;
             z-index: 2;
             overflow: hidden;
@@ -37,7 +37,8 @@
             flex-direction: column;
             align-items:center;
             padding: 10px;
-            background: rgba(255, 255, 255, 0.7); 
+            background: url('images/gamebackg.jpg') no-repeat center center; /* Set your image path */
+            background-size: cover; /* To make sure the image covers the entire container */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
@@ -95,12 +96,7 @@
     </div>
     <button class="return-btn" onclick="returnToTasks()">Return to Tasks</button>
 
-    <div class="spline-viewer">
-        <spline-viewer url="https://prod.spline.design/NlYMwsWFwYQczsL5/scene.splinecode"></spline-viewer>
-    </div>
-
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
-    <script>
+     <script>
         // DOM Elements
         const gameContainer = document.querySelector('.game-container');
         const timerElement = document.getElementById('time');
@@ -112,7 +108,7 @@
         let gameInterval;
 
         // Significant Symbols (related to productivity, focus, etc.)
-        const symbols = ['📚', '🕒', '✅', '💡', '🔥', '🏆', '🎯', '📈', '💻', '🌟'];
+        const symbols = ['☄️', '👽', '🌌', '🌠', '🌚', '🚀', '🛸', '🌞', '🪐', '🌟'];
         //trajectoire hyperbolique
         function animateSymbol(symbol) {
             let t = 0; // Time variable to control the position along the curve
@@ -141,7 +137,6 @@
                 const y = centerY + radius * Math.sin(t + phaseShift); // Y coordinate of the curved path
 
                 // Apply the updated position
-                symbol.style.transition = 'left 0.1s ease, top 0.1s ease'; // Smooth transition for each move
                 symbol.style.left = `${x}px`;
                 symbol.style.top = `${y}px`;
 
@@ -226,7 +221,7 @@
         // End the game
         function endGame() {
             alert(`Time's up! Your score is: ${score}`);
-            gameContainer.innerHTML = '<p style="font-weight:bold;">Reload the page to play again!!!</p>';
+            gameContainer.innerHTML = '<p style="color:white; font-weight:bold;">Reload the page to play again!!!</p>';
         }
 
         // Return to Tasks
@@ -239,5 +234,11 @@
         // Initialize the game
         window.onload = startGame;
     </script>
+   <div class="spline-viewer">
+        <spline-viewer url="https://prod.spline.design/NlYMwsWFwYQczsL5/scene.splinecode"></spline-viewer>
+    </div>
+
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
+
 </body>
 </html>
