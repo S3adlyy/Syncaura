@@ -239,6 +239,15 @@
     </div>
 
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
+    <script>
+        window.onload = function() {
+    const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
+    if (shadowRoot) {
+        const logo = shadowRoot.querySelector('#logo');
+        if (logo) logo.remove();
+    }
+}
+    </script>
 
 </body>
 </html>

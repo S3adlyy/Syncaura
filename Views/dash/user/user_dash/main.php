@@ -144,7 +144,7 @@ echo 'Username: ' . $_SESSION["username"];
                 <li><a href="../../../front/loading_screen/loading_p.html">Pomodoro Timer</a></li>
                 <li><a href="../../../front/loading_screen/loadngg.php">Acheter un Pack</a></li>
                 <li><a href="../../../front/todolist/loading_todo.html">To Do List</a></li>
-                <li><a href="../../../front/loading_screen/loading_support.html">Support Client</a></li>
+                <li><a href="#">Support Client</a></li>
                 <li><a href="../../../front/loading_screen/loadng.html">Chat</a></li>
                 <li><a href="../../../front/loading_screen/loading_share.html">Share files</a></li>
                 <li><a href="../../../front/loading_screen/laoding_modif.html">Modify Account</a></li>

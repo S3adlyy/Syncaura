@@ -205,17 +205,6 @@ $questions = $questionsC->trierquestion($critere, $ordre);
                <i class="fas fa-fw fa-wrench"></i>
                <span>Blog</span>
            </a>
-           <a class="nav-link collapsed" href="table_questions.php" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-question"></i>
-                    <span >question support</span>
-                </a>
-
-                <a class="nav-link collapsed" href="table_reponse.php" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-reply"></i>
-                    <span >response support</span>
-                </a>
                 <a class="nav-link collapsed" href="../dash_todo/plandash.php" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>

@@ -60,7 +60,28 @@
     font-weight: bold;
 }
 
-/* Table styles */
+/* Table styles 
+.plans-table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+    border: 1px solid #ccc; 
+}
+.plans-table th {
+    background-color: #000733;
+    color: white;
+    text-align: left;
+    padding: 15px;
+}
+.plans-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ccc; 
+    font-size: 16px;
+}
+.plans-table tr:last-child td {
+    border-bottom: none;
+}
+*/
 
 
 /* Modify and Delete buttons */

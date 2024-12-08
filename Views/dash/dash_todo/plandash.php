@@ -84,17 +84,6 @@
                <i class="fas fa-fw fa-wrench"></i>
                <span>Blog</span>
            </a>
-           <a class="nav-link collapsed" href="../dash_support/table_questions.php" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-question"></i>
-                    <span >question support</span>
-                </a>
-
-                <a class="nav-link collapsed" href="../dash_support/table_reponse.php" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-reply"></i>
-                    <span >response support</span>
-                </a>
                 <a class="nav-link collapsed" href="plandash.php" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>

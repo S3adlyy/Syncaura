@@ -1,10 +1,11 @@
 <?php
 session_start();
 include_once "../../../controller/plancontroller.php";
+
 $planController = new PlanController();
 
 // Set the number of results per page
-$limit = 7;
+$limit = 10;
 // Get total plans to calculate total pages
 $totalPlans = $planController->getTotalPlans();
 echo "Total Plans: " . $totalPlans;  // Add this line to debug
@@ -113,7 +114,7 @@ $plans = $planController->listPlansWithFilter($offset, $limit, $nameFilter, $dat
                 <tr>
                     <td><?= $plan['nom']; ?></td>
                     <td><?= $plan['date_plan']; ?></td>
-                    <td><?= $formattedCurrentDate; ?> <br> <?= $modificationDate; ?></td>
+                    <td><?= $formattedCurrentDate; ?>  <?= $modificationDate; ?></td>
                     <td>
                         <a href="deleteplan.php?nom=<?= urlencode($plan['nom']); ?>" class="btn-delete" onclick="return confirm('Are you sure you want to delete this plan?');">Delete</a>
                     </td>
