@@ -2,12 +2,30 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="author" content="Untree.co">
-    <link rel="shortcut icon" href="imggg.png">
-    <link href="https://fonts.googleapis.com/css2?family=Display+Playfair:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" type="image/x-icon" href="icon.png">
+
+
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap4" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Display+Playfair:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/animate.min.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="flaticon.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/stylo.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Change Password and Username</title>
@@ -59,6 +77,27 @@
 </head>
 
 <body>
+<nav class="site-nav mb-5 sticky-nav">
+    <div class="container position-relative">
+        <div class="site-navigation text-center">
+            <a href="../user_dash/main.php" class="logo menu-absolute m-0" align="left">SyncAura<span class="text-primary">.</span></a>
+            <ul class="site-menu d-flex justify-content-center align-items-center">
+                <li><a href="../../../front/loading_screen/loading_meet.html">Cree un meet</a></li>
+                <li><a href="../../../front/Ai/loding3.html">Ai ChatBot</a></li>
+                <li><a href="../../../front/loading_screen/loading_p.html">Pomodoro Timer</a></li>
+                <li><a href="../../../front/loading_screen/loadngg.php">Acheter un Pack</a></li>
+                <li><a href="../../../front/todolist/loading_todo.html">To Do List</a></li>
+                <li><a href="../../../front/loading_screen/loading_support.html">Support Client</a></li>
+                <li><a href="../../../front/loading_screen/loadng.html">Chat</a></li>
+                <li><a href="../../../front/loading_screen/loading_share.html">Share files</a></li>
+                <li><a href="../../../front/loading_screen/laoding_modif.html">Modify Account</a></li>
+                <li><a href="../../../front/loading_screen/loading_editor.html">Code Editor</a></li>
+                <li><a href="../../../front/loading_screen/loading_thome.html">Blog</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+  
     <div class="spline-viewer">
         <spline-viewer url="https://prod.spline.design/O4wdVneKYyKKbJbX/scene.splinecode"></spline-viewer>
     </div>

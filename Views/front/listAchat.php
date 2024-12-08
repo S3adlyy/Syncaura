@@ -96,13 +96,10 @@ $achats = $achatManager->showAchatWithImage(); // Récupérer les achats avec le
         echo '<div class="actions">';
         echo '<a href="editAchat.php?id=' . $achat['ida'] . '" class="btn btn-outline-primary">modifier</a>';
         echo '</div>';
-
-
-
         echo '<a href="deleteAchat.php?id=' . $achat['ida'] . '" class="btn btn-outline-danger">Supprimer</a>';
         echo '</div>';
         echo '</div>';
-        echo '</div>';
+        
     }
     ?>
   </div>

@@ -51,16 +51,17 @@ include '../../models/like_post.php';
     <nav class="site-nav mb-5 sticky-nav">
         <div class="container position-relative">
             <div class="site-navigation text-center">
-                <a href="main.html" class="logo menu-absolute m-0" align="left">SyncAura<span class="text-primary">.</span></a>
+                <a href="../dash/user/user_dash/main.php" class="logo menu-absolute m-0" align="left">SyncAura<span class="text-primary">.</span></a>
                 <ul class="site-menu d-flex justify-content-center align-items-center">
                     <li><a href="loading_screen/loading_meet.html">Cree un meet</a></li>
                     <li><a href="Ai/loding3.html">Ai ChatBot</a></li>
                     <li><a href="loading_screen/loading_p.html">Pomodoro Timer</a></li>
                     <li><a href="loading_screen/loadngg.php">Acheter un Pack</a></li>
-                    <li><a href="todo.php">To Do List</a></li>
+                    <li><a href="todolist/loading_todo.html">To Do List</a></li>
                     <li><a href="loading_screen/loading_support.html">Support Client</a></li>
                     <li><a href="loading_screen/loadng.html">Chat</a></li>
                     <li><a href="loading_screen/loading_share.html">Share files</a></li>
+                    <li><a href="loading_screen/laoding_modif.html">Modify Account</a></li>
                     <li><a href="loading_screen/loading_editor.html">Code Editor</a></li>
                     <li><a href="thome.php">blog</a></li>
 

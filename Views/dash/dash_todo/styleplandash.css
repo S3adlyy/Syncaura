@@ -1,0 +1,50 @@
+/* Custom Table Styles */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-table th, .custom-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.custom-table th {
+    background-color: #355CCC;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.custom-table td {
+    font-size: 14px;
+}
+
+.custom-table td {
+    white-space: nowrap;
+}
+
+/* Button Styles */
+.btn-delete {
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.btn-delete:hover {
+    text-decoration: underline;
+}
+.btn-search{
+    background-color: #355CCC;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-search:hover {
+    background-color: #83a2fe;
+}

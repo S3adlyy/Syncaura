@@ -136,7 +136,7 @@ $rep = $repC->trierreponse($critere, $ordre);
     <!-- Page Wrapper -->
     <div id="wrapper">
        
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+       <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                <div class="sidebar-brand-icon rotate-n-15">
                    <i class="fas fa-laugh-wink"></i>
@@ -145,7 +145,7 @@ $rep = $repC->trierreponse($critere, $ordre);
            </a>
            <hr class="sidebar-divider my-0">
            <li class="nav-item active">
-               <a class="nav-link" href="../dash.php">
+               <a class="nav-link" href="dash.php">
                    <i class="fas fa-fw fa-tachometer-alt"></i>
                    <span>Dashboard</span>
                </a>
@@ -215,6 +215,21 @@ $rep = $repC->trierreponse($critere, $ordre);
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-reply"></i>
                     <span >response support</span>
+                </a>
+                <a class="nav-link collapsed" href="../dash_todo/plandash.php" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Manage Plans </span>
+                </a>
+                <a class="nav-link collapsed" href="../dash_todo/taskdash.php" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Manage Tasks </span>
+                </a>
+                <a class="nav-link collapsed" href="../dash_todo/searchtaskdash.php" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Search Tasks </span>
                 </a>
        </ul>
 

@@ -145,7 +145,7 @@ $questions = $questionsC->trierquestion($critere, $ordre);
            </a>
            <hr class="sidebar-divider my-0">
            <li class="nav-item active">
-               <a class="nav-link" href="../dash.php">
+               <a class="nav-link" href="dash.php">
                    <i class="fas fa-fw fa-tachometer-alt"></i>
                    <span>Dashboard</span>
                </a>
@@ -215,6 +215,21 @@ $questions = $questionsC->trierquestion($critere, $ordre);
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-reply"></i>
                     <span >response support</span>
+                </a>
+                <a class="nav-link collapsed" href="../dash_todo/plandash.php" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Manage Plans </span>
+                </a>
+                <a class="nav-link collapsed" href="../dash_todo/taskdash.php" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Manage Tasks </span>
+                </a>
+                <a class="nav-link collapsed" href="../dash_todo/searchtaskdash.php" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Search Tasks </span>
                 </a>
        </ul>
 

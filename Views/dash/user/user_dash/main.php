@@ -28,7 +28,8 @@ echo 'Username: ' . $_SESSION["username"];
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="author" content="Untree.co">
-  <link rel="shortcut icon" href="imggg.png">
+  <link rel="shortcut icon" type="image/x-icon" href="icon.png">
+
 
   <meta name="description" content="" />
   <meta name="keywords" content="bootstrap, bootstrap4" />
@@ -38,7 +39,6 @@ echo 'Username: ' . $_SESSION["username"];
 
 
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/animate.min.css">
   <link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -49,7 +49,7 @@ echo 'Username: ' . $_SESSION["username"];
   <link rel="stylesheet" href="css/aos.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/stylo.css">
-  <title>Learner Free Bootstrap Template by Untree.co</title>
+  <title>Syncaura</title>
   <style>
 
     .spline-viewer {
@@ -143,10 +143,11 @@ echo 'Username: ' . $_SESSION["username"];
                 <li><a href="../../../front/Ai/loding3.html">Ai ChatBot</a></li>
                 <li><a href="../../../front/loading_screen/loading_p.html">Pomodoro Timer</a></li>
                 <li><a href="../../../front/loading_screen/loadngg.php">Acheter un Pack</a></li>
-                <li><a href="todo.php">To Do List</a></li>
+                <li><a href="../../../front/todolist/loading_todo.html">To Do List</a></li>
                 <li><a href="../../../front/loading_screen/loading_support.html">Support Client</a></li>
                 <li><a href="../../../front/loading_screen/loadng.html">Chat</a></li>
                 <li><a href="../../../front/loading_screen/loading_share.html">Share files</a></li>
+                <li><a href="../../../front/loading_screen/laoding_modif.html">Modify Account</a></li>
                 <li><a href="../../../front/loading_screen/loading_editor.html">Code Editor</a></li>
                 <li><a href="../../../front/loading_screen/loading_thome.html">Blog</a></li>
             </ul>

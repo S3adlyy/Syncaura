@@ -138,7 +138,7 @@
             <input type="text" id="type" name="type">
 
             <button type="submit">Ajouter</button>
-            <button type="button" onclick="window.location.href='table_questions.php'">Retour à la liste</button>
+            <button type="button" onclick="window.location.href='supportClient.php'">Retour à la liste</button>
         </form>
 
         <!-- Error message container -->
