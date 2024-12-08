@@ -21,9 +21,31 @@ $achats = $achatManager->showAchatWithImage(); // Récupérer les achats avec le
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    /* Style général */
+    /* General styles */
     body {
       font-family: 'Inter', sans-serif;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    /* Spline viewer as the background */
+    .spline-viewer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* Foreground content styles */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+      z-index: 2;
+      position: relative;
     }
 
     .card {
@@ -32,6 +54,7 @@ $achats = $achatManager->showAchatWithImage(); // Récupérer les achats avec le
       border-radius: 8px;
       padding: 15px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
     }
 
     .card img {
@@ -68,14 +91,16 @@ $achats = $achatManager->showAchatWithImage(); // Récupérer les achats avec le
       text-decoration: underline;
     }
 
-    .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+    .text-center {
+      z-index: 2;
+      position: relative;
     }
   </style>
 </head>
 <body>
+  <div class="spline-viewer ">
+  <spline-viewer url="https://prod.spline.design/UUgna2upZYWedWKa/scene.splinecode"></spline-viewer>
+  </div>
   <!-- Lien pour ajouter un nouvel achat -->
   <div class="text-center my-4">
     <a href="listPack.php" class="btn btn-primary">Faire un Achat !</a>
@@ -106,5 +131,17 @@ $achats = $achatManager->showAchatWithImage(); // Récupérer les achats avec le
 
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.48/build/spline-viewer.js"></script>
+  <script>
+   window.onload = function() {
+    const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
+    if (shadowRoot) {
+        const logo = shadowRoot.querySelector('#logo');
+        if (logo) logo.remove();
+    }
+}
+</script>
 </body>
 </html>
+
+
