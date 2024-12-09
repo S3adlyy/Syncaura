@@ -5,7 +5,7 @@ include('../../controller/plancontroller.php');
 $planController = new PlanController();
 
 // Set the number of results per page
-$limit = 7;
+$limit = 4;
 // Get total plans to calculate total pages
 $totalPlans = $planController->getTotalPlans();
 $totalPages = ceil($totalPlans / $limit); // Ensure this rounds up for cases with remainder
@@ -116,6 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_plan'])) {
     <div align="center" class="container" style="width:1000px; margin: 0;padding: 0;">
         <!-- Add Plan Form -->
         <div  style="height:220px;" class="add-plan-container">
+            <br>
             <h2>Add your plan name</h2>
             <form method="POST" action="" style="form-input">
                 <input type="text" name="nom" id="plan_name" placeholder="Enter plan name" 
@@ -157,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_plan'])) {
 
                    
                 </div>
-            <table style="    margin-left: 10px;" class="plans-table">
+            <table style="" class="custom-table">
                 <thead>
                     <tr>
                         <th>Name</th>

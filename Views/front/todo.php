@@ -330,17 +330,9 @@ button:hover {
         <div id="suggestions" class="suggestions-box">
             <h3>Suggestions</h3>
             <p id="suggestion-text">Select a mood to get started!😊</p>
-            <a href="tapgame.php?planName=<?php echo urlencode($_GET['planName']); ?>"style="text-decoration: none; color: #4CAF50; font-weight: bold;">Play "Catch the Emoji" Game to relax 🎮</a>
+            <a href="tapgame.html?planName=<?php echo urlencode($_GET['planName']); ?>"style="text-decoration: none; color: #4CAF50; font-weight: bold;">Play "Catch the Emoji" Game to relax 🎮</a>
         </div>
 </div> 
-<!--
-<div id="badge-popup" class="badge-popup">
-    <img id="badge-image" src="images/Motivation King.png" alt="Badge" class="badge-image">
-    <div class="badge-text">Congratulations! You unlocked a new badge!</div>
-</div>
-            -->
-
-
 
 
 <!-- ////////////////////SPLINE/////////////////// -->

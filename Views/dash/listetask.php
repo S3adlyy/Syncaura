@@ -4,7 +4,7 @@ session_start();
 include('../../Controller/PlanController.php');
 $planController = new PlanController();
 
-$limit = 7;
+$limit = 10;
 // Get filters from the request 
 $nameFilter = isset($_POST['nameFilter']) ? '%' . $_POST['nameFilter'] . '%' : '';
 $dateFilter = isset($_POST['dateFilter']) ? $_POST['dateFilter'] : '';

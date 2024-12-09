@@ -51,7 +51,7 @@
 
         .score {
             font-size: 20px;
-            color: #ffec03;
+            color: #FFB107;
             margin-bottom: 15px;
             font-weight: bold;
         }
@@ -86,21 +86,48 @@
         animation: slide linear infinite;
         transition: all 0.5s ease-in-out; /* Smooth movement over 0.5 seconds */
     }
+    #start-btn {
+        background-color:#FFCC01; /* Vibrant green */
+        color: white; /* Text color */
+        font-size: 20px; /* Font size */
+        font-weight: bold; /* Bold font */
+        padding: 15px 30px; /* Padding for button size */
+        border: none; /* Remove border */
+        border-radius: 10px; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor on hover */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+        transition: all 0.3s ease; /* Smooth hover effect */
+        margin: 20px auto; /* Center button */
+        display: block; /* Block element to center */
+    }
 
+    #start-btn:hover {
+        background-color: #FFB107; /* Slightly darker green on hover */
+        transform: scale(1.1); /* Slight zoom-in effect */
+        box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+    }
+
+    #start-btn:active {
+        transform: scale(0.95); /* Slight press-down effect */
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+    }
     </style>
 </head>
 <body>
     <div class="game-container">
-        <div align="right"class="timer">Time Left: <span id="time">30</span>s</div>
+        <div align="right" class="timer">Time Left: <span id="time">30</span>s</div>
         <div class="score">Score: <span id="score">0</span></div>
+        <br><br><br><br><br><br><br><br>
+        <button id="start-btn" class="z-index:999;" onclick="startGame()">Start Game</button>
     </div>
     <button class="return-btn" onclick="returnToTasks()">Return to Tasks</button>
 
-     <script>
+    <script>
         // DOM Elements
         const gameContainer = document.querySelector('.game-container');
         const timerElement = document.getElementById('time');
         const scoreElement = document.getElementById('score');
+        const startButton = document.getElementById('start-btn');
 
         // Game Variables
         let score = 0;
@@ -109,52 +136,8 @@
 
         // Significant Symbols (related to productivity, focus, etc.)
         const symbols = ['☄️', '👽', '🌌', '🌠', '🌚', '🚀', '🛸', '🌞', '🪐', '🌟'];
-        //trajectoire hyperbolique
-        function animateSymbol(symbol) {
-            let t = 0; // Time variable to control the position along the curve
-            const speed = 0.02; // Controls how fast the symbol moves along the arc
-            const centerX = gameContainer.clientWidth / 2;  // Center of the container (x-axis)
-            const centerY = gameContainer.clientHeight / 2; // Center of the container (y-axis)
-            const radius = Math.random() * 100 + 50; // Random radius for each symbol (size of the curve)
-            const phaseShift = Math.random() * Math.PI; // Random phase shift for variation in movement
 
-            // Set the initial position of the symbol offscreen or starting at the bottom (below center)
-            const initialX = centerX + radius * Math.cos(t + phaseShift);
-            const initialY = centerY + radius * Math.sin(t + phaseShift); // Starting below the center
-
-            symbol.style.left = `${initialX}px`;
-            symbol.style.top = `${initialY}px`;
-
-            // Add the symbol to the game container
-            gameContainer.appendChild(symbol);
-
-            // Move the symbol along the curved path
-            const moveInterval = setInterval(() => {
-                t += speed; // Increment time to move along the arc
-
-                // Calculate the new position based on the circular motion
-                const x = centerX + radius * Math.cos(t + phaseShift); // X coordinate of the curved path
-                const y = centerY + radius * Math.sin(t + phaseShift); // Y coordinate of the curved path
-
-                // Apply the updated position
-                symbol.style.left = `${x}px`;
-                symbol.style.top = `${y}px`;
-
-                // Remove the symbol after completing the half-circle
-                if (t > Math.PI) {  // Stop after half-circle (180 degrees)
-                    clearInterval(moveInterval);
-                    if (symbol.parentElement) {
-                        symbol.remove(); // Remove the symbol after completing its path
-                        createSymbol(); // Create a new symbol after the previous one finishes its movement
-                    }
-                }
-            }, 20); // Update position every 20ms for smoothness
-        }
-
-
-
-
-        // Create a new symbol
+        // Function to create and animate symbols
         function createSymbol() {
             const symbol = document.createElement('div');
             symbol.classList.add('symbol');
@@ -175,8 +158,13 @@
                 createSymbol(); // Add another symbol
             });
 
-            // Animate the symbol with hyperbolic movement
-            animateSymbol(symbol);
+            // Animate the symbol with random movement
+            const moveInterval = setInterval(() => {
+                const x = Math.random() * (gameContainer.clientWidth - 40);
+                const y = Math.random() * (gameContainer.clientHeight - 40);
+                symbol.style.left = `${x}px`;
+                symbol.style.top = `${y}px`;
+            }, 2000); // Symbol moves every 2 seconds
 
             gameContainer.appendChild(symbol);
 
@@ -189,19 +177,9 @@
             }, 5000); // Symbol disappears after 5 seconds if not clicked
         }
 
-
-        // Animate symbol movement
-        function animateSymbol(symbol) {
-            const moveInterval = setInterval(() => {
-                const x = Math.random() * (gameContainer.clientWidth - 40);
-                const y = Math.random() * (gameContainer.clientHeight - 40);
-                symbol.style.left = `${x}px`;
-                symbol.style.top = `${y}px`;
-            }, 2000); // Symbol moves every 600ms
-        }
-
         // Start the game
         function startGame() {
+            startButton.style.display = 'none'; // Hide the start button
             gameInterval = setInterval(() => {
                 timeLeft -= 1;
                 timerElement.textContent = timeLeft;
@@ -211,6 +189,10 @@
                     endGame();
                 }
             }, 1000);
+
+            // Play game sound
+            const gameSound = new Audio("gamesound.mp3");
+            gameSound.play();
 
             // Create multiple symbols at the start
             for (let i = 0; i < 5; i++) {
@@ -230,15 +212,13 @@
             const planName = urlParams.get('planName');
             window.location.href = `todotasks.php?planName=${planName}`;
         }
-
-        // Initialize the game
-        window.onload = startGame;
     </script>
-   <div class="spline-viewer">
+
+    <div class="spline-viewer">
         <spline-viewer url="https://prod.spline.design/NlYMwsWFwYQczsL5/scene.splinecode"></spline-viewer>
     </div>
 
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
-
 </body>
+
 </html>

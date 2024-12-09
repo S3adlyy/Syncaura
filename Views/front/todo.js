@@ -312,7 +312,7 @@ function showBadgePopup(badgeName) {
     }, 5000);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 window.onload = function() {
     const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
     if (shadowRoot) {
@@ -323,7 +323,7 @@ window.onload = function() {
     // Initialize draggable tasks and attach delete button listeners
     const tasks = document.querySelectorAll('.task');
     tasks.forEach(task => {
-        task.setAttribute('draggable', 'true');
+           task.setAttribute('draggable', 'true');
         
         // Add event listener for the delete button
         const deleteButton = task.querySelector('button');
