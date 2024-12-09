@@ -89,7 +89,20 @@ $tasks = $planController->listTasksWithFilter($offset, $limit, $nameFilter, $dat
         .btn-delete:hover {
             background-color: #c0392b;
         }    
-    
+        .filter{
+            background-color: #355CCC;
+            color: white;
+            padding: 5px 5px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .filter:hover {
+            background-color: #83a2fe;
+        }
+            
     
     </style>
 
@@ -102,7 +115,7 @@ $tasks = $planController->listTasksWithFilter($offset, $limit, $nameFilter, $dat
     <input type="text" name="nameFilter" placeholder="Filter by task name">
     <input type="date" name="dateFilter" placeholder="Filter by date">
     <input type="text" name="etatFilter" placeholder="Filter by status">
-    <button type="submit">Apply Filters</button>
+    <button type="submit" class="filter">Apply Filters</button>
 </form>
 
 <!-- Display filtered task list and pagination -->

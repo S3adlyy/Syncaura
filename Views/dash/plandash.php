@@ -51,7 +51,7 @@
         </ul>
         
         <!-- Content Area -->
-        <div class="container-fluid" style="margin-left: 200px; padding-top: 20px;">
+        <div class="container-fluid" style="margin-left: 150px; padding-top: 20px;">
             <h2 class="text-center" style="font-weight: bold; color:#355CCC;">Manage Plans</h2>
             
             <!-- Include the plans list from listeplan.php -->

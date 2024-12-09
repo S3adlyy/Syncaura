@@ -327,7 +327,7 @@ button:hover {
             <option value="stressed"> Stressed😟</option>
             <option value="motivated"> Motivated😁</option>
         </select>
-        <div id="suggestions" class="suggestions-box">
+        <div id="suggestions" class="suggestions-box" style="font-size:18px;">
             <h3>Suggestions</h3>
             <p id="suggestion-text">Select a mood to get started!😊</p>
             <a href="tapgame.html?planName=<?php echo urlencode($_GET['planName']); ?>"style="text-decoration: none; color: #4CAF50; font-weight: bold;">Play "Catch the Emoji" Game to relax 🎮</a>

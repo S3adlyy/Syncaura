@@ -119,6 +119,7 @@ if (isset($_POST['search']) && isset($_POST['plan'])) {
 
 <div >
     <!-- Form to select a plan and search for tasks -->
+     <br>
     <form action="searchtaskdash.php" method="POST">
         <label for="plan">Choose a plan:</label>
         <select name="plan" id="plan">

@@ -7,7 +7,6 @@ $planController = new PlanController();
 $limit = 10;
 // Get total plans to calculate total pages
 $totalPlans = $planController->getTotalPlans();
-echo "Total Plans: " . $totalPlans;  // Add this line to debug
 $totalPages = ceil($totalPlans / $limit); // Ensure this rounds up for cases with remainder
 
 // Initialize the current page from session (or default to 1 if not set)
@@ -81,14 +80,27 @@ $plans = $planController->listPlansWithFilter($offset, $limit, $nameFilter, $dat
         .btn-delete:hover {
             background-color: #c0392b;
         }    
-    
-    
+        .filter{
+            background-color: #355CCC;
+            color: white;
+            padding: 5px 5px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .filter:hover {
+            background-color: #83a2fe;
+        }
+            
     </style>
 <br>
+<?php echo "Total Plans: " . $totalPlans;  ?>
 <form method="post">
     <input type="text" name="nameFilter" placeholder="Filter by plan name">
     <input type="date" name="dateFilter" placeholder="Filter by date">
-    <button type="submit">Apply Filters</button>
+    <button type="submit" class="filter">Apply Filters</button>
 </form>
 <br>
 <!-- Updated table with custom styles -->
