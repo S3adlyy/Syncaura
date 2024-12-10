@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" type="image/x-icon" href="img.png">
+    <link rel="shortcut icon" href="imgggg.png">
     <style>
         /* Global styles */
         body {
@@ -98,6 +98,9 @@
     </style>
 </head>
 <body>
+<div class="spline-viewer">
+        <spline-viewer url="https://prod.spline.design/O4wdVneKYyKKbJbX/scene.splinecode"></spline-viewer>
+    </div>
     <form id="registrationForm" action="../../../controller/usersign/SignupController.php" method="post" enctype="multipart/form-data">
         <h1>Signup Form</h1>
 
@@ -267,6 +270,16 @@
             event.preventDefault();
         }
     });
+    </script>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
+    <script>
+        window.onload = function() {
+            const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
+            if (shadowRoot) {
+                const logo = shadowRoot.querySelector('#logo');
+                if (logo) logo.remove();
+            }
+        }
     </script>
 </body>
 </html>

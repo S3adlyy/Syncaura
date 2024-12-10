@@ -38,7 +38,7 @@
     .button-container {
       position: absolute;
       top: 50%;
-      left: 50%;
+      left: 30%;
       transform: translate(-50%, -50%);
       text-align: center;
       z-index: 10;
@@ -98,9 +98,6 @@
         <div class="site-navigation d-flex justify-content-between align-items-center">
           <a href="index.html" class="logo menu-absolute m-0">SyncAura<span class="text-primary">.</span></a>
           <ul class="js-clone-nav d-lg-inline-block site-menu d-flex align-items-center">
-            <li class="nav-item"><a href="index.html">Home</a></li>
-            <li class="nav-item"><a href="about.html">About Us</a></li>
-            <li class="nav-item"><a href="contact.html">Contact</a></li>
           </ul>
           <a href="#" class="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light">
             <span></span>
@@ -132,7 +129,7 @@
   </div>
 
   <div class="spline-viewer">
-    <spline-viewer url="https://prod.spline.design/O4wdVneKYyKKbJbX/scene.splinecode"></spline-viewer>
+  <spline-viewer url="https://prod.spline.design/vtn4AYoz9pdMnTBF/scene.splinecode"></spline-viewer>
   </div>
 
   <script src="js/jquery-3.4.1.min.js"></script>

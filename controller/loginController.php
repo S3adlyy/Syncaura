@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["profile_picture"] = $user["profile_picture"]; // Ensure profile picture is saved
 
         // Redirect to the user dashboard (main.php or wherever you want)
-        header("Location: ../Views/dash/user/user_dash/main.php");
+        header("Location: ../Views/front/loading_screen/loading_main.html");
         exit();
     } else {
         // Invalid credentials or user not found

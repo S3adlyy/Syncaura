@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="imgggg.png">
     <style>
         button {
             background: linear-gradient(135deg, #0066ff, #33ccff); 

@@ -1,0 +1,289 @@
+html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ensure the spline viewer background is at the back */
+.spline-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* Lower z-index to be behind the chat and join screens */
+}
+
+
+:root {
+    --primary-blue: #007bff;
+    --light-blue: #e9f5ff;
+    --white: #ffffff;
+    --gray: #6c757d;
+    --dark-gray: #343a40;
+    --red: #ff5252;
+    --border-light: #dcdfe3;
+    --transition: 0.3s ease-in-out;
+    --box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    --hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    --font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    background-color: var(--light-blue);
+}
+
+/* Posts Container */
+.posts-container, .comments-container {
+    padding: 50px 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Post Box Styles */
+.posts-container .box-container {
+    display: flex;
+    margin-top: 50px;
+    margin-right: 500px;
+    gap: 30px;
+    justify-content: center;
+}
+
+
+
+.posts-container .box {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    transition: var(--transition);
+}
+
+.posts-container .box:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--hover-shadow);
+}
+
+.posts-container .box .post-admin {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.posts-container .box .post-admin i {
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+}
+
+.posts-container .box .post-admin div {
+    color: var(--gray);
+    font-size: 1.2rem;
+}
+
+.posts-container .box .post-admin a {
+    color: var(--primary-blue);
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.posts-container .box .post-admin a:hover {
+    color: var(--dark-gray);
+}
+
+.posts-container .box img.post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.posts-container .box img.post-image:hover {
+    transform: scale(1.05);
+}
+
+.posts-container .box .post-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}
+
+.posts-container .box .post-content {
+    font-size: 1.2rem;
+    color: var(--dark-gray);
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.posts-container .box .icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.posts-container .box .icons i {
+    font-size: 1.6rem;
+    color: var(--gray);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.posts-container .box .icons i:hover {
+    color: var(--primary-blue);
+}
+
+.posts-container .box .icons span {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--dark-gray);
+}
+
+.posts-container .box .icons button {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.posts-container .empty {
+    color: var(--gray);
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 40px;
+}
+
+/* Comments Container */
+.comments-container {
+    margin-top: 30px;
+}
+
+.comments-container .comment-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+}
+
+.comments-container .add-comment {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+    margin-bottom: 30px;
+}
+
+.comments-container .add-comment p.user {
+    font-size: 1.2rem;
+    color: var(--gray);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.comments-container .add-comment p.user a {
+    color: var(--primary-blue);
+    font-weight: bold;
+}
+
+.comments-container .add-comment textarea.comment-box {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid var(--border-light);
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.comments-container .add-comment .inline-btn {
+    display: inline-block;
+    background: var(--primary-blue);
+    color: var(--white);
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.comments-container .add-comment .inline-btn:hover {
+    background: var(--hover-shadow);
+}
+
+.comments-container .user-comments-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.comments-container .show-comments {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+}
+
+.comments-container .show-comments .comment-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.comments-container .show-comments .comment-user i {
+    font-size: 2rem;
+    color: var(--primary-blue);
+}
+
+.comments-container .show-comments .comment-user div span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--dark-gray);
+}
+
+.comments-container .show-comments .comment-box {
+    font-size: 1.2rem;
+    color: var(--dark-gray);
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.comments-container .show-comments form {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.comments-container .show-comments button {
+    background: var(--red);
+    color: var(--white);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.comments-container .show-comments button:hover {
+    background: #d40a0a;
+}

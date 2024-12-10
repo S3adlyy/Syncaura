@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meeting Room</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="container">
+      <div id="room-header">
+        <h1 style="color: white;">Meeting Room</h1>
+        <div id="room-header-controls">
+          <img id="mic-icon" class="control-icon" src="icons/mic-off.svg" />
+          <img id="leave-icon" class="control-icon" src="icons/leave.svg" />
+        </div>
+      </div>
+
+      <div class="spline-viewer">
+        <spline-viewer url="https://prod.spline.design/jXGI4sfsoAwwhpNN/scene.splinecode"></spline-viewer>
+      </div>
+
+      <form id="form">
+        <input type="text" id="username-input" placeholder="Enter your name" required />
+        
+        <!-- Avatar Selection -->
+        <div id="avatar-selection">
+          <div id="avatars">
+            <!-- Add avatar images with unique IDs here -->
+            <div class="avatar-wrapper" onclick="selectAvatar('avatar1')">
+              <img src="avatars/female-5.png" class="avatar" id="avatar1" />
+              <div class="avatar-overlay"></div>
+            </div>
+            <div class="avatar-wrapper" onclick="selectAvatar('avatar3')">
+              <img src="avatars/male-2.png" class="avatar" id="avatar3" />
+              <div class="avatar-overlay"></div>
+            </div>
+            <!-- Add more avatars as needed -->
+          </div>
+        </div>
+
+        <input type="submit" value="Enter Room"/>
+      </form>
+
+      <div id="members"></div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.36/build/spline-viewer.js"></script>
+    <script>
+      const splineViewer = document.querySelector('spline-viewer');
+      document.addEventListener('mousemove', (event) => {
+        const { innerWidth, innerHeight } = window;
+        const x = (event.clientX / innerWidth) * 2 - 1;
+        const y = -(event.clientY / innerHeight) * 2 + 1;
+        const rotationSpeed = 1;
+        splineViewer.camera.rotation.x = y * rotationSpeed;
+        splineViewer.camera.rotation.y = x * rotationSpeed;
+      });
+
+      window.onload = function() {
+        const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
+        if (shadowRoot) {
+          const logo = shadowRoot.querySelector('#logo');
+          if (logo) logo.remove();
+        }
+      }
+    </script>
+  </body>
+</html>

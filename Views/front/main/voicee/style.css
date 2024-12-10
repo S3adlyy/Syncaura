@@ -1,0 +1,105 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #1a1a1a; /* Background color for the page */
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Allow absolute positioning of the form */
+  overflow: hidden; /* Prevent scrollbars if the form overflows */
+}
+
+/* Full-screen Spline background */
+.spline-viewer {
+  position: absolute; /* Position the background behind the content */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Place it behind the form */
+}
+
+/* Container that holds the form */
+#container {
+  width: 400px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: rgba(51, 51, 51, 0.8); /* Semi-transparent background for the form */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+  z-index: 1; /* Ensure the form is on top of the background */
+}
+
+/* Form inputs styling */
+#form input[type="text"], #form input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+}
+
+/* Input text box style */
+#form input[type="text"] {
+  background-color: #444;
+  color: #fff;
+}
+
+/* Submit button style */
+#form input[type="submit"] {
+  background-color: #28a745;
+  color: #fff;
+  cursor: pointer;
+}
+
+#form input[type="submit"]:hover {
+  background-color: #218838;
+}
+
+#room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.control-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.speaker {
+  padding: 10px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  margin: 5px 0;
+}
+
+#avatar-selection {
+  margin-top: 10px;
+}
+
+#avatars {
+  display: flex;
+  gap: 10px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 50%;
+}
+
+.avatar.selected {
+  border-color: #007bff; /* Highlight color for selected avatar */
+}
+

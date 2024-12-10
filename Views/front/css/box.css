@@ -1,0 +1,247 @@
+:root {
+    --primary-blue: #007bff;
+    --light-blue: #cce5ff;
+    --background-white: #ffffff;
+    --text-dark: #343a40;
+    --gray: #6c757d;
+    --border-light: #dcdfe3;
+    --hover-blue: #0056b3;
+    --gradient-blue: linear-gradient(135deg, #007bff, #0056b3);
+    --transition: 0.3s ease-in-out;
+    --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    --font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Scrollable container styles */
+.box-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent for depth effect */
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+    backdrop-filter: blur(10px);
+
+    /* Add scroll functionality */
+    max-height: 500px; /* Adjust the height as needed */
+    overflow-y: auto; /* Enables vertical scrolling */
+}
+
+
+
+.box {
+    background: var(--background-white);
+    border: none;
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition);
+    min-width: 280px;
+    max-width: 350px;
+    padding: 20px;
+}
+
+.box:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--hover-shadow);
+}
+
+.box p {
+    margin: 10px 0;
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+.box span {
+    font-weight: bold;
+    color: var(--primary-blue);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-blue);
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--hover-blue);
+}
+
+.btn,
+.option-btn,
+.inline-btn {
+    display: inline-block;
+    background: var(--gradient-blue);
+    color: var(--background-white);
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    text-align: center;
+    transition: background var(--transition), transform var(--transition);
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+}
+
+.btn:hover,
+.option-btn:hover,
+.inline-btn:hover {
+    background: linear-gradient(135deg, #0056b3, #003f7f);
+    transform: translateY(-3px);
+    box-shadow: var(--hover-shadow);
+}
+
+.flex-btn {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.flex-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.links {
+    background: var(--light-blue);
+    color: var(--primary-blue);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.links:hover {
+    background: var(--primary-blue);
+    color: var(--background-white);
+    transform: scale(1.05);
+}
+
+.post-image {
+    width: 100%;
+    border-radius: 10px;
+    margin: 15px 0;
+    transition: transform var(--transition);
+}
+
+.post-image:hover {
+    transform: scale(1.03);
+}
+
+.post-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+}
+
+.post-content {
+    color: var(--text-dark);
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.post-cat {
+    display: inline-flex;
+    align-items: center;
+    background: var(--light-blue);
+    color: var(--primary-blue);
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.post-cat:hover {
+    background: var(--primary-blue);
+    color: var(--background-white);
+    transform: scale(1.05);
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.icons i {
+    font-size: 1.2rem;
+    color: var(--gray);
+    transition: color var(--transition), transform var(--transition);
+}
+
+.icons i:hover {
+    color: var(--primary-blue);
+    transform: scale(1.2);
+}
+
+.icons span {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.heading {
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.more-btn {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.empty {
+    color: var(--gray);
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 20px;
+    opacity: 0.9;
+}
+html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ensure the spline viewer background is at the back */
+.spline-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* Lower z-index to be behind the chat and join screens */
+}
