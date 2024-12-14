@@ -82,7 +82,7 @@ if (!empty($searchTerm)) {
 <div id="wrapper">
    
    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dash.html">
            <div class="sidebar-brand-icon rotate-n-15">
                <i class="fas fa-laugh-wink"></i>
            </div>
@@ -150,6 +150,17 @@ if (!empty($searchTerm)) {
            <i class="fas fa-fw fa-wrench"></i>
            <span>Blog</span>
        </a>
+       <a class="nav-link collapsed" href="dash_support/table_questions.php" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-question"></i>
+                    <span >question support</span>
+                </a>
+
+                <a class="nav-link collapsed" href="dash_support/table_reponse.php" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-reply"></i>
+                    <span >response support</span>
+                </a>
             <a class="nav-link collapsed" href="dash_todo/plandash.php" data-toggle="collapse" data-target="#collapseTwo"
                 aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>

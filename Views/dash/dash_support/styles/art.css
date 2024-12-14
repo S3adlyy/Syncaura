@@ -55,7 +55,7 @@ input {
 }
 
 input:focus {
-    border-color: #FFD700; /* Gold border on focus */
+    
     outline: none; /* Remove default outline */
     background-color: rgba(255, 255, 255, 0.9); /* Light background on focus */
 }
