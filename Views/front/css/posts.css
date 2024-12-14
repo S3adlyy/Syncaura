@@ -1,0 +1,220 @@
+:root {
+    --primary-blue: #007bff;
+    --light-blue: #f0f9ff;
+    --white: #ffffff;
+    --gray: #6c757d;
+    --dark-gray: #343a40;
+    --red: #ff5252;
+    --shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    --hover-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    --transition: 0.2s ease-in-out;
+    --font-family: 'Poppins', sans-serif;
+}
+html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ensure the spline viewer background is at the back */
+.spline-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* Lower z-index to be behind the chat and join screens */
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--light-blue);
+    margin: 0;
+    padding: 0;
+}
+
+.posts-container {
+    padding: 30px 15px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.posts-container .heading {
+    font-size: 2rem;
+    color: var(--primary-blue);
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.posts-container .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.posts-container .box {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
+    padding: 15px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.posts-container .box:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.posts-container .post-admin {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+.posts-container .post-admin i {
+    font-size: 1.2rem;
+    color: var(--primary-blue);
+}
+
+.posts-container .post-admin a {
+    font-weight: bold;
+    color: var(--dark-gray);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.posts-container .post-admin a:hover {
+    color: var(--primary-blue);
+}
+
+.posts-container .post-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: var(--transition);
+}
+
+.posts-container .post-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--dark-gray);
+    margin-bottom: 10px;
+    transition: var(--transition);
+}
+
+.posts-container .post-title:hover {
+    color: var(--primary-blue);
+}
+
+.posts-container .post-content {
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-bottom: 15px;
+}
+
+.posts-container .inline-btn {
+    display: inline-block;
+    background: var(--primary-blue);
+    color: var(--white);
+    padding: 7px 15px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: var(--transition);
+    margin-top: 8px;
+}
+
+.posts-container .inline-btn:hover {
+    background: var(--dark-gray);
+    transform: scale(1.05);
+}
+
+.posts-container .post-cat {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: var(--primary-blue);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.posts-container .post-cat i {
+    margin-right: 3px;
+}
+
+.posts-container .icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+.posts-container .icons i {
+    font-size: 1rem;
+    margin-right: 5px;
+}
+
+.posts-container .icons span {
+    font-weight: bold;
+    color: var(--dark-gray);
+}
+
+.posts-container .icons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--dark-gray);
+    transition: var(--transition);
+    font-size: 1rem;
+}
+
+.posts-container .icons button:hover {
+    color: var(--red);
+}
+
+
+/* Animations */
+.posts-container .box {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .posts-container {
+        padding: 15px;
+    }
+
+    .posts-container .heading {
+        font-size: 1.5rem;
+    }
+}

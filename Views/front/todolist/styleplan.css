@@ -1,0 +1,121 @@
+/* General container styles */
+.container {
+    width: 100%;
+    margin: 0 auto;
+    margin-left: 80px;
+}
+
+/* Add Plan Section */
+.add-plan-container {
+    text-align: center;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+}
+
+.add-plan-container h2 {
+    color: #000733;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.add-plan-container input {
+    width: 50%;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#add_plan_button {
+    background-color: #000733;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#add_plan_button:hover {
+    background-color: #003366;
+}
+
+/* Error Messages */
+.error-messages p {
+    font-size: 14px;
+}
+
+/* Your Plans Section */
+.plans-container {
+    margin-top: 100px;
+    width: 90%;
+    margin-top: 30px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.plans-container h2 {
+    color: #000733;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Table styles 
+.plans-table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+    border: 1px solid #ccc; 
+}
+.plans-table th {
+    background-color: #000733;
+    color: white;
+    text-align: left;
+    padding: 15px;
+}
+.plans-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ccc; 
+    font-size: 16px;
+}
+.plans-table tr:last-child td {
+    border-bottom: none;
+}
+*/
+
+
+/* Modify and Delete buttons */
+.btn {
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 5px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+}
+
+/* Modify button default and hover styles */
+.modify-btn {
+    background-color: lightgreen;
+    color: #000;
+    border: 1px solid lightgreen;
+}
+
+.modify-btn:hover {
+    background-color: #298700;
+    color: rgb(255, 255, 255);
+}
+
+/* Delete button default and hover styles */
+.delete-btn {
+    background-color: red;
+    color: #fff;
+    border: 1px solid red;
+}
+
+.delete-btn:hover {
+    background-color: #fff;
+    color: red;
+}

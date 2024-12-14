@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    background-color: black; /* Ensure a good contrast with the form */
+}
+
+.spline-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Ensure the background is behind everything */
+}

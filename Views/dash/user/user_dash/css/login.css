@@ -1,0 +1,137 @@
+html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ensure the spline viewer background is at the back */
+.spline-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* Lower z-index to be behind the chat and join screens */
+}
+
+
+:root {
+    --primary-blue: #007bff;
+    --light-blue: #cce5ff;
+    --background-white: #ffffff;
+    --text-dark: #343a40;
+    --gray: #6c757d;
+    --hover-blue: #0056b3;
+    --gradient-blue: linear-gradient(135deg, #007bff, #0056b3);
+    --transition: 0.3s ease-in-out;
+    --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --hover-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    --font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    background: var(--gradient-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    background: var(--background-white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-container h3 {
+    font-size: 1.8rem;
+    color: var(--primary-blue);
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-container .box {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--light-blue);
+    border-radius: 5px;
+    font-size: 1rem;
+    color: var(--text-dark);
+    transition: var(--transition);
+    background: #f9f9f9;
+}
+
+.form-container .box:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 8px var(--light-blue);
+    outline: none;
+}
+
+.form-container .btn {
+    background: var(--gradient-blue);
+    color: var(--background-white);
+    padding: 12px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    font-weight: bold;
+    box-shadow: var(--box-shadow);
+}
+
+.form-container .btn:hover {
+    background: var(--hover-blue);
+    box-shadow: var(--hover-shadow);
+    transform: translateY(-2px);
+}
+
+.form-container p {
+    font-size: 0.9rem;
+    text-align: center;
+    color: var(--gray);
+    margin-top: 10px;
+}
+
+.form-container p a {
+    color: var(--primary-blue);
+    font-weight: bold;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.form-container p a:hover {
+    color: var(--hover-blue);
+    text-decoration: underline;
+}

@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>Real time Editor</title>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>code editor</title>
+    <link rel="stylesheet" href="stylee.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="imgggg.png">
+    
+        <script>
+            function refresh(){
+                var textContent = document.getElementById('editor-textarea').value; document.getElementById('viewer').srcdoc = textContent;
+            }
+        </script>
+        
+    </head>
+    <body>
+        
+        <nav class="site-nav mb-5 sticky-nav">
+            <div class="container position-relative">
+                <div class="site-navigation text-center">
+                    <ul class="site-menu d-flex justify-content-center align-items-center">
+                        <li><a href="../loading_screen/loading_meet.html">Create a meet</a></li>
+                        <li><a href="../Ai/loding3.html">Ai ChatBot</a></li>
+                        <li><a href="../loading_screen/loading_p.html">Pomodoro Timer</a></li>
+                        <li><a href="../loading_screen/loadngg.php">buy a Pack</a></li>
+                        <li><a href="../todolist/loading_todo.html">To Do List</a></li>
+                        <li><a href="../loading_screen/loading_support.html">Client support </a></li>
+                        <li><a href="../loading_screen/loadng.html">Chat</a></li>
+                        <li><a href="../loading_screen/loading_share.html">Share files</a></li>
+                        <li><a href="../loading_screen/laoding_modif.html">Modify Account</a></li>
+                        
+                        <button class="fullscreen-icon" onclick="toggleFullscreen()">⛶</button>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="spline-viewer"> 
+            <spline-viewer url="https://prod.spline.design/kKmZEgkdO51AUZbs/scene.splinecode"></spline-viewer>
+        </div>
+        <div class="main">
+            <textarea id="editor-textarea" onkeyup="refresh()" placeholder="Start coding here..."></textarea>
+            <iframe id="viewer"></iframe>
+        </div>
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.48/build/spline-viewer.js"></script>
+        <script>
+            window.onload = function() {
+        const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
+        if (shadowRoot) {
+            const logo = shadowRoot.querySelector('#logo');
+            if (logo) logo.remove();
+        }
+    }
+        </script>
+    </body>
+</html>
+
+
+
+

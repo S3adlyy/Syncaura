@@ -1,0 +1,340 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-color: #fff; /* Light mode background */
+    color: #111; /* Light mode text color */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for dark mode */
+}
+
+body.dark-mode {
+    background-color: #121212; /* Dark mode background */
+    color: #fff; /* Dark mode text color */
+}
+
+.app {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    max-width: 840px; /* Reduced width */
+    max-height: 650px; /* Reduced height */
+    background: transparent; /* Removed white background */
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    transition: background-color 0.3s; /* Smooth transition */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.site-nav .site-menu a {
+    font-family: 'Roboto', sans-serif; /* Modern font */
+    font-size: 16px; /* Adjust font size */
+    font-weight: 500; /* Set font weight for better visibility */
+    color: #333; /* Default text color */
+    text-transform: uppercase; /* Uppercase text for style */
+    letter-spacing: 1px; /* Letter spacing for readability */
+    padding: 12px 20px; /* Add padding for clickable area */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and transform */
+    position: relative;
+}
+
+/* Hover effect */
+.site-nav .site-menu a:hover {
+    color: #1a73e8; /* Blue color on hover */
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Underline effect */
+.site-nav .site-menu a::after {
+    content: ''; /* Empty content for pseudo-element */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px; /* Thin underline */
+    background-color: #1a73e8; /* Underline color */
+    transform: scaleX(0); /* Initially hidden */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+/* Show the underline on hover */
+.site-nav .site-menu a:hover::after {
+    transform: scaleX(1); /* Reveal the underline on hover */
+}
+
+/* Active link style (for active page) */
+.site-nav .site-menu li a.active {
+    font-weight: 700; /* Bold active link */
+    color: #1a73e8; /* Active color */
+}
+
+.site-nav .logo {
+    position: absolute; /* Use absolute positioning */
+    left: 20px; /* Adjust this value as needed to position it correctly */
+    top: 50%; /* Center it vertically */
+    transform: translateY(-50%); /* Correct the vertical centering */
+}
+
+/* Optional: Adjust navbar content to prevent overlap */
+.site-nav .site-menu {
+    margin-left: 150px; /* Adjust this value depending on how much space you want between the logo and the menu items */
+}
+
+.app.dark-mode {
+    background: transparent; /* Dark mode transparent background */
+}
+
+.app > .screen {
+    display: none;
+}
+
+.app > .screen.active {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.screen .form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 400px; /* Reduced max-width */
+}
+
+.screen .form-input {
+    width: 100%;
+    margin: 15px 6px; /* Reduced margin */
+}
+
+.screen h2 {
+    margin-bottom: 15px; /* Reduced margin */
+    font-size: 24px; /* Reduced font size */
+    color: #111;
+    border-bottom: 4px solid #555;
+    display: inline-block;
+}
+
+.screen.dark-mode h2 {
+    color: #fff; /* Dark mode heading color */
+    border-bottom: 4px solid #fff; /* Dark mode border color */
+}
+
+.screen .form-input label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.screen .form-input input {
+    width: 100%;
+    padding: 8px; /* Reduced padding */
+    border: 1px solid #555;
+    font-size: 14px; /* Reduced font size */
+}
+
+.screen .form-input input.dark-mode {
+    background-color: #555; /* Dark mode input field background */
+    color: #fff; /* Dark mode input text color */
+    border-color: #fff; /* Dark mode input border */
+}
+
+.screen .form-input button {
+    padding: 8px 18px; /* Reduced padding */
+    background: #111;
+    color: #eee;
+    font-size: 14px; /* Reduced font size */
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+.screen.dark-mode .form-input button {
+    background-color: #fff;
+    color: #111;
+}
+
+.chat-screen .header {
+    background: #111;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+}
+
+.chat-screen .header .logo {
+    font-size: 16px; /* Reduced font size */
+    color: #eee;
+    font-weight: 600;
+}
+.screen chat-screen active.header{
+    background-color: blue;
+}
+
+.chat-screen .header button {
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    background: transparent;
+    color: #eee;
+    font-size: 14px; /* Reduced font size */
+    cursor: pointer;
+    outline: none;
+}
+
+.chat-screen .header button.dark-mode {
+    color: #111; /* Dark mode button color */
+    background-color: #fff; /* Dark mode background color */
+}
+
+.chat-screen .messages {
+    width: 100%;
+    height: calc(100% - 100px);
+    background: transparent; /* Removed background color */
+    overflow: auto;
+}
+
+.chat-screen.dark-mode .messages {
+    background: transparent; /* Dark mode transparent background for messages */
+}
+
+.chat-screen .messages .message {
+    display: flex;
+    padding: 10px;
+}
+
+.chat-screen .messages .message > div {
+    max-width: 75%; /* Reduced max width */
+    background: transparent; /* Removed background color */
+    box-shadow: 6px 0px 20px 5px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+}
+
+.chat-screen .messages .message.my-message {
+    justify-content: flex-end;
+}
+
+.chat-screen .messages .message.other-message {
+    justify-content: flex-start;
+}
+
+.chat-screen .messages .message .name {
+    font-size: 12px; /* Reduced font size */
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.chat-screen .messages .message .text {
+    word-wrap: break-word;
+}
+
+.chat-screen .messages .update {
+    text-align: center;
+    padding: 10px;
+    font-style: italic;
+}
+
+.chat-screen .typebox {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.chat-screen .typebox input {
+    width: 85%;
+    padding: 8px; /* Reduced padding */
+    font-size: 14px; /* Reduced font size */
+}
+
+.chat-screen .typebox button {
+    width: 13%;
+    padding: 8px; /* Reduced padding */
+    background: #1a73e8;
+    color: #fff;
+    font-size: 14px; /* Reduced font size */
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+#toggle-dark-mode {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: #111;
+    font-size: 20px; /* Reduced font size */
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+body.dark-mode #toggle-dark-mode {
+    color: #fff;
+}
+
+#emoji-picker {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    background: transparent; /* Removed background color */
+    border-radius: 5px;
+    padding: 10px;
+    display: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#emoji-picker.active {
+    display: block;
+}
+
+#emoji-picker span {
+    font-size: 20px; /* Reduced font size */
+    cursor: pointer;
+    margin: 5px;
+}
+
+#emoji-picker span:hover {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+/* Dark Mode Changes for Messages */
+.chat-screen.dark-mode .messages .message > div {
+    background: transparent; /* Removed dark background for messages */
+    color: #fff; /* White text color in dark mode */
+}
+
+.chat-screen.dark-mode .messages .message .name {
+    color: #ccc; /* Light name color in dark mode */
+}
+
+.chat-screen.dark-mode .messages .message .text {
+    color: #fff; /* White text color for messages in dark mode */
+}
+.fullscreen-icon {
+    position: fixed;
+    margin-bottom: 600px;
+    margin-left: 1820px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 9999; /* Ensure it stays on top of other elements */
+}
+
+.fullscreen-icon:hover {
+    background: rgba(0, 0, 0, 0.9);
+}

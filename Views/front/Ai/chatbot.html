@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <script src="Ai.js"  defer ></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="flaticon.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleo.css">
+    <link rel="stylesheet" href="css/stylo.css">
+    <link rel="shortcut icon" href="imgggg.png">
+    <style>
+         .profile-block {
+    background: linear-gradient(145deg, #007bff, #6a11cb); /* Smooth gradient */
+    color: #fff; /* White text for contrast */
+    padding: 20px; /* Spacious padding for better layout */
+    border-radius: 16px; /* Softer, larger corner radius */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 4px 10px rgba(0, 0, 0, 0.2); /* Depth effect */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between image and text */
+    transition: all 0.3s ease-in-out; /* Smooth transitions */
+    overflow: hidden; /* Prevent content overflow */
+    width: 280px; /* Fixed width for consistent layout */
+}
+
+.profile-block:hover {
+    transform: translateY(-10px); /* Hover lift effect */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+    background: linear-gradient(145deg, #6a11cb, #007bff); /* Reverse gradient on hover */
+}
+
+.profile-block img {
+    border-radius: 50%; /* Circular image */
+    width: 50px; /* Larger size for prominence */
+    height: 50px;
+    object-fit: cover; /* Maintain image aspect ratio */
+    border: 3px solid #fff; /* White border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.profile-block h2 {
+    font-size: 18px; /* Bold and legible */
+    margin: 0;
+    font-weight: 600; /* Semi-bold for emphasis */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.profile-block a {
+    font-size: 14px; /* Smaller for secondary text */
+    color: #ffd700; /* Gold for elegance */
+    text-decoration: none;
+    margin-top: 5px;
+    font-weight: bold; /* Make the link stand out */
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+.profile-block a:hover {
+    color: #fff; /* Change to white on hover */
+    text-decoration: underline; /* Underline for emphasis */
+}
+    
+
+    </style>
+</head>
+</head>
+<body>
+    <nav class="site-nav mb-5 sticky-nav">
+        <div class="container position-relative">
+            <div class="site-navigation text-center">
+                <a href="../../dash/user/user_dash/main.php" class="logo menu-absolute m-0" align="left" style="color: #3498db;">SyncAura<span class="text-primary">.</span></a>
+                <ul class="site-menu d-flex justify-content-center align-items-center">
+                    <li><a href="../loading_screen/loading_meet.html">create a meet </a></li>
+                    <li><a href="../Ai/loding3.html">Ai ChatBot</a></li>
+                    <li><a href="../loading_screen/loading_p.html">Pomodoro Timer</a></li>
+                    <li><a href="../loading_screen/loadngg.php">buy a  Pack</a></li>
+                    <li><a href="../todolist/loading_todo.html">To Do List</a></li>
+                    <li><a href="../loading_screen/loading_support.html">Client support</a></li>
+                    <li><a href="../loading_screen/loadng.html">Chat</a></li>
+                    <li><a href="../loading_screen/loading_share.html">Share files</a></li>
+                    <li><a href="../loading_screen/laoding_modif.html">Modify Account</a></li>
+                    <li><a href="../loading_screen/loading_editor.html">Code Editor</a></li>
+                    <li><a href="../loading_screen/loading_thome.html">blog</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+
+    <!-- Chatbot Toggle Icon -->
+    <div id="chatbot-icon" class="chatbot-icon material-icons-outlined">chat</div>
+    <div class="spline-viewer">
+        <spline-viewer url="https://prod.spline.design/1JBcpFmDb6Q3FNrb/scene.splinecode"></spline-viewer>
+    </div>
+
+    <!-- Chatbot -->
+    <div id="chatbot" class="chatbot">
+        <header>
+            <h2>Chatbot</h2>
+        </header>
+        <ul class="chatbox">
+            <li class="chat incoming">
+                <span class="material-icons-outlined">smart_toy</span>
+                <p>Hi there! How can I help you today?</p>
+            </li>
+            <li class="chat outgoing">
+                <p>I'm here to assist you with anything you need.</p>
+            </li>
+        </ul>
+        <div class="chat-input">
+            <textarea placeholder="Enter a message..."></textarea>
+            <span id="send-btn" class="material-icons-outlined">send</span>
+        </div>
+    </div>
+    <button class="fullscreen-icon" onclick="toggleFullscreen()">⛶</button>
+
+    <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.46/build/spline-viewer.js"></script>
+    <script>
+        window.onload = function() {
+    const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
+    if (shadowRoot) {
+        const logo = shadowRoot.querySelector('#logo');
+        if (logo) logo.remove();
+    }
+}
+    </script>
+
+    <script>
+        function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+    } else if (document.exitFullscreen) {
+    document.exitFullscreen();
+    }
+    }
+    </script>
+
+</body>
+</html>

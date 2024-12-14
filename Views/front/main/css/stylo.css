@@ -103,6 +103,17 @@ a:hover {
 
 /* Welcome Text Styling */
 .welcome-text {
+  font-family: 'Playfair Display', serif; /* Stylish font */
+  font-size: 50px; /* Large text size */
+  font-weight: bold; /* Bold text */
+  color: #fff; /* White color */
+  text-transform: uppercase; /* Uppercase text */
+  letter-spacing: 3px; /* Spacing between letters */
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Shadow effect for depth */
+  animation: glow 1.5s ease-in-out infinite; /* Animation effect */
+}
+/* Welcome Text Styling */
+.welcome-text {
   font-family: 'Century Gothic', sans-serif; /* Stylish font */
   font-size: 50px; /* Large text size */
   font-weight: bold; /* Bold text */
@@ -125,6 +136,7 @@ a:hover {
     text-shadow: 0 0 10px #fff, 0 0 20px #B93AFF, 0 0 30px #B93AFF, 0 0 40px #B93AFF;
   }
 }
+
 .chat-icon {
     position: fixed;
     bottom: 20px;

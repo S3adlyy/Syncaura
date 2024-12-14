@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatroom</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Untree.co">
+    <link rel="shortcut icon" href="imgggg.png">
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap4" />
+    <link href="https://fonts.googleapis.com/css2?family=Display+Playfair:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="flaticon.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styleo.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <nav class="site-nav mb-5 sticky-nav">
+        <div class="container position-relative">
+            <div class="site-navigation text-center">
+                <a href="../../../dash/user/user_dash/main.php" class="logo menu-absolute m-0" align="left">SyncAura<span class="text-primary">.</span></a>
+                <ul class="site-menu d-flex justify-content-center align-items-center">
+                    <li><a href="../../loading_screen/loading_meet.html">Create a  meet</a></li>
+                    <li><a href="./Ai/loding3.html">Ai ChatBot</a></li>
+                    <li><a href="./promodor/index.php">Pomodoro Timer</a></li>
+                    <li><a href="../../loading_screen/loadngg.php">buy a Pack</a></li>
+                    <li><a href="../../todolist/loading_todo.html">To Do List</a></li>
+                    <li><a href="../../loading_screen/loading_support.html">Support Client</a></li>
+                    <li><a href="index.html">Chat</a></li>
+                    <li><a href="../../loading_screen/loading_share.html">Share files</a></li>
+                    <li><a href="../../loading_screen/laoding_modif.html">Modify Account</a></li>
+                    <li><a href="../loading_screen/loading_editor.html">Code Editor</a></li>
+                    <li><a href="../loading_screen/loading_thome.html">blog</a></li>
+                    <button class="fullscreen-icon" onclick="toggleFullscreen()">⛶</button>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="app">
+        <!-- Join Screen -->
+        <div class="screen join-screen active">
+            <div class="form">
+                <h2>Join Chatroom</h2>
+                <div class="form-input">
+                    <label for="chatroom">Chatroom name</label>
+                    <input type="text" id="chatroom" name="chatroom" placeholder="Insert chatroom name">
+                    <p id="chatroom-error" class="error-message"></p>
+                    <label for="username">Nickname</label>
+                    <input type="text" id="username" name="name" placeholder="Insert Cool Nickname">
+                    <p id="username-error" class="error-message"></p>
+                </div>
+                <div class="form-input">
+                    <button id="join-user">Join</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Screen -->
+        <div class="screen chat-screen">
+            <div class="header" style="background-color: #0056b3;">
+                <div class="logo">Chatroom</div>
+                <button id="exit-chat">Exit</button>
+            </div>
+            <div class="messages">
+                <!-- Messages will be dynamically inserted here -->
+            </div>
+            <div class="update">
+                <!-- System updates (e.g., user joins) will be displayed here -->
+            </div>
+            <div class="typebox">
+                <button id="emoji-btn">😊</button> <!-- Emoji button -->
+                <input id="message-input" type="text" placeholder="Type a message..."> <!-- Input -->
+                <button id="audio">🎙️</button> <!-- Audio button -->
+                <div class="custom-file-upload">
+                    <label for="image-upload">📁</label>
+                    <input type="file" id="image-upload" accept="image/*" />
+                </div>
+                <button id="send-message">Send</button> <!-- Send button -->
+                <button id="gif-search-icon" class="gif-search-icon">🔍</button> <!-- GIF search -->
+                <!-- GIF search container -->
+                <div id="gif-results" class="gif-results">
+                    <input type="text" id="search-input" placeholder="Search for GIFs...">
+                    <button id="search-btn">Search</button>
+                    <div id="gif-display"></div> <!-- Area to display selected GIF -->
+                </div>
+            </div>
+            
+            <!-- Emoji Picker -->
+            <div class="emoji-picker" id="emoji-picker">
+                <span>😀</span>
+                <span>😁</span>
+                <span>😂</span>
+                <span>😃</span>
+                <span>😄</span>
+                <span>😅</span>
+                <span>😆</span>
+                <span>😉</span>
+                <span>😊</span>
+                <span>😍</span>
+                <span>😋</span>
+                <span>😎</span>
+                <span>😜</span>
+                <span>😝</span>
+                <span>🤩</span>
+            </div>
+        </div>
+    </div>
+    <div class="untree_co-hero overlay" style="background-image: url('images/hero-img-1-min.jpg');">
+    <a href="../Ai/loding3.html" class="chat-icon">
+        <i class="fas fa-robot"></i>
+    </a>
+    </div>
+    <div class="spline-viewer">
+        <spline-viewer url="https://prod.spline.design/BK83Flm76SwRJlHz/scene.splinecode"></spline-viewer>
+      </div>
+      <button class="fullscreen-icon" onclick="toggleFullscreen()">⛶</button>
+  
+      <script src="js/jquery-3.4.1.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/owl.carousel.min.js"></script>
+      <script src="js/jquery.animateNumber.min.js"></script>
+      <script src="js/jquery.waypoints.min.js"></script>
+      <script src="js/jquery.fancybox.min.js"></script>
+      <script src="js/jquery.sticky.js"></script>
+      <script src="js/aos.js"></script>
+      <script src="js/custom.js"></script>
+      <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
+      <script src="index.js"></script>
+    <!-- Socket.io Script -->
+    <script type="text/javascript" src="socket.io/socket.io.js"></script>
+    <!-- Custom Chat Script -->
+    <script type="text/javascript" src="code.js"></script>
+
+    
+    <!-- controle de saisr -->
+    <script>
+      document.querySelector("#join-user").addEventListener("click", function (e) {
+    e.preventDefault(); // Prevent form submission
+
+    // Get input values
+    const chatroomInput = document.querySelector("#chatroom");
+    const usernameInput = document.querySelector("#username");
+    const chatroomError = document.querySelector("#chatroom-error");
+    const usernameError = document.querySelector("#username-error");
+
+    let isValid = true;
+
+    // Reset error messages
+    chatroomError.textContent = "";
+    usernameError.textContent = "";
+
+    // Validate chatroom name
+    if (chatroomInput.value.trim() === "") {
+        chatroomError.textContent = "Chatroom name is required.";
+        isValid = false;
+    } else if (chatroomInput.value.length < 3) {
+        chatroomError.textContent = "Chatroom name must be at least 3 characters.";
+        isValid = false;
+    }
+
+    // Validate username
+    if (usernameInput.value.trim() === "") {
+        usernameError.textContent = "Nickname is required.";
+        isValid = false;
+    } else if (usernameInput.value.length < 3) {
+        usernameError.textContent = "Nickname must be at least 3 characters.";
+        isValid = false;
+    } else if (!/^[a-zA-Z]+$/.test(usernameInput.value)) {
+        usernameError.textContent = "Nickname must contain only letters.";
+        isValid = false;
+    }
+
+    // If valid, emit event to the server
+    if (isValid) {
+        const chatroom = chatroomInput.value.trim();
+        const username = usernameInput.value.trim();
+
+        // Emit event to server
+        socket.emit("newuser", { username, chatroom });
+
+        // Switch to the chat screen
+        document.querySelector(".join-screen").classList.remove("active");
+        document.querySelector(".chat-screen").classList.add("active");
+    }
+});
+    </script>
+    <script>
+        const gifSearchIcon = document.getElementById("gif-search-icon");
+const gifResults = document.getElementById("gif-results");
+
+gifSearchIcon.addEventListener("click", () => {
+    // Toggle the visibility of the GIF search section
+    gifResults.style.display = gifResults.style.display === "none" || gifResults.style.display === "" ? "block" : "none";
+});
+
+// Optional: Implement the search functionality (you can integrate with a GIF API like Giphy)
+const searchBtn = document.getElementById("search-btn");
+const searchInput = document.getElementById("search-input");
+
+searchBtn.addEventListener("click", () => {
+    const query = searchInput.value.trim();
+    if (query) {
+        console.log("Searching for GIFs:", query);
+        // Here you would integrate an API call to fetch the GIFs (e.g., Giphy or Tenor)
+        // For now, this is just a placeholder action.
+    }
+});
+    </script>
+</body>
+</html>

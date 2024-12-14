@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!-- Coding by CodingLab | www.codinglabweb.com-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Coming Soon Page</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="spline-viewer">
+      <spline-viewer url="https://prod.spline.design/otWv-3CwrZI0DNrx/scene.splinecode"></spline-viewer>
+    </div>
+    <section class="container">
+      <header>Whiteboard Comming Soon</header>
+      <p>
+        Our website is under construction. We're working hard to improve our
+        website and we'll ready to launch after.
+      </p>
+      <div class="time-content">
+        <div class="time days">
+          <span class="number"></span>
+          <span class="text">days</span>
+        </div>
+        <div class="time hours">
+          <span class="number"></span>
+          <span class="text">hours</span>
+        </div>
+        <div class="time minutes">
+          <span class="number"></span>
+          <span class="text">minutes</span>
+        </div>
+        <div class="time seconds">
+          <span class="number"></span>
+          <span class="text">seconds</span>
+        </div>
+      </div>
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.48/build/spline-viewer.js"></script>
+    <script>
+      window.onload = function() {
+    const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
+    if (shadowRoot) {
+        const logo = shadowRoot.querySelector('#logo');
+        if (logo) logo.remove();
+    }
+}
+    </script>
+  </body>
+</html>

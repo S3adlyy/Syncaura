@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Prevent scrolling */
+            background: black;
+        }
+
+        /* Spline 3D Viewer */
+        .spline-viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1; /* Ensure the viewer is behind the cards */
+        }
+
+        /* Game Cards Container */
+        .game-grid {
+            position: relative;
+            z-index: 2; /* Bring the cards in front of the Spline viewer */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 0;
+        }
+
+        /* Individual Game Cards */
+        .game-card {
+            background: rgba(20, 20, 20, 0.9); /* Dark background with slight transparency */
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: scale(1.05); /* Slight zoom effect */
+            box-shadow: 0 10px 30px rgba(0, 255, 150, 0.5); /* Glow effect on hover */
+        }
+
+        /* Card Glow Effect */
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff1493, #00ff6a, #1e90ff, #ff8c00);
+            background-size: 200% 200%;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.5s ease;
+            transform: scale(1.2);
+            z-index: -1;
+            border-radius: 15px;
+        }
+
+        .game-card:hover::before {
+            opacity: 0.8;
+            transform: scale(1);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover img {
+            transform: rotate(3deg) scale(1.1); /* Rotating zoom effect */
+        }
+
+        .game-card .game-info {
+            padding: 20px;
+            color: white;
+        }
+
+        .game-card .game-info h3 {
+            font-size: 24px;
+            color: #00ff6a;
+            margin: 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .game-card .game-info p {
+            font-size: 16px;
+            color: #aaa;
+            line-height: 1.5;
+        }
+
+        .game-card a {
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            background: linear-gradient(45deg, #ff1493, #00ff6a, #1e90ff);
+            border-radius: 25px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .game-card a:hover {
+            background: linear-gradient(45deg, #1e90ff, #ff1493, #00ff6a);
+            transform: scale(1.1); /* Slight zoom on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Spline 3D Viewer -->
+    <div class="spline-viewer">
+        <spline-viewer url="https://prod.spline.design/MR5E56gqvHFBhPQA/scene.splinecode"></spline-viewer>
+    </div>
+
+    <!-- Game Cards Container -->
+    <div class="game-grid">
+        <div class="game-card">
+            <img src="Spreadsheet/im.png" alt="Speeder Game">
+            <div class="game-info">
+                <h3>Speeder</h3>
+                <p>A fast-paced racing game.</p>
+                <a href="speeder.html">Play Now</a>
+            </div>
+        </div>
+        <div class="game-card">
+            <img src="Spreadsheet/img.PNG" alt="Mario Game">
+            <div class="game-info">
+                <h3>Syncaura Mario</h3>
+                <p>A Mario-inspired adventure game.</p>
+                <a href="mario.html">Play Now</a>
+            </div>
+        </div>
+        <div class="game-card">
+            <img src="Spreadsheet/imgg.PNG" alt="Bowling Game">
+            <div class="game-info">
+                <h3>Bowling</h3>
+                <p>A fun and realistic bowling simulator.</p>
+                <a href="bolling.html">Play Now</a>
+            </div>
+        </div>
+        <div class="game-card">
+            <img src="Spreadsheet/imgo.PNG" alt="Racing Game">
+            <div class="game-info">
+                <h3>Racing</h3>
+                <p>A thrilling and exciting racing experience.</p>
+                <a href="racing.html">Play Now</a>
+            </div>
+        </div>
+        <div class="game-card">
+            <img src="Spreadsheet/immo.PNG" alt="Maze Game">
+            <div class="game-info">
+                <h3>Maze</h3>
+                <p>A challenging and fun maze-solving game.</p>
+                <a href="maze.html">Play Now</a>
+            </div>
+        </div>
+        <div class="game-card">
+            <img src="Spreadsheet/imp.PNG" alt="Maze Game">
+            <div class="game-info">
+                <h3>KEnnu</h3>
+                <p>Make KEnnu Happy ! </p>
+                <a href="kennu.html">Play Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spline Viewer Script -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.48/build/spline-viewer.js"></script>
+    <script>
+        window.onload = function() {
+            const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
+            if (shadowRoot) {
+                const logo = shadowRoot.querySelector('#logo');
+                if (logo) logo.remove();
+            }
+        }
+    </script>
+</body>
+</html>

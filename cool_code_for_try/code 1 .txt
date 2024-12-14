@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool HTML with JavaScript</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff6a00, #ee0979);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #fff;
+            transition: background 1s ease;
+        }
+
+        /* Container Styling */
+        .container {
+            text-align: center;
+            padding: 40px 60px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.5s ease;
+        }
+
+        /* Header Styling */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+
+        /* Button Styling */
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            background: #fff;
+            color: #333;
+            border: none;
+            border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: background 0.4s ease, transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        /* Hover Effects */
+        button:hover {
+            background: #3498db;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        /* Animation on Click */
+        button:active {
+            transform: scale(0.9);
+        }
+
+        /* Cool fade-out and fade-in effect for the h1 */
+        .fade {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* JavaScript triggered change styles */
+        .fade-in {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="message" class="fade">Welcome to the Cool Page!</h1>
+        <button onclick="changeMessage()">Click Me!</button>
+    </div>
+
+    <script>
+        function changeMessage() {
+            const message = document.getElementById('message');
+            // Apply fade-out effect
+            message.classList.add('fade');
+            // After fade-out, change the message and apply fade-in effect
+            setTimeout(() => {
+                message.textContent = "You just made it cooler!";
+                message.classList.remove('fade');
+                message.classList.add('fade-in');
+            }, 500); // After 500ms, change the message
+        }
+    </script>
+</body>
+</html>

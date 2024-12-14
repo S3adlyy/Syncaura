@@ -1,22 +1,10 @@
 <?php
-class config {
-    private static $pdo = null;
 
-    public static function getConnexion() {
-        if (!isset(self::$pdo)) {
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "todo";
+   $db_name = 'mysql:host=localhost;dbname=blog_db';
+   $user_name = 'root';
+   $user_password = '';
 
-            try {
-                self::$pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                self::$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            } catch (Exception $e) {
-                die('Erreur: ' . $e->getMessage());
-            }
-        }
-        return self::$pdo;
-    }
-}
+   $conn = new PDO($db_name, $user_name, $user_password);
+
+?>
+
