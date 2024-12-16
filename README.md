@@ -1,18 +1,6 @@
 ![syncaura poster final](https://github.com/user-attachments/assets/95e702d3-3d7c-4552-89d6-38aafa350e33)# **Syncaura**
 
 
-![Screenshot 2024-12-16 014528](https://github.com/user-attachments/assets/88919236-a8f8-4619-bec5-547543e71f3f)
-![Screenshot 2024-12-16 014507](https://github.com/user-attachments/assets/e7150792-0770-472f-b42b-730db2a17a0f)
-
-![Screenshot 2024-12-16 014604](https://github.com/user-attachments/assets/e8f7125d-5f9a-4280-a146-0d79d40e774b)
-![Screenshot 2024-12-16 014642](https://github.com/user-attachments/assets/eddc2adc-b86c-431d-bd3e-35ee933397d1)
-![Screenshot 2024-12-16 014704](https://github.com/user-attachments/assets/2f3f3dde-b1f4-46c2-b5c2-e530bee26804)
-![Screenshot 2024-12-16 014719](https://github.com/user-attachments/assets/f6adf9b8-dd0e-4d34-a11c-f18e6b472279)
-![Screenshot 2024-12-16 014737](https://github.com/user-attachments/assets/80c69d49-3874-4a5b-85f1-a4d286c3e297)
-![Screenshot 2024-12-16 014903](https://github.com/user-attachments/assets/9de99b32-1e80-4532-96e0-a5dee9a987de)
-![Screenshot 2024-12-16 014917](https://github.com/user-attachments/assets/99ebb4d4-facb-404b-91c1-83ee45cc1abe)
-![Screenshot 2024-12-16 014550](https://github.com/user-attachments/assets/856449ba-32cc-43f1-a78a-b9823102dc48)
-
 
 Syncaura is a real-time collaboration platform designed to bring teams together effortlessly. Whether you're brainstorming ideas, editing documents, or managing projects, Syncaura enables seamless communication and collaboration in a dynamic online environment.
 
@@ -71,7 +59,17 @@ Syncaura is designed to be intuitive. Here’s how you can get started:
 ---
 
 ## **Screenshots**
+![Screenshot 2024-12-16 014528](https://github.com/user-attachments/assets/88919236-a8f8-4619-bec5-547543e71f3f)
+![Screenshot 2024-12-16 014507](https://github.com/user-attachments/assets/e7150792-0770-472f-b42b-730db2a17a0f)
 
+![Screenshot 2024-12-16 014604](https://github.com/user-attachments/assets/e8f7125d-5f9a-4280-a146-0d79d40e774b)
+![Screenshot 2024-12-16 014642](https://github.com/user-attachments/assets/eddc2adc-b86c-431d-bd3e-35ee933397d1)
+![Screenshot 2024-12-16 014704](https://github.com/user-attachments/assets/2f3f3dde-b1f4-46c2-b5c2-e530bee26804)
+![Screenshot 2024-12-16 014719](https://github.com/user-attachments/assets/f6adf9b8-dd0e-4d34-a11c-f18e6b472279)
+![Screenshot 2024-12-16 014737](https://github.com/user-attachments/assets/80c69d49-3874-4a5b-85f1-a4d286c3e297)
+![Screenshot 2024-12-16 014903](https://github.com/user-attachments/assets/9de99b32-1e80-4532-96e0-a5dee9a987de)
+![Screenshot 2024-12-16 014917](https://github.com/user-attachments/assets/99ebb4d4-facb-404b-91c1-83ee45cc1abe)
+![Screenshot 2024-12-16 014550](https://github.com/user-attachments/assets/856449ba-32cc-43f1-a78a-b9823102dc48)
 ### **Dashboard Overview**
 
 ![Syncaura Dashboard](https://via.placeholder.com/600x300 "Dashboard Screenshot")
