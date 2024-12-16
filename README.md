@@ -70,13 +70,6 @@ Syncaura is designed to be intuitive. Here’s how you can get started:
 ![Screenshot 2024-12-16 014903](https://github.com/user-attachments/assets/9de99b32-1e80-4532-96e0-a5dee9a987de)
 ![Screenshot 2024-12-16 014917](https://github.com/user-attachments/assets/99ebb4d4-facb-404b-91c1-83ee45cc1abe)
 ![Screenshot 2024-12-16 014550](https://github.com/user-attachments/assets/856449ba-32cc-43f1-a78a-b9823102dc48)
-### **Dashboard Overview**
-
-![Syncaura Dashboard](https://via.placeholder.com/600x300 "Dashboard Screenshot")
-
-### **Collaboration in Action**
-
-![Real-Time Collaboration](https://via.placeholder.com/600x300 "Collaboration Screenshot")
 
 ---
 
