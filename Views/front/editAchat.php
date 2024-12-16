@@ -1,5 +1,5 @@
 <?php
-include 'C:\xampp4\htdocs\integration3\controller\achatA.php'; // Correct controller
+include 'C:\xampp\htdocs\integration3\controller\achatA.php'; // Correct controller
 
 $error = "";
 $achat = null;

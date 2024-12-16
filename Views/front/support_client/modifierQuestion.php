@@ -1,7 +1,7 @@
 <?php
-include 'C:\xampp4\htdocs\integration3\configg.php';
-include 'C:\xampp4\htdocs\integration3\models\questions.php';
-include 'C:\xampp4\htdocs\integration3\controller\questionsC.php';
+include 'C:\xampp\htdocs\integration3\configg.php';
+include 'C:\xampp\htdocs\integration3\models\questions.php';
+include 'C:\xampp\htdocs\integration3\controller\questionsC.php';
 
 $questionsC = new questionsC();
 
@@ -231,6 +231,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id_question'])) {
                 <li><a href="../loading_screen/loadng.html">Modify Account</a></li>
                 <li><a href="../loading_screen/loadng.html">Code Editor</a></li>
                 <li><a href="../loading_screen/loadng.html">Blog</a></li>
+                <li><a href="../media/media.html">social media</a></li>
+                <li><a href="../coming_soon/loading.html">Whiteboard</a></li>
                 
                 
             </ul>

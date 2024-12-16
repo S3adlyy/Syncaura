@@ -70,6 +70,7 @@
         <button id="reset">Reset</button>
     </div>
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
+    <button class="fullscreen-icon" onclick="toggleFullscreen()">⛶</button>
     <script>
 
         window.onload = function() {
@@ -123,5 +124,15 @@
 
         updateTimerDisplay(); // Initial display update
     </script>
+    <script>
+        function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+    } else if (document.exitFullscreen) {
+    document.exitFullscreen();
+    }
+    }
+    </script>
+
 </body>
 </html>

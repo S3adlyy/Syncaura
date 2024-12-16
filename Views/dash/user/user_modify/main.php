@@ -79,26 +79,7 @@
 </head>
 
 <body>
-<nav class="site-nav mb-5 sticky-nav">
-    <div class="container position-relative">
-        <div class="site-navigation text-center">
 
-            <ul class="site-menu d-flex justify-content-center align-items-center">
-                <li><a href="../../../front/loading_screen/loading_meet.html">Cree un meet</a></li>
-                <li><a href="../../../front/Ai/loding3.html">Ai ChatBot</a></li>
-                <li><a href="../../../front/loading_screen/loading_p.html">Pomodoro Timer</a></li>
-                <li><a href="../../../front/loading_screen/loadngg.php">Acheter un Pack</a></li>
-                <li><a href="../../../front/todolist/loading_todo.html">To Do List</a></li>
-                <li><a href="../../../front/loading_screen/loading_support.html">Support Client</a></li>
-                <li><a href="../../../front/loading_screen/loadng.html">Chat</a></li>
-                <li><a href="../../../front/loading_screen/loading_share.html">Share files</a></li>
-                <li><a href="../../../front/loading_screen/laoding_modif.html">Modify Account</a></li>
-                <li><a href="../../../front/loading_screen/loading_editor.html">Code Editor</a></li>
-                <li><a href="../../../front/loading_screen/loading_thome.html">Blog</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
   
     <div class="spline-viewer">
     <spline-viewer url="https://prod.spline.design/BK83Flm76SwRJlHz/scene.splinecode"></spline-viewer>

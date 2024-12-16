@@ -1,5 +1,5 @@
 <?php
-include 'C:\xampp4\htdocs\integration3\controller\packP.php';
+include 'C:\xampp\htdocs\integration3\controller\packP.php';
 $PackController = new PackController();
 
 if (isset($_GET["id"])) {

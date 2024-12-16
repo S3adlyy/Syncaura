@@ -1,6 +1,6 @@
 <?php
-include 'C:\xampp4\htdocs\integration3\views\config.php';
-include 'C:\xampp4\htdocs\integration3\models\achat.php';
+include 'C:\xampp\htdocs\integration3\views\config.php';
+include 'C:\xampp\htdocs\integration3\models\achat.php';
 
 class AchatManager
 {

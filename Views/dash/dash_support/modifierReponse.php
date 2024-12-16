@@ -1,7 +1,7 @@
 <?php
-include 'C:\xampp4\htdocs\integration3\configg.php';
-include 'C:\xampp4\htdocs\integration3\models\Reponse.php';
-include 'C:\xampp4\htdocs\integration3\controller\reponseC.php';
+include 'C:\xampp\htdocs\integration3\configg.php';
+include 'C:\xampp\htdocs\integration3\models\Reponse.php';
+include 'C:\xampp\htdocs\integration3\controller\reponseC.php';
 
 // Créer une instance du contrôleur
 $repC = new reponseC();

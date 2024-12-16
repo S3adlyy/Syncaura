@@ -1,8 +1,8 @@
 <?php
 // Inclure votre contrôleur de réponse
-include 'C:\xampp4\htdocs\integration3\configg.php';
-include 'C:\xampp4\htdocs\integration3\models\Reponse.php';
-include 'C:\xampp4\htdocs\integration3\controller\reponseC.php';
+include 'C:\xampp\htdocs\integration3\configg.php';
+include 'C:\xampp\htdocs\integration3\models\Reponse.php';
+include 'C:\xampp\htdocs\integration3\controller\reponseC.php';
 
 // Connexion à la base de données
 try {

@@ -13,25 +13,91 @@
     <meta name="keywords" content="bootstrap, bootstrap4" />
     <link href="https://fonts.googleapis.com/css2?family=Display+Playfair:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="flaticon.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/styleo.css">
+    <link rel="stylesheet" href="../../main/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../main/css/animate.min.css">
+  <link rel="stylesheet" href="../../main/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="../../main/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="flaticon.css">
+  <link rel="stylesheet" href="../../main/style.css">
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="../../main/css/aos.css">
+  <link rel="stylesheet" href="../../main/css/style.css">
+  <link rel="stylesheet" href="../../main/css/stylo.css">
+
     <style>
-        
+       html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent body scrolling */
+    background: transparent; /* Ensure the background is transparent */
+}
+
+.spline-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1; /* Background layer */
+}
+
+.screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Ensure this layer is above the Spline background */
+    background: rgba(255, 255, 255, 0.8); /* Add slight transparency for better visibility */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+    max-width: 40%;
+    max-height:55%;
+    
+}
+
+.chat-screen,
+.join-screen {
+    display: none;
+}
+
+.chat-screen.active,
+.join-screen.active {
+    display: block;
+}
+button {
+    background-color: #007BFF; /* Cool blue color */
+    color: #fff; /* White text */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Add some padding */
+    font-size: 16px; /* Set font size */
+    font-weight: bold; /* Make text bold */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Show pointer on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth hover effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+button:active {
+    background-color: #004085; /* Even darker blue when clicked */
+    transform: translateY(0); /* Reset lift effect */
+}
     </style>
 </head>
 <body>
     <nav class="site-nav mb-5 sticky-nav">
         <div class="container position-relative">
             <div class="site-navigation text-center">
-                <a href="../../../dash/user/user_dash/main.php" class="logo menu-absolute m-0" align="left">SyncAura<span class="text-primary">.</span></a>
                 <ul class="site-menu d-flex justify-content-center align-items-center">
                     <li><a href="../../loading_screen/loading_meet.html">Create a  meet</a></li>
                     <li><a href="./Ai/loding3.html">Ai ChatBot</a></li>
@@ -42,8 +108,10 @@
                     <li><a href="index.html">Chat</a></li>
                     <li><a href="../../loading_screen/loading_share.html">Share files</a></li>
                     <li><a href="../../loading_screen/laoding_modif.html">Modify Account</a></li>
-                    <li><a href="../loading_screen/loading_editor.html">Code Editor</a></li>
-                    <li><a href="../loading_screen/loading_thome.html">blog</a></li>
+                    <li><a href="../../loading_screen/loading_editor.html">Code Editor</a></li>
+                    <li><a href="../../loading_screen/loading_thome.html">blog</a></li>
+                    <li><a href="../../media/media.html">Social media</a></li>
+                    <li><a href="../../coming_soon/loading.html">Whiteboard</a></li>
                     <button class="fullscreen-icon" onclick="toggleFullscreen()">⛶</button>
                 </ul>
             </div>
@@ -118,11 +186,7 @@
             </div>
         </div>
     </div>
-    <div class="untree_co-hero overlay" style="background-image: url('images/hero-img-1-min.jpg');">
-    <a href="../Ai/loding3.html" class="chat-icon">
-        <i class="fas fa-robot"></i>
-    </a>
-    </div>
+    
     <div class="spline-viewer">
         <spline-viewer url="https://prod.spline.design/BK83Flm76SwRJlHz/scene.splinecode"></spline-viewer>
       </div>

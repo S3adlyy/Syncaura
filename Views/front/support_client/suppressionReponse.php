@@ -1,6 +1,6 @@
 <?php
-include 'C:\xampp4\htdocs\integration3\configg.php';
-include 'C:\xampp4\htdocs\integration3\controller\questionsC.php';
+include 'C:\xamp\htdocs\integration3\configg.php';
+include 'C:\xamp\htdocs\integration3\controller\questionsC.php';
  
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id = intval($_GET['id']);

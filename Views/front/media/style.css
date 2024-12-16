@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.container:hover {
+    background-color: rgba(0, 0, 255, 0.8); /* Blue overlay on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover for a cool effect */
+}
+
+
+.container:hover {
+    background-color: rgba(0, 0, 255, 0.8); /* Blue overlay on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover for a cool effect */
+}
+
+.logo {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.details p {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.details p:first-child {
+    font-weight: bold;
+}
+
+.container:hover .logo {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.container .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+}
+.spline-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Send background behind other elements */
+}
+
+.spline-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}

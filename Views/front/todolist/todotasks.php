@@ -73,7 +73,6 @@ html, body {
   <nav class="site-nav mb-5 sticky-nav">
     
         <div class="site-navigation text-center">
-            <a href="../../dash/user/user_dash/main.php" class="logo menu-absolute m-0" align="left">SyncAura<span class="text-primary"></span></a>
             <ul class="site-menu d-flex justify-content-center align-items-center">
                 <li><a href="../loading_screen/loading_meet.html">Create meet</a></li>
                 <li><a href="../Ai/loding3.html">Ai ChatBot</a></li>
@@ -86,6 +85,8 @@ html, body {
                 <li><a href="../loading_screen/laoding_modif.html">Modify Account</a></li>
                 <li><a href="../loading_screen/loading_editor.html">Code Editor</a></li>
                 <li><a href="../loading_screen/loading_thome.html">Blog</a></li>
+                <li><a href="../media/media.html">social media</a></li>
+                <li><a href="../coming_soon/loading.html">Whiteboard</a></li>
             </ul>
         </div>
   </nav>

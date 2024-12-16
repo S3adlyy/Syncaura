@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Media Containers with 3D Background</title>
+    <link href="https://fonts.googleapis.com/css2?family=Display+Playfair:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Spline Background -->
+    <div class="spline-background">
+        <spline-viewer url="https://prod.spline.design/Hm0WXwav-kLGo6n3/scene.splinecode"></spline-viewer>
+      <iframe
+        src="https://your-spline-project-url"
+        frameborder="0"
+        class="spline-frame"
+      ></iframe>
+    </div>
+
+    <!-- Social Media Containers -->
+    <div class="container">
+      <a href="https://www.instagram.com/syncauratn?igsh=cTEzeDJkZW53aDIx" target="_blank" class="logo">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <div class="details">
+        <p>Instagram</p>
+        <p>Account Name: [syncauratn]</p>
+      </div>
+    </div>
+    
+    <div class="container">
+      <a href="https://www.youtube.com/@syncaura-m8p" target="_blank" class="logo">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <div class="details">
+        <p>YouTube</p>
+        <p>Account Name: [syncauratn]</p>
+      </div>
+    </div>
+    <div class="container">
+      <a href="https://www.linkedin.com/in/sync-aura-920670341?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="logo">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <div class="details">
+        <p>LinkedIn</p>
+        <p>Account Name: [syncauratn]</p>
+      </div>
+    </div>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.48/build/spline-viewer.js"></script>
+    <script>
+        window.onload = function() {
+    const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
+    if (shadowRoot) {
+        const logo = shadowRoot.querySelector('#logo');
+        if (logo) logo.remove();
+    }
+}
+    </script>
+  </body>
+</html>
+

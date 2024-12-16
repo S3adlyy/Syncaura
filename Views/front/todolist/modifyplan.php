@@ -37,18 +37,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modify Plan</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+        html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+      overflow: hidden; /* Prevent body scrolling */
+    }
+
+.spline-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+}
 
         .form-container {
+            position: fixed;
+             z-index: 2; 
             background: rgba(255, 255, 255, 0.8); /* White with transparency */
             border-radius: 15px;
             padding: 30px;
@@ -102,6 +113,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </style>
 </head>
 <body>
+<div class="spline-viewer">
+  <spline-viewer url="https://prod.spline.design/BK83Flm76SwRJlHz/scene.splinecode"></spline-viewer>
+  </div>
     <div class="form-container">
         <h2>Add the New Plan Name</h2>
         <form method="POST" action="">
@@ -113,5 +127,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="submit" value="Modify Plan">
         </form>
     </div>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.35/build/spline-viewer.js"></script>
+
+  <script>
+      window.onload = function() {
+          const shadowRoot = document.querySelector('spline-viewer').shadowRoot;
+          if (shadowRoot) {
+              const logo = shadowRoot.querySelector('#logo');
+              if (logo) logo.remove();
+          }
+      }
+  </script>
 </body>
 </html>

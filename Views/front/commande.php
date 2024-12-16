@@ -1,5 +1,5 @@
 <?php
-include 'C:\xampp4\htdocs\integration3\controller\achatA.php';
+include 'C:\xampp\htdocs\integration3\controller\achatA.php';
 
 $achatManager = new AchatManager();
 $packs = $achatManager->getAllPacks(); // Fetch all packs for ComboBox
@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="spline-viewer">
-        <spline-viewer url="https://prod.spline.design/O4wdVneKYyKKbJbX/scene.splinecode"></spline-viewer>
+    <spline-viewer url="https://prod.spline.design/BK83Flm76SwRJlHz/scene.splinecode"></spline-viewer>
     </div>
 
     <!-- Form for Adding/Editing Achat -->

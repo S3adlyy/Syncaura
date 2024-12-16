@@ -1,5 +1,5 @@
 <?php
-include 'C:\xampp4\htdocs\integration3\configg.php';
+include 'C:\xampp\htdocs\integration3\configg.php';
 include_once "../models/questions.php";
 include_once "../controller/questionsC.php";
 

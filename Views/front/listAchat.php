@@ -1,6 +1,6 @@
 <?php
 // Inclure les fichiers nécessaires pour la gestion des achats
-include 'C:\xampp4\htdocs\integration3\controller\achatA.php';
+include 'C:\xampp\htdocs\integration3\controller\achatA.php';
 
 // Instancier l'objet AchatManager pour récupérer les achats avec l'image du pack
 $achatManager = new AchatManager();

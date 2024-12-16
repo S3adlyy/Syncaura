@@ -1,6 +1,6 @@
 <?php
-include 'C:\xampp4\htdocs\integration3\configg.php';
-include 'C:\xampp4\htdocs\integration3\models\Reponse.php';
+include 'C:\xampp\htdocs\integration3\configg.php';
+include 'C:\xampp\htdocs\integration3\models\Reponse.php';
 
 if(!class_exists("reponseC"))
 {

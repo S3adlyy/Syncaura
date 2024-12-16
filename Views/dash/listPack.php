@@ -69,7 +69,31 @@ $packs = $PackController->listPacks(); // Fetch all packs data
         }
         
     </style>
+<style>
+.img {
+    width: 80px; /* Adjust to your preferred size */
+    height: 50px; /* Maintain a square aspect ratio */
+    border-radius: 80%; /* Circular shape */
+    overflow: hidden; /* Ensures the image fits within the circle */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Adds a soft shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover animations */
+    margin-right:80px;
+}
+
+.img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the circle */
+}
+
+.img:hover {
+    transform: scale(1.1); /* Slightly zoom in on hover */
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.12); /* Stronger shadow on hover */
+}
+
+    </style>
 </head>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -77,10 +101,10 @@ $packs = $PackController->listPacks(); // Fetch all packs data
        
        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dash.html">
-               <div class="sidebar-brand-icon rotate-n-15">
-                   <i class="fas fa-laugh-wink"></i>
+              
+               <div class="img">
+                <img src="imgggg.png" alt="syncauralogo">
                </div>
-               <div class="sidebar-brand-text mx-3">Syncora <sup>2</sup></div>
            </a>
            <hr class="sidebar-divider my-0">
            <li class="nav-item active">

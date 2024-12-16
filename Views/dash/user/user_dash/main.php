@@ -67,84 +67,89 @@ $profile_picture =  $_SESSION["profile_picture"]; // Corrected path
   color: #fff;
 }
 
-/* Profile Block */
-.profile-block {
-  background: linear-gradient(145deg, #007bff, #6a11cb); /* Smooth gradient */
-  color: #fff;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 4px 10px rgba(0, 0, 0, 0.2);
-  position: fixed;
-  top: 15px; /* Higher placement */
-  right: 20px;
-  z-index: 1100;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  transition: all 0.3s ease-in-out;
-  overflow: hidden;
-  width: 200px;
-}
+/* Profile Block */ 
+.profile-block {   
+   background: linear-gradient(145deg, rgba(0, 123, 255, 0.1), rgba(106, 17, 203, 0.1)); /* Fully transparent gradient */   
+   color: #fff;   
+   padding: 20px;   
+   border-radius: 16px;   
+   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25), 0 4px 10px rgba(0, 0, 0, 0.2);   
+   position: fixed;   
+   top: 15px; /* Higher placement */   
+   right: 20px;   
+   z-index: 1100;   
+   display: flex;   
+   align-items: center;   
+   gap: 15px;   
+   transition: all 0.3s ease-in-out;   
+   overflow: hidden;   
+   width: 200px; 
+   opacity: 0.9; /* Additional transparency */
+}  
 
-.profile-block:hover {
-  transform: translateY(-10px); /* Hover lift effect */
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-  background: linear-gradient(145deg, #6a11cb, #007bff);
-}
+.profile-block:hover {   
+   transform: translateY(-10px); /* Hover lift effect */   
+   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);   
+   background: linear-gradient(145deg, rgba(106, 17, 203, 0.2), rgba(0, 123, 255, 0.2)); 
+   opacity: 1; /* Full opacity on hover */
+} 
 
-/* Profile Image */
-.profile-block img {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border: 3px solid #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+/* Profile Image */ 
+.profile-block img {   
+   border-radius: 50%;   
+   width: 50px;   
+   height: 50px;   
+   object-fit: cover;   
+   border: 3px solid #fff;   
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}  
 
-/* Profile Text */
-.profile-block h2 {
-  font-size: 18px;
-  margin: 0;
-  font-weight: 600;
-}
+/* Profile Text */ 
+.profile-block h2 {   
+   font-size: 18px;   
+   margin: 0;   
+   font-weight: 600; 
+}  
 
-.profile-block a {
-  font-size: 14px;
-  color: #ffd700;
-  text-decoration: none;
-  margin-top: 5px;
-  font-weight: bold;
-  transition: color 0.3s ease-in-out;
-}
+.profile-block a {   
+   font-size: 14px;   
+   color: #ffd700;   
+   text-decoration: none;   
+   margin-top: 5px;   
+   font-weight: bold;   
+   transition: color 0.3s ease-in-out; 
+}  
 
-.profile-block a:hover {
-  color: #fff;
-  text-decoration: underline;
-}
+.profile-block a:hover {   
+   color: #fff;   
+   text-decoration: underline; 
+}  
 
-/* Controller Icon */
-.controller-icon {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 10;
-  background-color: #007bff;
-  border-radius: 50%;
-  padding: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+/* Controller Icon */ 
+.controller-icon {   
+   position: fixed;   
+   bottom: 20px;   
+   right: 20px;   
+   z-index: 10;   
+   background-color: rgba(0, 123, 255, 0.8);   
+   border-radius: 50%;   
+   padding: 10px;   
+   gap: 30px; 
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);   
+   transition: transform 0.2s ease, box-shadow 0.2s ease; 
+}  
 
-.controller-icon i {
-  color: #fff;
-  font-size: 24px;
-}
 
-.controller-icon:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
+.controller-icon i {   
+   color: #fff;   
+   font-size: 24px; 
+}  
+
+.controller-icon:hover {   
+   transform: scale(1.1);   
+   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+}  
+
 
   </style>
 
@@ -179,6 +184,7 @@ $profile_picture =  $_SESSION["profile_picture"]; // Corrected path
         <li><a href="../../../front/loading_screen/laoding_modif.html">Modify Account</a></li>
         <li><a href="../../../front/loading_screen/loading_editor.html">Code Editor</a></li>
         <li><a href="../../../front/loading_screen/loading_thome.html">Blog</a></li>
+        <li><a href="../../../front/media/media.html">Social media</a></li>
         <li><a href="../../../front/coming_soon/loading.html">Whiteboard</a></li>
       </ul>
     </div>
@@ -188,7 +194,7 @@ $profile_picture =  $_SESSION["profile_picture"]; // Corrected path
 <div class="profile-block">
                 <img src="<?php echo $profile_picture; ?>" alt="Profile Picture">
                 <h2>Welcome, <?php echo $username; ?>!</h2>
-                <a href="../../../../Views/front/sign/signin.php">log out</a>
+                <a href="../../../../Views/front/sign/signin.php" onclick="return confirmLogout()">Log Out</a>
               </div>
   
 
@@ -197,6 +203,9 @@ $profile_picture =  $_SESSION["profile_picture"]; // Corrected path
   <div class="controller-icon">
   <a href="../../../front/loading_screen/loading_game.html" title="Play Game">
     <i class="fas fa-gamepad"></i>
+  </a>
+  <a href="../../../front/ghub/gilo.html" title="GitHub">
+    <i class="fab fa-github"></i>
   </a>
 </div>
 
@@ -240,6 +249,9 @@ $profile_picture =  $_SESSION["profile_picture"]; // Corrected path
           const logo = shadowRoot.querySelector('#logo');
           if (logo) logo.remove();
       }
+  }
+  function confirmLogout() {
+    return confirm('Are you sure you want to leave the website?');
   }
 </script>
 

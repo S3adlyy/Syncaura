@@ -148,7 +148,6 @@ $questions = $questionsC->listquestion();
 <nav class="site-nav mb-5 sticky-nav">
     <div class="container position-relative">
         <div class="site-navigation text-center">
-            <a href="loading_screen/loadng.html" class="logo menu-absolute m-0" align="left">SyncAura<span class="text-primary">.</span></a>
             <ul class="site-menu d-flex justify-content-center align-items-center">
             <li><a href="../front/createmeet/loadng2.php">Cree un meet</a></li>
             <li><a href="./Ai/loding3.php">Ai ChatBot</a></li>
@@ -161,6 +160,8 @@ $questions = $questionsC->listquestion();
                 <li><a href="../loading_screen/loadng.html">Modify Account</a></li>
                 <li><a href="../loading_screen/loadng.html">Code Editor</a></li>
                 <li><a href="../loading_screen/loadng.html">Blog</a></li>
+                <li><a href="../media/media.html">social media</a></li>
+                <li><a href="../coming_soon/loading.html">Whiteboard</a></li>
                 
                 
             </ul>

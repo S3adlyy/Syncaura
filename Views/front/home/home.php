@@ -122,7 +122,8 @@
         <div class="col-12">
           <div class="row justify-content-center">
             <div class="col-lg-6 text-center">
-              <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Collaborez en Direct Réussissez Ensemble</h1>
+              <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Live Collaboration,Shared Success
+              </h1>
             </div>
           </div>
         </div>

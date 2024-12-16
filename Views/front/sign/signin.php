@@ -40,6 +40,8 @@
 
         .error-messages p {
             margin: 0;
+            color: red;
+
         }
     </style>
 </head>

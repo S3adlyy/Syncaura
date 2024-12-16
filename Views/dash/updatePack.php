@@ -1,5 +1,5 @@
 <?php
-include 'C:\xampp4\htdocs\integration3\controller\packP.php';
+include 'C:\xampp\htdocs\integration3\controller\packP.php';
 
 $error = "";
 $pack = null;
@@ -35,7 +35,7 @@ if (
 
             $newImageName = time() . "_" . $imageName;
 
-            $uploadDir = 'C:/xampp1/htdocs/integration3/view/dash/image_bdd';
+            $uploadDir = 'C:/xamp/htdocs/integration3/Views/dash/image_bdd';
             $destinationPath = $uploadDir . "/" . $newImageName; // Fix the path to include the directory
 
             if (move_uploaded_file($_FILES['image']['tmp_name'], $destinationPath)) {
@@ -166,23 +166,43 @@ if (
             margin-top: 10px;
         }
     </style>
+<style>
+.img {
+    width: 80px; /* Adjust to your preferred size */
+    height: 50px; /* Maintain a square aspect ratio */
+    border-radius: 80%; /* Circular shape */
+    overflow: hidden; /* Ensures the image fits within the circle */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Adds a soft shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover animations */
+    margin-right:80px;
+}
+
+.img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the circle */
+}
+
+.img:hover {
+    transform: scale(1.1); /* Slightly zoom in on hover */
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.12); /* Stronger shadow on hover */
+}
+
+    </style>
 </head>
 
 <body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dash.php">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Syncora <sup>2</sup></div>
-            </a>
+       
+       <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+           <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dash.html">
+              
+               <div class="img">
+                <img src="imgggg.png" alt="syncauralogo">
+               </div>
+           </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">

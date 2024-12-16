@@ -96,6 +96,8 @@ if(isset($_POST['delete_comment'])){
                     <li><a href="loading_screen/loading_share.html">Share files</a></li>
                     <li><a href="loading_screen/loading_editor.html">Code Editor</a></li>
                     <li><a href="thome.php">blog</a></li>
+                    <li><a href="media/media/media.html">social media</a></li>
+                    <li><a href="coming_soon/loading.html">Whiteboard</a></li>
 
 
                 </ul>

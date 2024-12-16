@@ -1,7 +1,7 @@
 <?php
 
-include 'C:\xampp4\htdocs\integration3\views\config.php';
-include 'C:/xampp4/htdocs/integration3/models/pack.php';
+include 'C:\xampp\htdocs\integration3\views\config.php';
+include 'C:/xampp/htdocs/integration3/models/pack.php';
 
 class PackController
 {
@@ -38,7 +38,7 @@ class PackController
                 $tmp_nom = $_FILES["NouvelleImage"]["tmp_name"];
                 $time = time();
                 $nouveau_nom_img = $time . "_" . $img_nom; 
-                $deplacer_img = move_uploaded_file($tmp_nom, "C:\xampp\htdocs\projetrayen\view\backend\image_bdd" . $nouveau_nom_img); // Save the file to the server
+                $deplacer_img = move_uploaded_file($tmp_nom, "C:\xamp\htdocs\integration3\Views\dash\image_bdd" . $nouveau_nom_img); // Save the file to the server
     
                 if (!$deplacer_img) {
                     echo "Erreur lors de l'upload de la nouvelle image";

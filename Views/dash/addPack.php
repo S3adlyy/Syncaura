@@ -31,7 +31,7 @@ if (
 
             $newImageName = time() . "_" . $imageName;
 
-            $uploadDir = 'C:/xampp4/htdocs/integration3/Views/dash/image_bdd';
+            $uploadDir = 'C:/xamp/htdocs/integration3/Views/dash/image_bdd';
             $destinationPath = $uploadDir . "/" . $newImageName; // Fix the path to include the directory
 
             if (move_uploaded_file($_FILES['image']['tmp_name'], $destinationPath)) {

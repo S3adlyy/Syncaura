@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Include the PackManager class to interact with the pack data
-include 'C:\xampp4\htdocs\integration3\controller\packP.php';
+include 'C:\xampp\htdocs\integration3\controller\packP.php';
 
 // Create an instance of the PackManager to fetch all packs
 $PackController = new PackController();
@@ -31,17 +31,76 @@ $packs = $PackController->listPacks(); // Fetch all packs data
 
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/animate.min.css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="main/css/bootstrap.min.css">
+  <link rel="stylesheet" href="main/css/animate.min.css">
+  <link rel="stylesheet" href="main/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="main/css/owl.theme.default.min.css">
   <link rel="stylesheet" href="flaticon.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-  <link rel="stylesheet" href="css/aos.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/stylo/css">
-  <link rel="stylesheet" href="css/card.css">
+  <link rel="stylesheet" href="main/style.css">
+  <link rel="stylesheet" href="../fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="main/css/aos.css">
+  <link rel="stylesheet" href="main/css/style.css">
+  <link rel="stylesheet" href="main/css/stylo.css">
+  <style>
+    .packs-container {
+    position: relative; /* Ensures it is positioned over the background */
+    z-index: 10; /* Higher than the Spline viewer */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Adds spacing between cards */
+    margin-top: 50px; /* Adjust as needed */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Slight background to improve readability */
+    border-radius: 15px; /* Rounded corners for modern design */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: box-shadow 0.3s ease-in-out; /* Smooth shadow transition */
+}
+
+.pack-card {
+    position: relative;
+    z-index: 11; /* Ensures cards are individually above the container */
+    width: 300px; /* Larger card width for better visibility */
+    padding: 15px;
+    background-color: #fff; /* White background for clarity */
+    border: 1px solid #ddd;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease-in-out;
+}
+
+.pack-card img {
+    max-width: 100%;
+    border-radius: 10px; /* Rounded corners on images */
+}
+
+.pack-card:hover {
+    transform: translateY(-5px); /* Hover effect for better UI */
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2); /* Increase shadow effect on hover */
+}
+
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(90deg, #007bff, #00aaff); /* Blue-to-white gradient */
+    border-radius: 8px; /* Rounded corners */
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+.button-link:hover {
+    background: linear-gradient(90deg, #00aaff, #007bff); /* Reverse gradient on hover */
+    transform: translateY(-3px); /* Elevate slightly for a pressed effect */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+}
+  </style>
 </head>
 <body>
 <div class="site-mobile-menu">
@@ -60,7 +119,6 @@ $packs = $PackController->listPacks(); // Fetch all packs data
 
           <div class="col-6 col-lg-9">
             <a href="listAchat.php" class="small mr-3"><span class="icon-question-circle-o mr-2"></span> <span class="d-none d-lg-inline-block"  >View my purchases</span></a> 
-            <a href="#" class="small mr-3"><span class="icon-phone mr-2"></span> <span class="d-none d-lg-inline-block"  >+216 54171319</span></a> 
             <a href="des.php" class="small mr-3"><span class="icon-envelope mr-2"></span> <span class="d-none d-lg-inline-block" >help in choice of package</span></a> 
           </div>
         </div>
@@ -82,6 +140,8 @@ $packs = $PackController->listPacks(); // Fetch all packs data
             <li><a href="loading_screen/laoding_modif.html">Modify Account</a></li>
             <li><a href="loading_screen/loading_meet.html">Meeting</a></li>
             <li><a href="loading_screen/loading_thome.html">blog</a></li>
+            <li><a href="media/media.html">social media</a></li>
+            <li><a href="coming_soon/loading.html">Whiteboard</a></li>
             </ul>
         </div>
     </div>

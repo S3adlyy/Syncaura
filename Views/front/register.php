@@ -99,6 +99,8 @@ if(isset($_POST['submit'])){
                     <li><a href="index.html">Chat</a></li>
                     <li><a href="./white/white.php">Whiteboard</a></li>
                     <li><a href="thome.php">blog</a></li>
+                    <li><a href="media/media.html">social media</a></li>
+                    <li><a href="coming_soon/loading.html">Whiteboard</a></li>
 
                 </ul>
             </div>

@@ -1,7 +1,7 @@
 <?php
-include 'C:\xampp4\htdocs\integration3\configg.php';
-include 'C:\xampp4\htdocs\integration3\models\Reponse.php';
-include 'C:\xampp4\htdocs\integration3\controller\reponseC.php';
+include 'C:\xampp\htdocs\integration3\configg.php';
+include 'C:\xampp\htdocs\integration3\models\Reponse.php';
+include 'C:\xampp\htdocs\integration3\controller\reponseC.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire

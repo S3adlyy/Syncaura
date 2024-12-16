@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mail->Port = 587;
         $mail->SMTPAuth = true;
         $mail->Username = '81ae8b003@smtp-brevo.com'; // Use your email username
-        $mail->Password = 'xsmtpsib-6c2a6832def1c06da7f6e4a04e7a5501d6baa80f65263bc7a74d89093ba44467-Iy9ZN7gsjf5MDCkc'; // Use your SMTP password
+        $mail->Password = 'xsmtpsib-6c2a6832def1c06da7f6e4a04e7a5501d6baa80f65263bc7a74d89093ba44467-qKaZc7PSRhDQM8xI'; // Use your SMTP password
         $mail->setFrom('mohamed.erguez@gmail.com', 'syncaura');
         $mail->addAddress($email);
         $mail->Subject = 'Password Reset Request';

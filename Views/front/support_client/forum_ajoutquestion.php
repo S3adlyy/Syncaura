@@ -161,6 +161,8 @@
                 <li><a href="../loading_screen/loadng.html">Modify Account</a></li>
                 <li><a href="../loading_screen/loadng.html">Code Editor</a></li>
                 <li><a href="../loading_screen/loadng.html">Blog</a></li>
+                <li><a href="../media/media.html">social media</a></li>
+                <li><a href="../coming_soon/loading.html">Whiteboard</a></li>
                 
             </ul>
         </div>

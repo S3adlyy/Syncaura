@@ -1,5 +1,5 @@
 <?php
-include 'C:\xampp4\htdocs\integration3\controller\achatA.php';
+include 'C:\xampp\htdocs\integration3\controller\achatA.php';
 
 $achatManager = new AchatManager();
 $packs = $achatManager->getAllPacks(); // Fetch all packs for ComboBox
