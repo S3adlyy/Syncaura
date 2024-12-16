@@ -126,8 +126,8 @@ Syncaura was created by **Khalil Ben Hamoud** and the development team at ESPRIT
 
 Have questions or feedback? Reach out to us:
 
-- **Email:** [khalil.benhamoud@example.com](mailto:khalil.benhamoud@example.com)
-- **GitHub:** [Syncaura Repository](https://github.com/username/syncaura)
+- **Email:** [saadliwasssieo@gmail.com](mailto:saadliwassieo@gmail.com)
+- **GitHub:** [Syncaura Repository]([https://github.com/username/syncaura](https://github.com/S3adlyy/Syncaura))
 
 ---
 
