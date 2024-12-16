@@ -64,7 +64,7 @@ Syncaura is designed to be intuitive. Here’s how you can get started:
 
 ![Screenshot 2024-12-16 014604](https://github.com/user-attachments/assets/e8f7125d-5f9a-4280-a146-0d79d40e774b)
 ![Screenshot 2024-12-16 014642](https://github.com/user-attachments/assets/eddc2adc-b86c-431d-bd3e-35ee933397d1)
-![Screenshot 2024-12-16 014704](https://github.com/user-attachments/assets/2f3f3dde-b1f4-46c2-b5c2-e530bee26804)
+![image](https://github.com/user-attachments/assets/a7f271b3-0625-4446-96c3-d443a38c4ab6)
 ![Screenshot 2024-12-16 014719](https://github.com/user-attachments/assets/f6adf9b8-dd0e-4d34-a11c-f18e6b472279)
 ![Screenshot 2024-12-16 014737](https://github.com/user-attachments/assets/80c69d49-3874-4a5b-85f1-a4d286c3e297)
 ![Screenshot 2024-12-16 014903](https://github.com/user-attachments/assets/9de99b32-1e80-4532-96e0-a5dee9a987de)
